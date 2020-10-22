@@ -1,0 +1,202 @@
+.Navbar{
+  display: flex;
+  height: 10vh;
+  box-shadow : 0px 3px 9px #c6c6cc;
+  padding-left: 20px;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  background-color: white !important;
+  /* background-color: #283e4a !important; */
+}
+.Navbar .logo{
+  height: 7.7vh;
+  transform: translateY(5px);
+}
+.NavLink{
+  width: 37vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2%;
+  padding-left: 3%;
+}
+.NavLink h6{
+  cursor: pointer;
+  color: black;
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+  font-weight: 580;
+}
+/* .NavLink h6:hover{
+  text-decoration: underline;
+} */
+.SearchContainer{
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+  /* border: red 3px solid; */
+  margin-left: 7%;
+}
+.barbox{
+  height: 35px;
+  background-color: #f5f5f6;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding-left: 3%;
+  display: flex;
+  align-items: center;
+}
+.input_bar{
+  height: 33px;
+  width: 90%;
+  background-color: #f5f5f6;
+  font-size: 13px;
+  border: none;
+  outline: none;
+  margin-left: 5%;
+  padding-right: 10px;
+}
+.conditional_render{
+  display: flex;
+  width: 100%;
+  align-self: center;
+  justify-content: space-between;
+  /* border: red 3px solid; */
+}
+.logged_in{
+  width: 150px;
+}
+.logged_in i:hover{
+  transform: scale(1.3);
+}
+.conditional_render>li{
+  text-align: center;
+  cursor: pointer;
+  width: 70px;
+  margin: 0 7px;
+}
+.conditional_render .nav-item:hover{
+  transform: scale(1.08);
+}
+.conditional_render>li h6{
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+.Navbar a:hover{
+  text-decoration: none;
+}
+
+.conditional_render i{
+  font-size: 20.5px;
+}
+.conditional_render .signbutton{
+  margin: 12px;
+  width: 80px;
+  border-radius: 5px;
+  border: solid 1.8px rgb(240, 53, 91);
+  padding: 7px;
+  color:  rgb(240, 53, 91);
+  background-color: floralwhite;
+  outline: none;
+}
+.conditional_render .signbutton:hover{
+  background-color:  rgb(240, 53, 91);
+  color: white;
+}
+.collapse{
+  justify-content: space-between;
+}
+.collapse i{
+  color: black !important;
+}
+
+@media (max-width:991.5px){
+  .conditional_render i{
+    font-size: 20px;
+    color: grey;
+    margin: 18px;
+    cursor: pointer;
+  }
+  .NavLink{
+    margin-right: 0 !important;
+  }
+  .collapse{
+    background-color: rgba(245,245,246);
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw !important;
+    margin-top: 30px;
+  }
+  .barbox,.input_bar{
+    background-color: #fff;
+    margin: 5px 0;
+  }
+  .barbox{
+    width: 60vw;
+  }
+  .NavLink li{
+    margin: 5px 0;
+  }
+  .SearchContainer input{
+    margin-top: 2.5px;
+  }
+  .SearchContainer{
+    width: 50vw;
+    transform: translateX(3%);
+  }
+  .SearchContainer i{
+    margin-right: 10px;
+  }
+  .navbar-toggler{
+    /* transform: translateY(-10%); */
+    outline: none;
+  }
+  .navbar-toggler{
+    /* transform: translateY(-10%); */
+    margin: 0;
+    outline: none;
+  }
+  .navbar-toggler-icon{
+    outline: none;
+  }
+}
+@media (max-width:1180px) and (min-width:991.5px){
+  .SearchContainer{
+    width: 27vw;
+  }
+  .barbox input{
+    width: 80%;
+  }
+}
+
+@media (max-width:700px){
+  .Navbar{
+    height: 8.5vh;
+  }
+  .navbar-toggler,.navbar-toggler-icon{
+    height: 25px;
+    border: none;
+    transform: translateY(-3px)
+  }
+  .Navbar img{
+    height: 5.4vh;
+  }
+}
+@media (max-width:536px){
+  .SearchContainer{
+    width: 80%;
+  }
+}
+@media (max-width:450px){
+  .SearchContainer input{
+    width: 85%;
+  }
+}
