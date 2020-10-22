@@ -114,6 +114,84 @@
 .collapse i{
   color: black !important;
 }
+.user>.dropdown-toggle::after{
+  display: none;
+}
+.user>.dropdown-menu{
+  transform: translateX(-190px) translateY(10px) scale(1);
+}
+.dropdown-menu{
+  padding: 7px;
+  width: 250px !important;
+  box-shadow : 0px 3px 9px #c6c6cc;
+}
+.dropdown-menu .navUserProfile i{
+  font-size: 35px;
+}
+.navDropdownProfImg{
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.dropdown-menu .navUserProfHead{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.dropdown-menu .navUserProfile{
+  width: fit-content;
+}
+.navUserProfHead .name{
+  font-size: 16.4px;
+  font-weight: 800;
+  padding-bottom: 3.5px;
+  padding-top: 4px;
+}
+.navUserProfHead .status{
+  font-size: 14.4px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-bottom: 5px;
+}
+.dropdown-menu .viewProfile{
+  border: rgba(41, 122, 255, 1) 1.5px solid;
+  padding: 2px 5px;
+  color: rgba(41, 122, 255, 1);
+  background-color: white;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.dropdown-menu .viewProfile:hover{
+  background-color: rgba(41, 122, 255, 0.14);
+}
+.dropdown-menu .dropAccount{
+  width: 100%;
+  font-weight: 600;
+  color: red;
+  background-color: rgba(41, 122, 255, 0.14);
+  padding: 8px;
+  cursor: text;
+}
+.dropdown-menu .dropAccountOptions{
+  padding: 6px;
+  font-size: 13.4px;
+  color: grey;
+  font-weight: 400;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.dropdown-menu .dropAccountOptions:hover{
+  color: black;
+  text-decoration: underline;
+}
+.dropdown-menu .dropAccount h6:hover{
+  cursor: text;
+}
+
 
 @media (max-width:991.5px){
   .conditional_render i{
