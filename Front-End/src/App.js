@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
       
         <Route path='/' exact component={Home}/>
-        <Route path='/userSignup' exact component={Signup}/>
+        <Route path='/userSignup/:id' render={props => <Signup key={props.location.pathname} {...props}/>}/>
 
       </BrowserRouter>
     </div>

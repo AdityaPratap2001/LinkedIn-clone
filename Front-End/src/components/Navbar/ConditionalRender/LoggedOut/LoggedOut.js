@@ -5,7 +5,7 @@ import '../../Navbar.css'
 const Logout = (props) => {
   return (
     <div className='conditional_render'>
-      <Link to='/userSignup'>
+      <Link to='/userSignup/register'>
         <button className='signbutton' type="button">Sign Up</button>
       </Link>
       <Link to='/userLogin'>
