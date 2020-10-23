@@ -3,6 +3,7 @@ import './Signup.css';
 import Navbar from '../../components/Navbar/Navbar';
 import FormOne from './SignupForms/FormOne';
 import FormTwo from './SignupForms/FormTwo';
+import FormThree from './SignupForms/FormThree';
 import Loader from '../../components/Loader/Loader';
 
 class Signup extends Component {
@@ -26,6 +27,23 @@ class Signup extends Component {
     },6000)
   }
 
+  submitFormTwo = (details) => {
+    alert('Reached parent!');
+    let userId = localStorage.getItem('username');
+    const personalDetails = {
+      email : userId,
+      firstName : details.firstName,
+      lastName : details.lastName,
+      location : details.location,
+      positon : details.positon,
+      industry : details.industry,
+      image : details.selectedFile,
+      startYear : Number(details.startYear),
+      endYear : Number(details.endYear),
+    }
+    console.log(personalDetails);
+  }
+
   render() {
 
     let formData = <FormOne submitHandler={this.submitFormOne}/>;
@@ -34,7 +52,10 @@ class Signup extends Component {
       formData = <FormOne submitHandler={this.submitFormOne}/>
     }
     if(this.state.stage === 'personalDetails'){
-      formData = <FormTwo/>
+      formData = <FormTwo submitHandler={this.submitFormTwo}/>
+    }
+    if(this.state.stage === 'otpVerification'){
+      formData = <FormThree/>
     }
 
     if(this.state.loading){

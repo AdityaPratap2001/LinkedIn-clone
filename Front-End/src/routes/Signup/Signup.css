@@ -1,6 +1,7 @@
 .body{
   /* border: red 1.5px solid; */
-  height: 90vh;
+  min-height: 90vh;
+  height: auto;
   margin-top: 10vh;
   display: flex;
   justify-content: center;
@@ -12,6 +13,9 @@
   border: white 1.4px solid;
   background-color: white;
   padding: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  /* padding-top: 100px; */
   /* height: 500px; */
   /* width: 400px; */
   box-shadow : 0px 3px 9px #c6c6cc;
@@ -22,11 +26,14 @@
   text-align: center;
   margin-bottom: 35px;
 }
-.signupFormOne label{
+.formTwoHead{
+  margin-bottom: 10px;
+}
+.signupFormOne label,.signupFormTwo label{
   margin-bottom: 0px;
   font-size: 14px;
 }
-.signupFormOne input{
+.signupFormOne input,.signupFormTwo input{
   font-size: 14px;
 }
 .signupFormOne .btn-dark{
@@ -38,7 +45,40 @@
   font-size: 12px;
   font-weight: 500;
 }
+.signupFormTwo{
+  padding: 10px;
+  width: 45vw;
+  min-width: 200px;
+}
+.signupFormTwo span{
+  color: red;
+  font-size: 12.9px;
+  position: absolute;
+}
+.formTwoDateSection{
+  display: flex;
+}
+.formTwoDates{
+  width: 20%;
+}
+.formTwoDateTwo{
+  display: inline-block;
+}
+
 .loaderWindow{
   width: 300px;
   height: 400px;
+}
+
+
+
+
+@media (max-width:890px){
+  .formTwoDateSection{
+    display: flex;
+    flex-direction: column;
+  }
+  .formTwoDates{
+    width: 50%;
+  }
 }
