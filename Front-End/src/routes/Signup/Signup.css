@@ -65,6 +65,18 @@
   display: inline-block;
 }
 
+.otpInputDiv{
+  margin-top: 20px;
+}
+.otpInputDiv>div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.otpInputDiv>div>div>input{
+  width: 30px !important;
+}
+
 .loaderWindow{
   width: 300px;
   height: 400px;
