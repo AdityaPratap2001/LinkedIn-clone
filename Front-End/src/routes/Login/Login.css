@@ -1,0 +1,74 @@
+.body{
+  /* border: red 1.5px solid; */
+  min-height: 90vh;
+  height: auto;
+  margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  /* background-color: rgb(237,237,237); */
+  background-color: #e1e9ee;
+  background-image: linear-gradient(rgba(0,0,0, 0.52),rgba(0,0,0, 0.7)), url('../../assets/5.png');
+  background-position: center;
+  background-size: cover;
+}
+.loginForm{
+  border: white 1.4px solid;
+  background-color: white;
+  padding: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  /* padding-top: 100px; */
+  /* height: 500px; */
+  /* width: 400px; */
+  /* box-shadow : 0px 3px 9px #c6c6cc; */
+}
+@media (min-width:500px){
+  .loginForm{
+    width: 360px;
+  }
+}
+@media (min-width:700px){
+  .loginForm{
+    width: 460px;
+  }
+}
+@media (min-width:1000px){
+  .loginForm{
+    width: 500px;
+  }
+}
+.loginForm label{
+  margin-bottom: 4px;
+}
+.loaderWindow{
+  width: 300px;
+  height: 400px;
+}
+.form-group{
+  position: relative;
+}
+.forgotPass{
+  font-size: 12px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+}
+.forgotPass:hover{
+  text-decoration: underline;
+  color: black;
+}
+.errorMessage{
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  right: 0;
+}
+.newAccount{
+  margin-top: 4px;
+  color: black;
+  font-size: 12px;
+  text-align: center;
+}
