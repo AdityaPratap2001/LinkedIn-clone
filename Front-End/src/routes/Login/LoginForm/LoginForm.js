@@ -71,6 +71,7 @@ class LoginForm extends Component {
       this.props.showAlert(alertData);
       return;
     }
+    this.props.redirectToOtpVerifcation();
     alert('Will redirect to OTP verification!');
   };
 

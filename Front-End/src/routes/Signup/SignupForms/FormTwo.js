@@ -13,8 +13,12 @@ const formValid = ({ formErrors, ...rest }) => {
   });
 
   // validate the form was filled out
+  // console.log('Val :')
   Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
+    console.log(val);
+  //   // if(val !== 'selectedFile'){
+  //     val === null && (valid = false);
+  //   // }
   });
 
   return valid;
@@ -39,7 +43,7 @@ class FormTwo extends Component {
       industry: "",
       startDate: "",
       endDate: "",
-      selectedFile: ""
+      // selectedFile: ""
     },
   };
 
@@ -246,6 +250,8 @@ class FormTwo extends Component {
                 <br></br>
                 <input
                   type="number"
+                  min="1970"
+                  max="2022"
                   autoComplete="off"
                   className={
                     formErrors.startDate.length > 0
@@ -269,6 +275,8 @@ class FormTwo extends Component {
                 <br></br>
                 <input
                   type="number"
+                  min="1970"
+                  max="2030"
                   autoComplete="off"
                   className={
                     formErrors.endDate.length > 0

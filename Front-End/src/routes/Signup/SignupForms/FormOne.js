@@ -12,6 +12,26 @@ class FormOne extends Component {
 
   handleChange = (event) => {
     let input = this.state.input;
+    if(event.target.name === 'email'){
+      this.state.errors['email'] = emailRegex.test(event.target.value) ? null : "Enter valid email"; 
+    }
+    if(event.target.name === 'password'){
+      let pass = event.target.value;
+      let spaceCount = 0;
+      // pass.forEach(ch => {
+      //   if(ch === ' '){
+      //     spaceCount++;
+      //   }
+      // });
+      for(let ch in pass){
+        if(pass[ch]==' '){
+          spaceCount++;
+        }
+      } 
+      if(spaceCount > 0){
+        this.state.errors['password'] = "Password cannot contain ' ' ";
+      }
+    }
     input[event.target.name] = event.target.value;
 
     this.setState({
@@ -39,15 +59,33 @@ class FormOne extends Component {
     let errors = {};
     let isValid = true;
 
+    let pass = input["password"];
+    let spaceCount = 0;
+      // pass.forEach(ch => {
+      //   if(ch === ' '){
+      //     spaceCount++;
+      //   }
+      // });
+    for(let ch in pass){
+      if(pass[ch]==' '){
+        spaceCount++;
+      }
+    } 
+    if(spaceCount > 0){
+      errors['password'] = "Password cannot contain ' ' ";
+      isValid = false;
+    }
+
     if (!input["email"]) {
       isValid = false;
       errors["email"] = "Enter valid email.";
     }
 
-    if (!emailRegex.test(input["email"])) {
-      isValid = false;
-      errors["email"] = "Enter valid email.";
-    }
+    // if (!emailRegex.test(input["email"])) {
+    //   isValid = false;
+    //   errors["email"] = "Enter valid email.";
+    // }
+
 
     if (input["password"].length < 6) {
       isValid = false;
@@ -91,6 +129,7 @@ class FormOne extends Component {
             <input
               type="email"
               name="email"
+              autoComplete='off'
               value={this.state.input.old_password}
               onChange={this.handleChange}
               className="form-control"
@@ -99,7 +138,7 @@ class FormOne extends Component {
               required
             />
 
-            <div className="text-danger">{this.state.errors.name}</div>
+            <div className="text-danger">{this.state.errors.email}</div>
           </div>
 
           <div className="form-group">

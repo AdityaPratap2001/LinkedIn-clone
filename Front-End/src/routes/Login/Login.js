@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import CustomAlert from '../../components/CustomAlert/CustomAlert';
 import LoginForm from './LoginForm/LoginForm';
 import Loader from '../../components/Loader/Loader';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
@@ -11,12 +12,17 @@ class Login extends Component {
     loading : null,
     showAlert : null,
     alertColor : null,
-    alertData : null
+    alertData : null,
+    redirect : null
   }
 
   login = (details) => {
     console.log('From parent!');
     console.log(details);
+  }
+
+  redirectToOtpVerifcation = () => {
+    this.setState({redirect : true});
   }
 
   showAlert = (alertDetails) => {
@@ -37,7 +43,7 @@ class Login extends Component {
     }
 
     let formData = (
-      <LoginForm showAlert={this.showAlert} submitHandler={this.login}/>
+      <LoginForm redirectToOtpVerifcation={this.redirectToOtpVerifcation} showAlert={this.showAlert} submitHandler={this.login}/>
     )
     if(this.state.loading){
       formData = (
@@ -47,11 +53,15 @@ class Login extends Component {
       )
     }
 
+    if(this.state.redirect){
+      return <Redirect to='/userSignup/otpVerification'/>
+    }
+
     return (
       <div>
         <Navbar/>
         {AlertData}
-        <div className='body'>
+        <div className='loginBody'>
           <div className='loginForm'>
             {formData}
           </div>

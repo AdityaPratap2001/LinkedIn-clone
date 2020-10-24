@@ -1,4 +1,4 @@
-.body{
+.signupBody{
   /* border: red 1.5px solid; */
   min-height: 90vh;
   height: auto;
@@ -47,11 +47,13 @@
 .signupFormOne .text-danger{
   font-size: 12px;
   font-weight: 500;
+  position: absolute;
+  right: 0;
 }
 .signupFormTwo{
   padding: 10px;
   width: 45vw;
-  min-width: 200px;
+  min-width:240px;
 }
 .signupFormTwo span{
   color: red;
@@ -92,7 +94,14 @@
 }
 
 
-
+@media (max-width:500px){
+  .signupFormTwo span{
+    color: red;
+    font-weight: 500;
+    font-size: 11.4px;
+    position: absolute;
+  }
+}
 
 @media (max-width:890px){
   .formTwoDateSection{

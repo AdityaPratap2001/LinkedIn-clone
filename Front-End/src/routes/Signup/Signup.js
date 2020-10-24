@@ -33,17 +33,18 @@ class Signup extends Component {
 
   submitFormTwo = (details) => {
     alert('Reached parent!');
+    console.log(details);
     let userId = localStorage.getItem('username');
     const personalDetails = {
       email : userId,
       firstName : details.firstName,
       lastName : details.lastName,
       location : details.location,
-      positon : details.positon,
+      positon : details.position,
       industry : details.industry,
       image : details.selectedFile,
-      startYear : Number(details.startYear),
-      endYear : Number(details.endYear),
+      startYear : Number(details.startDate),
+      endYear : Number(details.endDate),
     }
     console.log(personalDetails);
   }
@@ -101,7 +102,7 @@ class Signup extends Component {
       <div>
         <Navbar/>
         {AlertData}
-        <div className='body'>
+        <div className='signupBody'>
           <div className='signupForm'>
             {formData}
           </div>
