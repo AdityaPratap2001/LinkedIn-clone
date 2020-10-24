@@ -21,18 +21,34 @@ class FormThree extends Component {
   };
 
   sendOTP = () => {
-    console.log(this.state);
-    if(this.state.phoneNumber.length < 1 || this.state.phoneNumber.length >10){
-      alert("Enterder wrong phone number!");
+    // console.log(this.state);
+    if(this.state.phoneNumber.length != 10){
+      let alertDetails = {
+        alertColor : 'danger',
+        alertData : 'Enter a valid Phone Number!'
+      }
+      this.props.showAlert(alertDetails);
       return;
     }
-    alert("OTP Sent!");
+    
+
+    this.props.sendOTP(this.state);
+    let alertDetails = {
+      alertColor : 'success',
+      alertData : 'OTP has been sent to your Phone Number!'
+    }
+    this.props.showAlert(alertDetails);
     this.setState({ showOtpBox: true });
   };
 
   verifyOTP = () => {
-    alert("OTP sent for verification!")
-    console.log(this.state);
+    // let alertDetails = {
+    //   alertColor : 'success',
+    //   alertData : 'Verifying OTP...'
+    // }
+    // this.props.showAlert(alertDetails);
+    this.props.verifyOTP(this.state);
+    // console.log(this.state);
     this.setState({otp : ''});
   }
 

@@ -1,0 +1,9 @@
+  .customAlert{
+  position: fixed;
+  width: 50%;
+  transform: translateY(30px);
+  margin-left: 25%;
+  /* margin-top: 7vh; */
+  /* border: red 2px solid !important; */
+  z-index: 999999999;
+}

@@ -5,7 +5,7 @@ import LoggedOut from './LoggedOut/LoggedOut';
 class ConditionalRender extends Component {
   
   state = {
-    isLoggedIn : true
+    isLoggedIn : null
   }
   
   render() {
