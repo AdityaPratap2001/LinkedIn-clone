@@ -3,3 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+.body{
+  height: 90vh;
+  margin-top: 10vh;
+  /* border: red 2px solid; */
+  background-color: #f9f9f9;
+  /* padding: 9vh 5vw; */
+  padding: 60px 70px;
+}

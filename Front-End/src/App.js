@@ -4,6 +4,7 @@ import {BrowserRouter,Route} from 'react-router-dom';
 import Home from './routes/Home/Home';
 import Signup from './routes/Signup/Signup';
 import Login from './routes/Login/Login';
+import Network from './routes/Network/Network';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/' exact component={Home}/>
         <Route path='/userSignup/:id' render={props => <Signup key={props.location.pathname} {...props}/>}/>
         <Route path='/userLogin' exact component={Login}/>
+        <Route path='/network' exact component={Network}/>
 
       </BrowserRouter>
     </div>
