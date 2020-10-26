@@ -1,0 +1,387 @@
+.landingPage .banner{
+  display: flex;
+  /* border: red 2px solid; */
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.landingPage .banner .bannerLeft{
+  width: 55%;
+  /* min-width: 500px; */
+  /* border: blue 2px solid; */
+  /* height: 500px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  /* align-items: center; */
+}
+.landingPage .banner .bannerLeft .head1{
+  margin-bottom: 0px;
+  /* color: red; */
+}
+.landingPage .banner .bannerLeft h5{
+  font-size: 40px;
+  font-weight: 600;
+  /* font-family: 'Montserrat'; */
+  font-family: 'Nunito', sans-serif;
+}
+.landingPage .banner .bannerLeft h6{
+  font-family: 'Poppins';
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+.landingPage .banner .bannerLeft a{
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  margin-top: 25px;
+}
+.landingPage .banner .bannerLeft a button{
+  background-color: blueviolet;
+  color: white;
+  border: blueviolet 2px solid;
+  padding: 8px 15px;
+}
+.landingPage .banner .bannerLeft a button:hover{
+  border: blueviolet 1.7px solid;
+  color: blueviolet;
+  background-color: white;
+  font-weight: 600;
+}
+
+.landingPage .banner .bannerRight{
+  /* border: green 2px solid; */
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-width: 400px; */
+}
+.landingPage .banner .bannerRight img{
+  width: 100%;
+  height: 90%;
+}
+
+
+.landingPage .services{
+  /* border: red 2px solid; */
+  flex-wrap: wrap;
+  padding: 10px 60px;
+  display: flex;
+  justify-content: space-around;
+  /* margin-bottom: 200px; */
+  background-color: #f9f9f9;
+  background-color: #f7f8fa;
+  background-color: #e8ebf1;
+  background-color: #edf0f5;
+  font-family: 'Poppins';
+  /* background-color: rbg(237,237,237); */
+}
+.landingPage .services .service{
+  height: 250px;
+  width: 300px;
+  margin: 0px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: #ccc 1.5px solid; */
+  padding: 25px;
+  text-align: center;
+}
+.landingPage .services .service i{
+  font-size: 25px;
+  margin-bottom: 25px;
+}
+.landingPage .services .service h6{
+  font-size: 15px;
+}
+.landingPage .services .service .serviceHead{
+  margin-bottom: 20px;
+  color: black;
+}
+.landingPage .services .service h6{
+  color: rgb(83, 83, 83);
+}
+
+.landingPage .companies{
+  padding: 30px;
+  padding-top: 45px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Poppins';
+  font-weight: 600;
+}
+.landingPage .banner2{
+  padding: 0px 40px;
+  display: flex;
+  /* border: red 2px solid; */
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+}
+.landingPage .banner2 .banner2Left{
+  width: 55%;
+  /* min-width: 500px; */
+  /* border: blue 2px solid; */
+  /* height: 500px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+}
+.landingPage .banner2 .banner2Right{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.landingPage .banner2 .banner2Right img{
+  width: 100%;
+  height: 90%;
+}
+.landingPage .banner2 .banner2Left h6{
+  font-family: 'Poppins';
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+
+
+.landingPage .reviews{
+  /* background-color: #edf0f5; */
+  padding-bottom: 30px;
+}
+.landingPage .reviews .reviewsBody{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+}
+.landingPage .reviews .review{
+  width: 270px;
+  /* background-color: #edf0f5; */
+  box-shadow: 1px 1px 20px 2px #ccc;
+  display: flex;
+  padding: 20px 30px;
+  padding-bottom: 40px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins';
+  margin:30px 20px;
+  margin-top: 0px;
+}
+.landingPage .reviews .review .reviewHead{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 36px;
+}
+.landingPage .reviews .review .reviewHead .name{
+  margin-bottom: 4px;
+}
+.landingPage .reviews .review .reviewHead .proffession{
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: grey;
+}
+.landingPage .reviews .review .reviewBody{
+  margin-bottom: 27px;
+}
+.landingPage .reviews .review .reviewBody h6{
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.landingPage .addBoxPost{
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  color: white;
+  padding: 35px 30px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blueviolet;
+  margin-bottom: 80px;
+}
+.landingPage .addBoxPost .text .needEmp{
+  font-size: 18px;
+  font-weight: 600;
+}
+.landingPage .addBoxPost .text .needEmpSub{
+  font-weight: 500;
+  margin-top: 10px;
+  color: #edf0f5;
+}
+.landingPage .addBoxPost button{
+  color: blueviolet;
+  background-color: white;
+  border-radius: 0;
+}
+.landingPage .addBoxPost button:hover{
+  border: white 1.4px solid;
+  background-color: blueviolet;
+  color: white;
+}
+
+
+.landingPage .footer{
+  height: 30vh;
+  background-color: #edf0f5;
+  padding: 0 20%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.landingPage .footer1{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.landingPage .footer2{
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+.landingPage .footer h6{
+  margin: 0 10px;
+}
+.landingPage .footer i{
+  margin: 0 10px;
+  font-size: 16px;
+}
+.landingPage .footer .footer2 i{
+  font-size: 24px;
+}
+.landingPage .footer .footer3{
+  text-align: center;
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+
+
+
+
+
+
+
+@media(max-width:690px){
+  .landingPage .addBoxPost{
+    flex-direction: column;
+  }
+  .landingPage .addBoxPost button{
+    margin-top: 30px;
+  }
+}
+@media(max-width:484px){
+  .landingPage .companies{
+    font-size: 22px;
+    padding: 30px;
+    padding-top: 35px;
+  }
+  .landingPage .reviewsBody .review{
+    margin: 0 auto 20px auto;
+  }
+}
+@media(max-width:740px){
+  .landingPage .banner2 .banner2Left{
+    width: 100%;
+    padding: 0 40px;
+  }
+  .landingPage .banner2 .banner2Right{
+    display: none;
+  }
+}
+@media(max-width:960px){
+  .landingPage .banner2 .banner2Right img{
+    height: 80%;
+  }
+}
+@media(max-width:860px){
+  .landingPage .banner2 .banner2Right img{
+    height: 70%;
+  }
+}
+@media(max-width:830px){
+  .landingPage .banner2 .banner2Left h6{
+    font-size: 14px;
+  }
+}
+@media(max-width:620px){
+  .landingPage .banner2{
+    padding: 0 0;
+    padding-bottom: 40px;
+  }
+}
+
+
+
+@media(max-width:475px){
+  .landingPage .services{
+    padding: 40px 20px;
+  }
+  .landingPage .services .service{
+    height: 190px;
+    margin-bottom: 15px;
+  }
+}
+@media(max-width:400px){
+  .landingPage .services{
+    padding: 20px 0px;
+  }
+  .landingPage .services .service{
+    height: 190px;
+    margin: 0 10px;
+    margin-bottom: 15px;
+  }
+}
+
+@media(max-width:960px){
+  .landingPage .banner .bannerRight img{
+    height: 80%;
+  }
+}
+@media(max-width:860px){
+  .landingPage .banner .bannerRight img{
+    height: 70%;
+  }
+}
+@media(max-width:830px){
+  .landingPage .banner .bannerLeft{
+    padding-top: 40px;
+  }
+  .landingPage .banner .bannerLeft h5{
+    font-size: 30px;
+  }
+  .landingPage .banner .bannerLeft h6{
+    font-size: 14px;
+  }
+
+}
+@media(max-width:740px){
+  .landingPage .banner .bannerLeft{
+    width: 100%;
+    padding: 0 40px;
+  }
+  .landingPage .banner .bannerRight{
+    display: none;
+  }
+  .landingPage .banner .bannerLeft a button{
+    padding: 5px 12px;
+    font-size: 14px;
+  }
+}
+@media(max-width:400px){
+  .landingPage .banner{
+    padding-top: 30px;
+  }
+}
