@@ -6,6 +6,8 @@ import FormTwo from './SignupForms/FormTwo';
 import FormThree from './SignupForms/FormThree';
 import Loader from '../../components/Loader/Loader';
 import CustomAlert from '../../components/CustomAlert/CustomAlert';
+import axios from '../../API/baseURL/baseURL';
+import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -14,44 +16,126 @@ class Signup extends Component {
     stage : this.props.match.params.id,
     showAlert : null,
     alertColor : null,
-    alertData : null
+    alertData : null,
+    redirect : null,
   }
 
   submitFormOne = (details) => {
-    // alert('Reached parent!');
+
     let userData = {
       email : details.email,
       password : details.password,
     }
-    console.log(userData);
-    
+    // console.log(userData);
     this.setState({ loading : true});
-    setTimeout(()=>{
-      this.setState({loading : false});
-    },6000)
+
+    
+    axios.post('/user/create/',userData)
+      .then((res)=>{
+        this.setState({ loading : true});
+        console.log(res);
+        if(res.status === 201){
+          this.setState({ loading : false });
+          let userId = res.data.id;
+          localStorage.setItem('userID',userId);
+          this.setState({redirect : '2'});
+        }
+        if(res.status === 226){
+          this.setState({
+            loading : false,
+            showAlert : true, 
+            alertData : 'User with this E-Mail already exists!', 
+            alertColor : 'danger'
+          })
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+        this.setState({
+          loading : false,
+          showAlert : true, 
+          alertData : 'Something went wrong!', 
+          alertColor : 'danger'
+        })
+      })
+    // setTimeout(()=>{
+    //   this.setState({loading : false});
+    // },6000)
   }
 
   submitFormTwo = (details) => {
-    alert('Reached parent!');
-    console.log(details);
-    let userId = localStorage.getItem('username');
-    const personalDetails = {
-      email : userId,
-      firstName : details.firstName,
-      lastName : details.lastName,
-      location : details.location,
-      positon : details.position,
-      industry : details.industry,
-      image : details.selectedFile,
-      startYear : Number(details.startDate),
-      endYear : Number(details.endDate),
-    }
-    console.log(personalDetails);
+
+    // console.log(details);
+
+    let userId = localStorage.getItem('userID');
+    let userDetails = new FormData();
+    userDetails.append('first_name',details.firstName);
+    userDetails.append('last_name',details.lastName);
+    userDetails.append('avatar',details.selectedFile);
+    userDetails.append('location',details.location);
+    userDetails.append('is_employed',details.isStudent);
+    userDetails.append('organization_name',details.industry);
+    userDetails.append('position',details.position);
+    userDetails.append('start_date','2020-12-04');
+    userDetails.append('end_date','2020-12-21');
+
+    console.log(userDetails);
+    this.setState({loading : true});
+
+    axios.post(`/user/create/profile/${userId}/`,userDetails)
+      .then((res)=>{
+        console.log(res);
+        if(res.status === 201){
+          this.setState({loading : false});
+          this.setState({redirect : '3'});
+          localStorage.setItem('profileID',res.data.id);
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+        this.setState({loading : false});
+        this.setState({
+          showAlert : true, 
+          alertData : 'Something went wrong!', 
+          alertColor : 'danger'
+        })      
+      })
+
+    // let userId = '253';
+    // const userDetails = {
+    //   first_name : details.firstName,
+    //   last_name : details.lastName,
+    //   avatar : details.selectedFile,
+    //   location : details.location,
+    //   is_employed : details.isStudent,
+    //   organization_name : details.industry,
+    //   positon : details.position,
+    //   startYear : Number(details.startDate),
+    //   endYear : Number(details.endDate),
+    // }
+    // console.log(userDetails);
   }
 
   sendOTP = (details) => {
-    console.log('Parent');
+
     console.log(details);
+    let profileID = localStorage.getItem('profileID');
+    let sendOtpData = {
+      phone_number : details.phoneNumber,
+      profile_id : profileID
+    }
+    let userID = localStorage.getItem('userID');
+    
+    this.setState({loading : true});
+    axios.post(`/user/create/profile/${userID}/`,sendOtpData)
+      .then((res)=>{
+        this.setState({loading : false});
+        console.log(res);
+      })
+      .catch((err)=>{
+        this.setState({loading : false});
+        console.log(err)
+      })
   }
   
   verifyOTP = (details) => {
@@ -70,6 +154,12 @@ class Signup extends Component {
 
   render() {
 
+    if(this.state.redirect === '2'){
+      return <Redirect to='/userSignup/personalDetails'/>
+    }
+    if(this.state.redirect === '3'){
+      return <Redirect to='/userSignup/otpVerification'/>
+    }
 
     let AlertData = null;
     if(this.state.showAlert){

@@ -15,7 +15,7 @@ const formValid = ({ formErrors, ...rest }) => {
   // validate the form was filled out
   // console.log('Val :')
   Object.values(rest).forEach((val) => {
-    console.log(val);
+
   //   // if(val !== 'selectedFile'){
   //     val === null && (valid = false);
   //   // }
@@ -34,7 +34,7 @@ class FormTwo extends Component {
     startDate: null,
     endDate: null,
     selectedFile: null,
-
+    isStudent: false,
     formErrors: {
       firstName: "",
       lastName: "",
@@ -60,6 +60,11 @@ class FormTwo extends Component {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
+
+  handleStudentChange = () => {
+    let isUserStudent = this.state.isStudent;
+    this.setState({isStudent : !isUserStudent});
+  }
 
   handleChange = (e) => {
     e.preventDefault();
@@ -126,7 +131,7 @@ class FormTwo extends Component {
         <h5 className="formOneHead formTwoHead">Personal Details</h5>
         {/* <i class="fas fa-plus-circle" onClick={this.handleClick} style={{cursor:'pointer'}}></i>
         <input type="file" id="file" ref="fileUploader" style={{display: "none"}}/> */}
-        <form className="signupFormTwo" onSubmit={this.handleSubmit}>
+        <form encType="multipart/form-data" className="signupFormTwo" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div>
               <label>Firstname : </label>
@@ -306,6 +311,16 @@ class FormTwo extends Component {
                 style={{ width: "100%" }}
               ></input>
             </div>
+          </div>
+
+          <div className="form-group">
+            <input 
+              type='checkbox'
+              style={{marginRight : '7px',transform : 'translateY(1px)'}}
+              checked={this.state.isStudent}
+              onChange={this.handleStudentChange}
+            />
+            <label>I'm a student</label>
           </div>
 
           <div style={{textAlign:'center'}}>
