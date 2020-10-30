@@ -126,21 +126,70 @@ class Signup extends Component {
     }
     let userID = localStorage.getItem('userID');
     
-    this.setState({loading : true});
-    axios.post(`/user/create/profile/${userID}/`,sendOtpData)
+    // this.setState({loading : true});
+    axios.patch(`/user/create/profile/${userID}/`,sendOtpData)
       .then((res)=>{
-        this.setState({loading : false});
         console.log(res);
+        // this.setState({loading : false});
+        this.setState({
+          showAlert : true, 
+          alertData : 'OTP has been sent to your mobile number', 
+          alertColor : 'success'
+        })
       })
       .catch((err)=>{
-        this.setState({loading : false});
         console.log(err)
+        // this.setState({loading : false});
+        this.setState({
+          showAlert : true, 
+          alertData : 'Something went wrong!', 
+          alertColor : 'danger'
+        })
       })
   }
   
   verifyOTP = (details) => {
-    console.log('Parent');
     console.log(details);
+    let verifyOtpData = {
+      phone_number : details.phoneNumber,
+      otp : details.otp
+    }
+    // this.setState({loading : true});
+    this.setState({
+      showAlert : true, 
+      alertData : 'Please wait, while we verify your phone number...', 
+      alertColor : 'success'
+    })
+    axios.post('/user/account/verify/',verifyOtpData)
+      .then((res)=>{
+        console.log(res);
+        // this.setState({loading : false});
+        if(res.status === 201){
+          this.setState({
+            showAlert : true, 
+            alertData : 'Phone number verified successfully!', 
+            alertColor : 'success'
+          })
+        }
+        if(res.status === 400){
+          this.setState({
+            showAlert : true, 
+            alertData : 'OTP expired!', 
+            alertColor : 'danger'
+          })
+        }
+        if(res.status === 401){
+          this.setState({
+            showAlert : true, 
+            alertData : 'Wrong OTP entered!', 
+            alertColor : 'danger'
+          })
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+        this.setState({loading : false});
+      })
   }
 
 

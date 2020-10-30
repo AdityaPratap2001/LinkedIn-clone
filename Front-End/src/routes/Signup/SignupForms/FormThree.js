@@ -33,11 +33,11 @@ class FormThree extends Component {
     
 
     this.props.sendOTP(this.state);
-    let alertDetails = {
-      alertColor : 'success',
-      alertData : 'OTP has been sent to your Phone Number!'
-    }
-    this.props.showAlert(alertDetails);
+    // let alertDetails = {
+    //   alertColor : 'success',
+    //   alertData : 'OTP has been sent to your Phone Number!'
+    // }
+    // this.props.showAlert(alertDetails);
     this.setState({ showOtpBox: true });
   };
 
