@@ -6,13 +6,13 @@ import LoggedIn from './Conditional/LoggedIn';
 class Home extends Component {
 
   state = {
-    isLoggedIn : false,
+    isLoggedIn : true,
   }
 
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <>
           {this.state.isLoggedIn ? <LoggedIn/> : <LandingPage/>}
         </>

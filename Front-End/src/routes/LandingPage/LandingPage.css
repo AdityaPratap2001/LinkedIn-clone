@@ -3,8 +3,8 @@
   /* border: red 2px solid; */
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 80px;
+  padding-bottom: 70px;
 }
 .landingPage .banner .bannerLeft{
   width: 55%;
@@ -42,7 +42,7 @@
 .landingPage .banner .bannerLeft a button{
   background-color: blueviolet;
   color: white;
-  border: blueviolet 2px solid;
+  border: blueviolet 1.7px solid;
   padding: 8px 15px;
 }
 .landingPage .banner .bannerLeft a button:hover{
@@ -356,6 +356,9 @@
   }
 }
 @media(max-width:830px){
+  .landingPage .banner{
+    padding-top: 30px;
+  }
   .landingPage .banner .bannerLeft{
     padding-top: 40px;
   }
@@ -368,6 +371,9 @@
 
 }
 @media(max-width:740px){
+  .landingPage .banner{
+    padding-top: 60px;
+  }
   .landingPage .banner .bannerLeft{
     width: 100%;
     padding: 0 40px;
@@ -382,6 +388,6 @@
 }
 @media(max-width:400px){
   .landingPage .banner{
-    padding-top: 30px;
+    padding-top: 50px;
   }
 }

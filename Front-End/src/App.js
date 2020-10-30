@@ -5,6 +5,7 @@ import Home from './routes/Home/Home';
 import Signup from './routes/Signup/Signup';
 import Login from './routes/Login/Login';
 import Network from './routes/Network/Network';
+import Jobs from './routes/Jobs/Jobs';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/userSignup/:id' render={props => <Signup key={props.location.pathname} {...props}/>}/>
         <Route path='/userLogin' exact component={Login}/>
         <Route path='/network' exact component={Network}/>
+        <Route path='/jobs' exact component={Jobs}/>
 
       </BrowserRouter>
     </div>

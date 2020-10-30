@@ -7,8 +7,17 @@ import logoSrc from '../../assets/logo.png';
 
 class Navbar extends Component {
   render() {
+
+    let navStyle = null;
+    if(this.props.shadow){
+      navStyle = {
+        // boxShadow : '0px 3px 9px #c6c6cc',
+         boxShadow : '0px 1.4px #c6c6cc',
+      }
+    }
+
     return (
-      <div className="Navbar navbar navbar-expand-lg navbar-light bg-light">
+      <div className="Navbar navbar navbar-expand-lg navbar-light bg-light" style={navStyle}>
         <div className="navbar-brand">
           <NavLink to='/'>
             {/* <img src={logoSrc} alt='logo'/> */}

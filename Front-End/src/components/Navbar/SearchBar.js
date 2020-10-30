@@ -34,7 +34,7 @@ class SearchBar extends Component {
           type='text'
           value={this.state.term}
           onChange={this.onInputChange}
-          placeholder='Search for products, brands & more'
+          placeholder='Search for users, company & pages'
         />
       </form>
     );

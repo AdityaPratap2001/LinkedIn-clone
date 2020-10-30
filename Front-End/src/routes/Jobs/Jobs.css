@@ -1,0 +1,154 @@
+.jobsBody .jobsTypeSelect{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: rgb(156, 153, 153) 1.8px solid;
+  margin-bottom: 30px;
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectLeft{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectLeft div{
+  margin-right: 10px;
+  padding: 9px 17px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  border-right: #ccc 1.5px solid;
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectLeft div i{
+  margin-right: 7px;
+  transform: translateY(2px);
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectLeft div:hover{
+  background-color: cadetblue;
+  background-color: rgb(75, 67, 67);
+  color: white;
+  border-right: rgb(75, 67, 67) 1.5px solid;
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectRight a{
+  padding: 0;
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectRight a button{
+  background-color: darkcyan;
+  color: white;
+  border: darkcyan 1.7px solid;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+.jobsBody .jobsTypeSelect .jobsTypeSelectRight a button:hover{
+  border: darkcyan 1.7px solid;
+  color: darkcyan;
+  background-color: white;
+  font-weight: 600;
+}
+
+
+.jobsBody .jobsDisplay{
+  background-color: white;
+  min-height: 62vh;
+  border: rgb(156, 153, 153) 1.8px solid;
+  /* justify-content: center;
+  align-items: center; */
+  font-family: 'Poppins';
+  margin-bottom: 35px;
+}
+.jobsBody .jobsDisplay .savedJobsDisplay{
+  display: flex;
+  flex-wrap: wrap;
+}
+.jobsBody .jobsDisplay .savedJobsHeader{
+  padding: 16px 15px;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 0px;
+  border-bottom: #ccc 1.2px solid;
+}
+.jobsBody .jobsDisplay .savedJobsDisplay .savedJob{
+  border: #ccc 1.2px solid;
+  margin: 0px 0px;
+  display: flex;
+  padding: 20px 16px;
+  width: 100%;
+  min-width: 250px;
+  position: relative;
+}
+.jobsBody .jobsDisplay .savedJob .savedJobFirst{
+  display: flex;
+  align-items: center;
+}
+.jobsBody .jobsDisplay .savedJob .savedJobSecond h6{
+  margin-bottom: 0px;  
+}
+.jobsBody .jobsDisplay .savedJob .savedJobThird{
+  /* border: hotpink 1px solid; */
+  position: absolute;
+  right: 7%;
+  top: 33%;
+}
+.jobsBody .jobsDisplay .savedJob .savedJobThird i{
+  font-size: 16.9px;
+  cursor: pointer;
+}
+.jobsBody .jobsDisplay .savedJob .savedJobThird i:hover{
+  transform: scale(1.2);
+  color: red;
+}
+.jobsBody .jobsDisplay .savedJob .savedJobCompany{
+  color: grey;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+  margin-bottom: 7px;
+}
+.jobsBody .jobsDisplay .savedJob .savedJobLocation{
+  font-size: 12.7px;
+  color: rgb(88, 88, 88);
+  margin-top: 7px;
+}
+.jobsBody .jobsDisplay .savedJobsDisplay .savedJob img{
+  height: 55px;
+  margin-right: 12px;
+}
+
+
+
+
+
+
+
+@media (max-width:699px){
+  .jobsBody .jobsTypeSelect{
+    justify-content: center;
+  }
+  .jobsBody .jobsTypeSelect .jobsTypeSelectRight{
+    margin-top: 14px;
+  }
+}
+@media (max-width:531px){
+  .jobsBody .jobsTypeSelect .jobsTypeSelectLeft{
+    justify-content: center;
+  }
+  .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div{
+    margin-bottom: 10px;
+  }
+  .jobsBody .jobsTypeSelect .jobsTypeSelectRight{
+    margin-top: 5px;
+  }
+}
+@media (max-width:389px){
+  .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div{
+    border-right: none;
+  }
+}
+
+
+
+

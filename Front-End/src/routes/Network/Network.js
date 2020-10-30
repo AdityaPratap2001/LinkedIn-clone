@@ -6,7 +6,7 @@ class Network extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='body'>
           <ProfileSidebox/>
           <div>

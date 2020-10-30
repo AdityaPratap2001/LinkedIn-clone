@@ -1,7 +1,7 @@
 .Navbar{
   display: flex;
   height: 10vh;
-  box-shadow : 0px 3px 9px #c6c6cc;
+  /* box-shadow : 0px 3px 9px #c6c6cc; */
   padding-left: 20px;
   position: fixed;
   z-index: 100;
