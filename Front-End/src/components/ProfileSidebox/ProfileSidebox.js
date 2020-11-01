@@ -37,11 +37,12 @@ class ProfileSidebox extends Component {
             {details.firstname} {details.lastname}
           </NavLink>
         </h5>
-
+        
         <h6 className="profileStatus">
           {details.position} at {details.industry}
         </h6>
 
+        <div style={{width:'100%',margin:'16px 0px'}}>
         <div className="profileVisits">
           <div>Profile visit : </div>
           <div style={{ color: "blue", fontSize: "13.3px" }}>
@@ -55,8 +56,15 @@ class ProfileSidebox extends Component {
             {details.postNum}
           </div>
         </div>
+        </div>
 
-        <NavLink to="/savedPosts" style={{ color: "black", width: "100%" }}>
+        <NavLink to="/savedPosts" style={{ display:'flex', color: "black", width: "100%" }}>
+          {/* <div style={{padding:'10px',border:'#ccc 1.8px solid'}}>
+            <h6 style={{fontSize:'12.5px'}}>Bookmarks</h6>
+          </div>
+          <div style={{padding:'10px',border:'#ccc 1.8px solid'}}>
+            <h6 style={{fontSize:'12.5px'}}>Premium</h6>
+          </div> */}
           <div className="savedPosts">
             <i class="fas fa-bookmark"></i>
             <h6 className="saved">Saved Posts</h6>
@@ -67,16 +75,17 @@ class ProfileSidebox extends Component {
     if (this.state.loading) {
       data = (
         <>
-          <Skeleton circle={true} style={{marginTop:'20px',marginBottom:'20px'}} height={65} width={65}/> 
-          <Skeleton width={200} height={12}/>
-          <Skeleton width={170} height={10}/> 
-          <Skeleton width={170} height={10}/>
-          <Skeleton width={200} height={12}/>
-          <Skeleton width={170} height={10}/> 
-          <Skeleton width={170} height={10}/>
-          <Skeleton width={200} height={12}/>
-          <Skeleton width={170} height={10}/> 
-          <Skeleton width={170} height={10}/>
+          <Skeleton circle={true} style={{margin:'20px'}} height={65} width={65}/> 
+          <Skeleton style={{marginLeft:'18px'}} width={180} height={12}/>
+          <Skeleton style={{marginLeft:'18px',marginBottom:'25px'}} width={150} height={10}/> 
+          {/* <Skeleton style={{marginLeft:'18px'}} width={150} height={10}/> */}
+          {/* <Skeleton style={{marginLeft:'18px'}} width={180} height={12}/> */}
+          <Skeleton style={{marginLeft:'18px'}} width={150} height={10}/> 
+          <Skeleton style={{marginLeft:'18px'}} width={150} height={10}/>
+          <Skeleton style={{marginLeft:'18px'}} width={150} height={10}/>
+          <Skeleton style={{marginLeft:'18px',marginBottom:'18px'}} width={150} height={10}/>
+          <Skeleton style={{marginLeft:'18px'}} width={150} height={12}/>
+          <Skeleton style={{marginLeft:'18px',marginBottom:'15px'}} width={150} height={10}/>
         </>
       )
     }
@@ -86,10 +95,3 @@ class ProfileSidebox extends Component {
 }
 
 export default ProfileSidebox;
-
-{
-  /* <Skeleton circle={true} height={50} width={50}/> */
-}
-{
-  /* <Skeleton width={200} height={12}/> */
-}
