@@ -27,6 +27,14 @@
   min-height: 90vh;
 }
 
+@media (max-width:701px){
+  .body{
+    margin-top: 8.5vh;
+  }
+  .jobsBody{
+    margin-top: 8.5vh;
+  }
+}
 @media(max-width:612px){
   .jobsBody{
     margin-top:9vh;

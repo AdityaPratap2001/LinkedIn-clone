@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Jobs.css";
 import SavedJobs from "./JobsType/SavedJobs/SavedJobs";
-import AppliedJobs from "./JobsType/AppliedJobs";
+import AppliedJobs from "./JobsType/AppliedJobs/AppliedJobs";
 import PostedJobs from "./JobsType/PostedJobs";
 import { NavLink } from "react-router-dom";
 import RecommendedJobs from "./JobsType/RecommendedJobs/RecommendedJobs";
@@ -10,7 +10,7 @@ import ProfileSidebox from "../../components/ProfileSidebox/ProfileSidebox";
 
 class Jobs extends Component {
   state = {
-    typeOfJob: 1,
+    typeOfJob: 2,
   };
 
   typeOfJobSelected = (type) => {

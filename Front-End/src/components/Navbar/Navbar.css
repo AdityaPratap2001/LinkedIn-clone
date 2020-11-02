@@ -2,7 +2,8 @@
   display: flex;
   height: 10vh;
   /* box-shadow : 0px 3px 9px #c6c6cc; */
-  padding-left: 20px;
+  padding: 0;
+  /* padding-left: 20px; */
   position: fixed;
   z-index: 100;
   top: 0;
@@ -13,6 +14,9 @@
 .Navbar .logo{
   height: 7.7vh;
   transform: translateY(5px);
+}
+.Navbar .navbar-brand{
+  margin-left: 20px;
 }
 .NavLink{
   width: 37vw;
@@ -108,9 +112,6 @@
   background-color:  rgb(240, 53, 91);
   color: white;
 }
-.collapse{
-  justify-content: space-between;
-}
 .collapse i{
   color: black !important;
 }
@@ -192,6 +193,30 @@
   cursor: text;
 }
 
+/* new */
+.collapse{
+  justify-content: space-between;
+  height: 100%;
+}
+.conditional{
+  height: 100%;
+}
+.conditional_render{
+  height: 100%;
+}
+.conditional_render .NavLinkk{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.conditional_render .NavLinkk li{
+  text-align: center;
+  padding: 7px 9px 0px 9px;
+  margin: auto 8px;
+  padding-top: 10px
+}
+/* new */
 
 @media (max-width:991.5px){
   .conditional_render i{
@@ -199,6 +224,24 @@
     color: grey;
     margin: 18px;
     cursor: pointer;
+  }
+  .collapse{
+    height: auto;
+    background-color: rgb(228, 228, 228) !important;
+  }
+  .conditional{
+    width: 60%;
+    display: flex;
+  }
+  .conditional_render{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .conditional_render li{
+    /* height: 40px; */
   }
   .NavLink{
     margin-right: 0 !important;
@@ -211,7 +254,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw !important;
-    margin-top: 30px;
+    margin-top: 4px;
   }
   .barbox,.input_bar{
     background-color: #fff;
@@ -267,9 +310,15 @@
   .Navbar img{
     height: 5.4vh;
   }
+  .collapse{
+    transform: translateY(-8px);
+  }
 }
 @media (max-width:536px){
   .SearchContainer{
+    width: 80%;
+  }
+  .conditional{
     width: 80%;
   }
 }

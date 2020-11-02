@@ -8,6 +8,7 @@
   padding: 0 30px 0 15px;
   justify-content: space-between;
   flex-wrap: wrap;
+  font-size: 14px;
   border: rgb(156, 153, 153) 1.8px solid;
   margin-bottom: 30px;
 }
@@ -78,7 +79,7 @@
 .jobsBody .jobsDisplay .savedJobsHeader{
   padding: 16px 15px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 0px;
   border-bottom: #ccc 1.2px solid;
 }
@@ -86,6 +87,8 @@
   border: #ccc 1.2px solid;
   margin: 0px 0px;
   display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
   padding: 20px 16px;
   width: 100%;
   min-width: 250px;
@@ -103,30 +106,36 @@
 }
 .jobsBody .jobsDisplay .savedJob .savedJobSecond h6{
   margin-bottom: 0px;  
+  font-size: 14px;
 }
 .jobsBody .jobsDisplay .savedJob .savedJobThird{
   /* border: hotpink 1px solid; */
   position: absolute;
   right: 7%;
-  top: 33%;
+  top: 30%;
+  /* margin-left: 30px; */
+  margin: auto;
+  margin-right: 0px;
 }
 .jobsBody .jobsDisplay .savedJob .savedJobThird i{
   font-size: 16.9px;
   cursor: pointer;
+  transform: translateY(5px);
 }
 .jobsBody .jobsDisplay .savedJob .savedJobThird i:hover{
   transform: scale(1.2);
+  transform: translateY(5px);
   color: red;
 }
 .jobsBody .jobsDisplay .savedJob .savedJobCompany{
   color: grey;
-  font-size: 13px;
+  font-size: 13px !important;
   font-weight: 500;
   margin-top: 4px;
   margin-bottom: 7px;
 }
 .jobsBody .jobsDisplay .savedJob .savedJobLocation{
-  font-size: 12.7px;
+  font-size: 12.5px !important;
   color: rgb(88, 88, 88);
   margin-top: 7px;
 }
@@ -134,9 +143,26 @@
   height: 55px;
   margin-right: 12px;
 }
-
-
-
+.jobsBody .jobsDisplay .savedJobsDisplay .savedJob .status{
+  margin-bottom: 0;
+  padding: 10px;
+  font-size: 14px;
+}
+.jobsBody .jobsDisplay .savedJobsDisplay .savedJob .acceptedStatus{
+  border: #82D100 1.5px solid;
+  color: #82D100;
+  background-color: #f0ffe9;
+}
+.jobsBody .jobsDisplay .savedJobsDisplay .savedJob .rejectedStatus{
+  border: #ff5146 1.5px solid;
+  color: #ff5146;
+  background-color: #ffeeea;
+}
+.jobsBody .jobsDisplay .savedJobsDisplay .savedJob .pendingStatus{
+  border: #808080 1.5px solid;
+  color: #808080;
+  background-color: #ececec65;
+}
 
 
 
@@ -180,4 +206,34 @@
     margin-left: 0px;
   }
 }
+
+@media (max-width:454px){
+  .jobsBody .jobsDisplay .savedJob .savedJobThird{
+    position: relative;
+    right: 0;
+    top: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
