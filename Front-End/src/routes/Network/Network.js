@@ -10,7 +10,7 @@ class Network extends Component {
         <div className='body'>
           <ProfileSidebox/>
           <div>
-
+            <h6>jxgbj</h6>
           </div>
         </div>
       </div>

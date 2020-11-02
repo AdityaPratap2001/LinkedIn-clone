@@ -21,8 +21,8 @@ class ProfileSidebox extends Component {
   componentDidMount(){
     setTimeout(()=>{
       this.setState({loading : false});
-    },4000)
-    // },0)
+    // },4000)
+    },0)
   }
 
   render() {

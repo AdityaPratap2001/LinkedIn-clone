@@ -1,8 +1,11 @@
+.jobsBody .rightDisplay{
+  margin-left: 270px;
+}
 .jobsBody .jobsTypeSelect{
   background-color: white;
   display: flex;
   align-items: center;
-  padding: 10px 30px;
+  padding: 0 30px 0 15px;
   justify-content: space-between;
   flex-wrap: wrap;
   border: rgb(156, 153, 153) 1.8px solid;
@@ -13,25 +16,33 @@
   flex-wrap: wrap;
   align-items: center;
   height: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transform: translateY(1px);
 }
 .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div{
   margin-right: 10px;
-  padding: 9px 17px;
+  padding: 16px 17px;
+  font-weight: 600;
+  font-family: 'Poppins';
   display: flex;
   align-items: center;
   height: 100%;
   cursor: pointer;
   border-right: #ccc 1.5px solid;
+  border-bottom: white 3px solid;
 }
 .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div i{
   margin-right: 7px;
-  transform: translateY(2px);
+  /* transform: translateY(2px); */
 }
 .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div:hover{
-  background-color: cadetblue;
-  background-color: rgb(75, 67, 67);
-  color: white;
-  border-right: rgb(75, 67, 67) 1.5px solid;
+  /* background-color: cadetblue; */
+  /* background-color: rgb(75, 67, 67); */
+  /* color: white; */
+  color: rgb(85, 85, 85);
+  /* border-right: rgb(75, 67, 67) 1.5px solid; */
 }
 .jobsBody .jobsTypeSelect .jobsTypeSelectRight a{
   padding: 0;
@@ -80,6 +91,12 @@
   min-width: 250px;
   position: relative;
 }
+.jobsBody .jobsDisplay .savedJob a{
+  padding: 0;
+  display: flex;
+  cursor: pointer;
+  color: black;
+}
 .jobsBody .jobsDisplay .savedJob .savedJobFirst{
   display: flex;
   align-items: center;
@@ -124,7 +141,7 @@
 
 
 
-@media (max-width:699px){
+@media (max-width:728px){
   .jobsBody .jobsTypeSelect{
     justify-content: center;
   }
@@ -132,7 +149,12 @@
     margin-top: 14px;
   }
 }
-@media (max-width:531px){
+@media (max-width:710px){
+  .jobsBody .jobsTypeSelect{
+    padding: 0px 15px;
+  }
+}
+@media (max-width:644px){
   .jobsBody .jobsTypeSelect .jobsTypeSelectLeft{
     justify-content: center;
   }
@@ -143,12 +165,19 @@
     margin-top: 5px;
   }
 }
-@media (max-width:389px){
+@media (max-width:404px){
   .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div{
     border-right: none;
+    margin-right: none;
   }
 }
 
-
-
+@media (max-width:1000px){
+  .sideBox{
+    display: none;
+  }
+  .jobsBody .rightDisplay{
+    margin-left: 0px;
+  }
+}
 

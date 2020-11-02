@@ -47,7 +47,7 @@ class Login extends Component {
     )
     if(this.state.loading){
       formData = (
-        <div className='loaderWindow'>
+        <div className='loaderWindow' style={{margin:'auto'}}>
           <Loader/>
         </div>
       )
