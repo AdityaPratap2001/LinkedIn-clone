@@ -96,7 +96,7 @@
 }
 
 .conditional_render i{
-  font-size: 20.5px;
+  font-size: 18.5px;
 }
 .conditional_render .signbutton{
   margin: 12px;
@@ -206,6 +206,7 @@
 }
 .conditional_render .NavLinkk{
   height: 100%;
+  /* font-size: 12px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -239,9 +240,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-  }
-  .conditional_render li{
-    /* height: 40px; */
   }
   .NavLink{
     margin-right: 0 !important;

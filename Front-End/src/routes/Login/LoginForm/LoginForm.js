@@ -63,16 +63,16 @@ class LoginForm extends Component {
   };
 
   forgotPass = () => {
-    if(this.state.email === null){
-      let alertData = {
-        alertData : 'Enter your Registered E-Mail!',
-        alertColor : 'danger'
-      }
-      this.props.showAlert(alertData);
-      return;
-    }
+    // if(this.state.email === null){
+    //   let alertData = {
+    //     alertData : 'Enter your Registered E-Mail!',
+    //     alertColor : 'danger'
+    //   }
+    //   this.props.showAlert(alertData);
+    //   return;
+    // }
     this.props.redirectToOtpVerifcation();
-    alert('Will redirect to OTP verification!');
+    // alert('Will redirect to OTP verification!');
   };
 
   render() {

@@ -19,10 +19,39 @@ class Login extends Component {
   login = (details) => {
     console.log('From parent!');
     console.log(details);
+    //first API check 
+    // if user doesNot exists -> 
+    // this.setState({
+    //   showAlert : true,
+    //   alertData : 'No account found linked to this E-Mail!',
+    //   alertColor : 'danger'
+    // })
+
+    // If user exists but has not filled 2nd signupForm
+    // clear localStorage & set userID in localStorage
+    // this.setState({
+    //   showAlert : true,
+    //   alertData : 'Complete your Profile forms! Redirecting...!',
+    //   alertColor : 'danger'
+    // })
+    // setTimeout(()=>{
+    //   this.setState({redirect : 'personalDetails'});
+    // },4000)
+
+    // If user exists but has not completed OTP verification
+    //clear localStorage & set userID & profileID in localStorage
+    this.setState({
+      showAlert : true,
+      alertData : 'Complete your Phone number verification! Redirecting...!',
+      alertColor : 'danger'
+    })
+    setTimeout(()=>{
+      this.setState({redirect : 'otpCompletion'});
+    },4000)
   }
 
   redirectToOtpVerifcation = () => {
-    this.setState({redirect : true});
+    this.setState({redirect : 'forgotPassword'});
   }
 
   showAlert = (alertDetails) => {
@@ -53,8 +82,14 @@ class Login extends Component {
       )
     }
 
-    if(this.state.redirect){
+    if(this.state.redirect === 'personalDetails'){
+      return <Redirect to='/userSignup/personalDetails'/>
+    }
+    if(this.state.redirect === 'otpCompletion'){
       return <Redirect to='/userSignup/otpVerification'/>
+    }
+    if(this.state.redirect === 'forgotPassword'){
+      return <Redirect to='/forgotPassword/otpVerification'/>
     }
 
     return (

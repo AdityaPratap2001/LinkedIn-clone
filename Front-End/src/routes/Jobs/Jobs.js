@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./Jobs.css";
 import SavedJobs from "./JobsType/SavedJobs/SavedJobs";
 import AppliedJobs from "./JobsType/AppliedJobs/AppliedJobs";
-import PostedJobs from "./JobsType/PostedJobs";
+import PostedJobs from "./JobsType/PostedJobs/PostedJobs";
 import { NavLink } from "react-router-dom";
 import RecommendedJobs from "./JobsType/RecommendedJobs/RecommendedJobs";
 import ProfileSidebox from "../../components/ProfileSidebox/ProfileSidebox";

@@ -32,6 +32,12 @@
 .formTwoHead{
   margin-bottom: 10px;
 }
+.checkGif img{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
 .signupFormOne label,.signupFormTwo label{
   margin-bottom: 0px;
   font-size: 14px;
