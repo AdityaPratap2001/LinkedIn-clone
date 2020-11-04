@@ -5,6 +5,7 @@ import CustomAlert from '../../components/CustomAlert/CustomAlert';
 import LoginForm from './LoginForm/LoginForm';
 import Loader from '../../components/Loader/Loader';
 import { Redirect } from 'react-router-dom';
+import axios from '../../API/baseURL/baseURL';
 
 class Login extends Component {
 
@@ -17,8 +18,24 @@ class Login extends Component {
   }
 
   login = (details) => {
-    console.log('From parent!');
+
     console.log(details);
+    let userData = {
+      email : details.email,
+      password : details.password
+    }
+    this.setState({loading:true});
+    axios.post('/user/login/',userData)
+      .then((res)=>{
+        console.log(res);
+        this.setState({loading : false});
+      })
+      .catch((err)=>{
+        console.log(err.status);
+        this.setState({loading : false})
+        console.log(err);
+      })
+
     //first API check 
     // if user doesNot exists -> 
     // this.setState({
@@ -40,14 +57,14 @@ class Login extends Component {
 
     // If user exists but has not completed OTP verification
     //clear localStorage & set userID & profileID in localStorage
-    this.setState({
-      showAlert : true,
-      alertData : 'Complete your Phone number verification! Redirecting...!',
-      alertColor : 'danger'
-    })
-    setTimeout(()=>{
-      this.setState({redirect : 'otpCompletion'});
-    },4000)
+    // this.setState({
+    //   showAlert : true,
+    //   alertData : 'Complete your Phone number verification! Redirecting...!',
+    //   alertColor : 'danger'
+    // })
+    // setTimeout(()=>{
+    //   this.setState({redirect : 'otpCompletion'});
+    // },4000)
   }
 
   redirectToOtpVerifcation = () => {

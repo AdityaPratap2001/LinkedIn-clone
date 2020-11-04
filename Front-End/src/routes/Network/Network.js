@@ -8,7 +8,7 @@ import './Network.css';
 class Network extends Component {
 
   state = {
-    typeOfJob: 2,
+    typeOfJob: 1,
   };
 
   typeOfJobSelected = (type) => {

@@ -49,7 +49,7 @@ class SavedJobs extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isLoading: false });
-    }, 4000);
+    },2000);
   }
 
   render() {

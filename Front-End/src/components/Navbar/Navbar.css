@@ -30,7 +30,7 @@
   cursor: pointer;
   color: black;
   font-family: 'Cabin', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 580;
 }
 /* .NavLink h6:hover{
@@ -89,7 +89,7 @@
 }
 .conditional_render>li h6{
   margin-bottom: 0px;
-  font-size: 12px;
+  font-size: 13px;
 }
 .Navbar a:hover{
   text-decoration: none;

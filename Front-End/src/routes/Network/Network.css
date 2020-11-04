@@ -1,3 +1,71 @@
 .jobsBody .rightDisplay .jobsTypeSelect .networkHeader div{
   margin-bottom: 0px;
 }
+.jobsBody .rightDisplay .jobsDisplay .connection{
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 16px !important;
+  padding-right: 30px !important;
+}
+.jobsBody .rightDisplay .jobsDisplay .connection h6{
+  margin-bottom: 0px;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionFirst{
+  display: flex;
+  align-items: center;
+}
+.jobsBody .rightDisplay .jobsDisplay .connection img{
+  height: 65px;
+  margin-right: 12px;
+  border-radius: 50%;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionSecond{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionSecond .connectionName{
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionSecond .connectionDomain{
+  font-size: 13px;
+  color: #808080;  
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionThird{
+  display: flex;
+  align-items: center;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionThird h6{
+  margin-right: 20px;
+  color: #808080;
+  font-size: 13px;
+  cursor: pointer;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionThird h6:hover{
+  color: #414141;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionThird button{
+  border: #008B8B 1.4px solid;
+  background-color: #F1FFFD;
+  color: #008B8B;
+  font-size: 13px;
+  padding: 7px 15px;
+  cursor: pointer;
+}
+.jobsBody .rightDisplay .jobsDisplay .connectionThird button:hover{
+  background-color: #008B8B;
+  color: white;
+}
+
+
+@media (max-width:520px){
+  .jobsBody .rightDisplay .jobsDisplay .connectionThird{
+    width: 100%;
+    margin-top: 12px;
+    justify-content: center;
+  }
+  .jobsBody .rightDisplay .jobsDisplay .connection{
+    padding-right: 16px !important;
+  }
+}

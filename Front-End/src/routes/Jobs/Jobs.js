@@ -10,7 +10,7 @@ import ProfileSidebox from "../../components/ProfileSidebox/ProfileSidebox";
 
 class Jobs extends Component {
   state = {
-    typeOfJob: 2,
+    typeOfJob: 1,
   };
 
   typeOfJobSelected = (type) => {

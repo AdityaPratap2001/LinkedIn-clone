@@ -73,7 +73,7 @@ class Signup extends Component {
     userDetails.append('last_name',details.lastName);
     userDetails.append('avatar',details.selectedFile);
     userDetails.append('location',details.location);
-    userDetails.append('is_employed',details.isStudent);
+    userDetails.append('is_employed',!details.isStudent);
     userDetails.append('organization_name',details.industry);
     userDetails.append('position',details.position);
     userDetails.append('start_date','2020-12-04');
@@ -142,7 +142,7 @@ class Signup extends Component {
         // this.setState({loading : false});
         this.setState({
           showAlert : true, 
-          alertData : 'Something went wrong!', 
+          alertData : 'Phone number already linked to an account!', 
           alertColor : 'danger'
         })
       })
@@ -164,7 +164,7 @@ class Signup extends Component {
       .then((res)=>{
         console.log(res);
         // this.setState({loading : false});
-        if(res.status === 201){
+        if(res.status === 200){
           this.setState({
             showAlert : true, 
             alertData : 'Phone number verified successfully!', 
