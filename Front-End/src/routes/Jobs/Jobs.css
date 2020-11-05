@@ -163,10 +163,28 @@
   color: #808080;
   background-color: #ececec65;
 }
+.jobsBody .jobsDisplay .savedJobsDisplay .emptyImgDiv{
+  height: 100%;
+  width: 100%;
+  /* max-height: 62vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #ccc; */
+}
+.jobsBody .jobsDisplay .savedJobsDisplay .emptyImgDiv img{
+  /* max-height: 62vh;  */
+  height: 300px !important;
+  /* border: orangered 2px solid; */
+}
 
 
 
-
+@media (max-width:500px){
+  .jobsBody .jobsDisplay .savedJobsDisplay .emptyImgDiv img{
+    height: 180px !important;
+  }
+}
 @media (max-width:728px){
   .jobsBody .jobsTypeSelect{
     justify-content: center;

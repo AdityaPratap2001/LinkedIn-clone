@@ -6,6 +6,7 @@ import CustomAlert from "../../../components/CustomAlert/CustomAlert";
 import { Redirect } from "react-router-dom";
 import Loader from "../../../components/Loader/Loader";
 import checkSrc from "../../../assets/check.gif";
+import axios from '../../../API/baseURL/baseURL';
 
 class ForgotPassword extends Component {
   state = {
@@ -18,7 +19,31 @@ class ForgotPassword extends Component {
     completed: null,
   };
 
-  sendOTP = () => {
+  sendOTP = (details) => {
+    localStorage.clear();
+    let userData = {
+      Phone_number : details.phoneNumber
+    }
+    console.log(userData);
+    axios.post('/user/password/reset/',userData)
+      .then((res)=>{
+        let userId = res.data.User_id;
+        localStorage.setItem('userID',userId);
+        this.setState({
+          showAlert : true,
+          alertColor : 'success',
+          alertData : 'OTP sent to entered phone number!'
+        })
+      })
+      .catch((err)=>{
+        if(err.response.status === 404){
+          this.setState({
+            showAlert : true,
+            alertColor : 'danger',
+            alertData : 'No account found, linked to entered number!'
+          })
+        }
+      })
     //API call
     //if phone number doesn't exists for any user...
     // this.setState({
@@ -28,11 +53,11 @@ class ForgotPassword extends Component {
     // })
 
     // if phone number exists
-    this.setState({
-      showAlert: true,
-      alertColor: "success",
-      alertData: "OTP has been sent to your registered phone number!",
-    });
+    // this.setState({
+    //   showAlert: true,
+    //   alertColor: "success",
+    //   alertData: "OTP has been sent to your registered phone number!",
+    // });
   };
 
   verifyOTP = () => {

@@ -19,6 +19,8 @@ class Login extends Component {
 
   login = (details) => {
 
+    localStorage.clear();
+
     console.log(details);
     let userData = {
       email : details.email,
@@ -28,11 +30,63 @@ class Login extends Component {
     axios.post('/user/login/',userData)
       .then((res)=>{
         console.log(res);
-        this.setState({loading : false});
+        if(res.status === 200){
+          localStorage.setItem('accessToken',res.data.access);
+          localStorage.setItem('refreshToken',res.data.refresh);
+          this.setState({
+            loading : false,
+            showAlert : true,
+            alertColor : 'success',
+            alertData : 'LoggedIn successsfully!...Redirecting!'
+          });
+          setTimeout(()=>{
+            this.setState({redirect : 'home'})
+          },3000)
+        }
       })
       .catch((err)=>{
-        console.log(err.status);
+        console.log(err.response.status);
+        console.log(err.response);
+        let errorStatus = err.response.status;
         this.setState({loading : false})
+        if(errorStatus === 400){
+          this.setState({
+            showAlert : true,
+            alertColor : 'danger',
+            alertData : 'No account found, linked to this EMail!'
+          })
+        }
+        if(errorStatus === 401){
+          this.setState({
+            showAlert : true,
+            alertColor : 'danger',
+            alertData : 'Password entered is incorrect!'
+          })
+        }
+        if(errorStatus === 404){
+          localStorage.setItem('userID',err.response.data.user_id);
+          this.setState({
+            showAlert : true,
+            alertColor : 'danger',
+            alertData : 'Complete your verification!',
+          })
+          setTimeout(()=>{
+            this.setState({redirect : 'secondForm'});
+          },3000)
+        }
+        if(errorStatus === 403){
+          localStorage.setItem('userID',err.response.data.user_id);
+          localStorage.setItem('profileID',err.response.data.profile_id);
+          this.setState({
+            showAlert : true,
+            alertColor : 'danger',
+            alertData : 'Complete your otp verification!',
+          })
+          setTimeout(()=>{
+            this.setState({redirect : 'thirdForm'});
+          },3000)
+        }
+      
         console.log(err);
       })
 
@@ -81,6 +135,16 @@ class Login extends Component {
 
   render() {
 
+    if(this.state.redirect === 'home'){
+      return <Redirect to='/'/>
+    }
+    if(this.state.redirect === 'secondForm'){
+      return <Redirect to='/userSignup/personalDetails'/>
+    }
+    if(this.state.redirect === 'thirdForm'){
+      return <Redirect to='/userSignup/otpVerification'/>
+    }
+
     let AlertData = null;
     if(this.state.showAlert){
       AlertData = (
@@ -98,13 +162,7 @@ class Login extends Component {
         </div>
       )
     }
-
-    if(this.state.redirect === 'personalDetails'){
-      return <Redirect to='/userSignup/personalDetails'/>
-    }
-    if(this.state.redirect === 'otpCompletion'){
-      return <Redirect to='/userSignup/otpVerification'/>
-    }
+    
     if(this.state.redirect === 'forgotPassword'){
       return <Redirect to='/forgotPassword/otpVerification'/>
     }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import jobImgSrc from "../../../../assets/profileSample.jpg";
+import emptySrc from '../../../../assets/empty.png';
 import Skeleton from "react-loading-skeleton";
 import {NavLink} from 'react-router-dom';
 
@@ -148,6 +149,14 @@ class AppliedJobs extends Component {
           </div>
         </div>
       </>
+      )
+    }
+
+    if(this.state.jobs.length === 0){
+      appliedJobsData = (
+        <div className='emptyImgDiv'>
+          <img src={emptySrc} className='emptyImg'/>
+        </div>
       )
     }
 

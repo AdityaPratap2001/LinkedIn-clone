@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import userImgSrc from "../../../../assets/profileSample.jpg";
+import emptySrc from '../../../../assets/empty.png';
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
@@ -42,7 +43,7 @@ class Invitations extends Component {
       this.setState({loading:false});
     },2000)
   }
-
+  
   removeInvitation = (id) => {
     console.log(this.state.invitations);
     let newInvitationsArray = this.state.invitations;
@@ -141,6 +142,14 @@ class Invitations extends Component {
           </div>
         );
       });
+    }
+
+    if(this.state.invitations.length === 0){
+      invitationsData = (
+        <div className='emptyImgDiv'>
+          <img src={emptySrc} className='emptyImg'/>
+        </div>
+      )
     }
 
     return (

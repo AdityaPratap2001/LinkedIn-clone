@@ -131,20 +131,29 @@ class Signup extends Component {
       .then((res)=>{
         console.log(res);
         // this.setState({loading : false});
-        this.setState({
-          showAlert : true, 
-          alertData : 'OTP has been sent to your mobile number', 
-          alertColor : 'success'
-        })
+        if(res.status === 202){
+          this.setState({
+            showAlert : true, 
+            alertData : 'OTP has been sent to your mobile number', 
+            alertColor : 'success'
+          })
+        }
       })
       .catch((err)=>{
-        console.log(err)
-        // this.setState({loading : false});
+        console.log(err.response)
+        // if(err.response.status === 403){
+        //   this.setState({
+        //     showAlert : true, 
+        //     alertData : 'Phone number already linked to an account', 
+        //     alertColor : 'danger'
+        //   })
+        // }
         this.setState({
           showAlert : true, 
-          alertData : 'Phone number already linked to an account!', 
+          alertData : 'Phone number already linked to an account', 
           alertColor : 'danger'
         })
+        // this.setState({loading : false});
       })
   }
   
@@ -171,24 +180,24 @@ class Signup extends Component {
             alertColor : 'success'
           })
         }
-        if(res.status === 400){
+      })
+      .catch((err)=>{
+        console.log(err);
+        this.setState({loading : false});
+        if(err.response.status === 400){
           this.setState({
             showAlert : true, 
             alertData : 'OTP expired!', 
             alertColor : 'danger'
           })
         }
-        if(res.status === 401){
+        if(err.response.status === 401){
           this.setState({
             showAlert : true, 
             alertData : 'Wrong OTP entered!', 
             alertColor : 'danger'
           })
         }
-      })
-      .catch((err)=>{
-        console.log(err);
-        this.setState({loading : false});
       })
   }
 

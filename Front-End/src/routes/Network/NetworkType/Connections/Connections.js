@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import userImgSrc from "../../../../assets/profileSample.jpg";
+import emptySrc from '../../../../assets/empty.png';
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
@@ -140,6 +141,14 @@ class Connections extends Component {
           </div>
         );
       });
+    }
+
+    if(this.state.connections.length === 0){
+      connectionsData = (
+        <div className='emptyImgDiv'>
+          <img src={emptySrc} className='emptyImg'/>
+        </div>
+      )
     }
 
     return (
