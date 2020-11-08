@@ -7,6 +7,7 @@ import Login from './routes/Login/Login';
 import Network from './routes/Network/Network';
 import Jobs from './routes/Jobs/Jobs';
 import ForgotPassword from './routes/Login/ForgotPassword/ForgotPassword';
+import Profile from './routes/Profile/Profile';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/forgotPassword/:id' render={props => <ForgotPassword key={props.location.pathname} {...props}/>}/>
         <Route path='/network' exact component={Network}/>
         <Route path='/jobs' exact component={Jobs}/>
+        <Route path='/profile' exact component={Profile}/>
 
       </BrowserRouter>
     </div>

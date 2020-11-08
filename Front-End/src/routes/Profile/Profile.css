@@ -1,0 +1,59 @@
+.jobsBody .profileBanner{
+  /* border: #ccc 1.5px solid; */
+  width: 62vw;
+  background-color: white;
+  box-shadow: 0 4px 10px 3px #ccc;
+}
+.jobsBody .profileBanner .bannerImg img{
+  width: 100%;
+  height: 120px;
+}
+.jobsBody .profileBanner .profilePic{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.jobsBody .profileBanner .profilePic img{
+  height: 130px;
+  border-radius: 50%;
+  /* transform: translate(30px,-90px); */
+  border: white 4px solid;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  position: absolute;
+  left: 35px;
+  transform: translateY(-70px);
+}
+.jobsBody .profileBanner .profilePic .profileEditButton{
+  position: absolute;
+  cursor: pointer;
+  right: 44px;
+  top: 15px;
+  /* background-color: #F5F4F4; */
+  background-color: #ffffff;
+  padding: 7px 8.5px;
+  border: #ccc 1px solid;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.jobsBody .profileBanner .profilePic .profileEditButton:hover{
+  transform: scale(1.1);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.jobsBody .profileBanner .userDetails{
+  padding: 78px 35px 30px;
+}
+.jobsBody .profileBanner .userDetails .userName{
+  font-size: 24px;
+  font-weight: 500;
+  font-family: 'Poppins';
+}
+.jobsBody .profileBanner .userDetails .userDomain{
+  font-size: 16.9px;
+  font-weight: 400;
+  /* font-family: 'Poppins'; */
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+.jobsBody .profileBanner .userDetails .userAddr{
+  font-weight: 400;
+}

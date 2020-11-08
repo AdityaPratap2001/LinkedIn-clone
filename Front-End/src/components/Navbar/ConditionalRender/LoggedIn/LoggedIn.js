@@ -88,7 +88,7 @@ class LoggedIn extends Component {
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <NavLink to="/user">
+            <NavLink to="/profile">
               <div className="navUserProfHead">
                 <div className="navUserProfile">
                   {/* <i class="fas fa-2x fa-user-circle"></i> */}

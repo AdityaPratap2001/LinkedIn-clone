@@ -6,7 +6,7 @@ import CustomAlert from "../../../components/CustomAlert/CustomAlert";
 import { Redirect } from "react-router-dom";
 import Loader from "../../../components/Loader/Loader";
 import checkSrc from "../../../assets/check.gif";
-import axios from '../../../API/baseURL/baseURL';
+import axios from "../../../API/baseURL/baseURL";
 
 class ForgotPassword extends Component {
   state = {
@@ -22,12 +22,13 @@ class ForgotPassword extends Component {
   sendOTP = (details) => {
     localStorage.clear();
     let userData = {
-      Phone_number : details.phoneNumber
-    }
+      phone_number: details.phoneNumber,
+    };
     console.log(userData);
     axios.post('/user/password/reset/',userData)
       .then((res)=>{
-        let userId = res.data.User_id;
+        console.log(res);
+        let userId = res.data.user_id;
         localStorage.setItem('userID',userId);
         this.setState({
           showAlert : true,
@@ -44,6 +45,7 @@ class ForgotPassword extends Component {
           })
         }
       })
+
     //API call
     //if phone number doesn't exists for any user...
     // this.setState({
@@ -60,7 +62,52 @@ class ForgotPassword extends Component {
     // });
   };
 
-  verifyOTP = () => {
+  verifyOTP = (details) => {
+    console.log(details);
+    this.setState({
+      showAlert: true,
+      alertColor: "success",
+      alertData: "Wait while we verify your phone number...",
+    });
+    let verifyData = {
+      phone_number: details.phoneNumber,
+      otp: details.otp,
+    };
+    axios.post("/user/password/reset/otp/verify/", verifyData)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          let resetAccessToken = res.data.access;
+          localStorage.setItem('resetAccessToken',resetAccessToken);
+          this.setState({
+            showAlert: true,
+            alertColor: "success",
+            alertData:
+              "Verified! Reset your password...Redirecting!",
+          });
+          setTimeout(() => {
+            this.setState({ showAlert: false, redirect: true });
+          }, 4000);
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          this.setState({
+            showAlert: true,
+            alertColor: "danger",
+            alertData: "OTP has expired!",
+          });
+        }
+        if (err.response.status === 403) {
+          this.setState({
+            showAlert: true,
+            alertColor: "danger",
+            alertData: "OTP entered is incorrect!",
+          });
+        }
+      });
+
+
     // API call
     //if OTP doesn't match
     // this.setState({
@@ -70,23 +117,58 @@ class ForgotPassword extends Component {
     // })
 
     // if OTP did match
-    this.setState({
-      showAlert: true,
-      alertColor: "success",
-      alertData: "Verified! You need to reset your password...Redirecting!",
-    });
-    setTimeout(() => {
-      this.setState({ showAlert: false, redirect: true });
-    }, 4000);
   };
 
-  submitFormTwo = () => {
-    // API call
-    // user successfully sets new password
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false, completed: true });
-    }, 2500);
+  submitFormTwo = (details) => {
+
+    console.log(details);
+    let userId = localStorage.getItem('userID');
+    let refreshToken = localStorage.getItem('resetAccessToken');
+
+    this.setState({loading : true});
+
+    // let resetDetails = {
+    //   headers: {
+    //     'Authorization': `Bearer ${refreshToken}`
+    //   },
+    //   user_id : userId,
+    //   Password : details.password
+    // }
+
+    axios.patch('/user/password/reset/new_password/',{
+      user_id : userId,
+      password : details.password
+    },{
+      headers: {
+        'Authorization': `Bearer ${refreshToken}`
+      }
+    })
+      .then((res)=>{
+        console.log(res);
+        if(res.status === 202){
+          this.setState({
+            completed : true,
+            loading : false
+          })
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+        this.setState({loading : false});
+        if(err.response.status === 406){
+          this.setState({
+            showAlert : true,
+            alertData : "New password should not match your old password!",
+            alertColor : 'danger',
+          })
+        }
+      })
+
+
+    // this.setState({ loading: true });
+    // setTimeout(() => {
+    //   this.setState({ loading: false, completed: true });
+    // }, 2500);
   };
 
   showAlert = (alertDetails) => {
