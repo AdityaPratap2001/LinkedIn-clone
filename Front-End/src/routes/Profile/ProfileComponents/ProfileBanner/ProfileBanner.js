@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Modal } from "react-bootstrap";
-import bannerSrc from "../../../../assets/coverBackground.jpeg";
+// import bannerSrc from "../../../../assets/coverBackground.jpeg";
+// import bannerSrc from "../../../../assets/linkedBack2.jpg";
+// import bannerSrc from "../../../../assets/linkedBack3.jpg";
+import bannerSrc from "../../../../assets/linkedBack4.jpeg";
 import profilePic from "../../../../assets/profileSample.jpg";
+import ChangeAboutModal from "./Modals/ChangeAboutModal";
+import ChangeUserDetailsModal from "./Modals/ChangeUserDetailsModal";
 
 const userData = {
   firstName: "Aditya",
@@ -10,54 +16,147 @@ const userData = {
   domain: "Web Developer",
   industry: "Software Incuabator (SDC-SI)",
   address: "Gautam Budh Nagar, Uttar Pradesh, India",
+  connections: 293,
+  profilePic : profilePic,
+  about:
+    "I am an aspiring data scientist who enjoys connecting the dots: be it ideas from different disciplines, people from different teams, or applications from different industries. I have strong technical skills and an academic background in engineering, statistics, and machine learning.",
+  // about: null,
 };
 
 class ProfileBanner extends Component {
   state = {
     showModal: false,
+    modalNum: null,
+    data: null,
+    firstName: userData.firstName,
+    lastName: userData.lastName,
+    domain: userData.domain,
+    industry: userData.industry,
+    address: userData.address,
+    connections: userData.connections,
+    about: userData.about,
+    bannerSrc: bannerSrc,
+    profilePic: userData.profilePic,
   };
 
-  displayModal = () => {
-    this.setState({ showModal: true });
+  displayModal = (id) => {
+    this.setState({ showModal: true, modalNum: id });
   };
   hideModal = () => {
     this.setState({ showModal: false });
   };
 
+  changeAbout = (updatedAbout) => {
+    this.setState({ about: updatedAbout });
+  };
+  editUserDetails = (details) => {
+    console.log('Parent');
+    console.log(details);
+    if(details.profilePic === null){
+      details.profilePic = profilePic;
+    }
+    this.setState({
+      firstName : details.firstName,
+      lastName : details.lastName,
+      domain : details.position,
+      industry : details.industry,
+      address : details.location,
+      profilePic : details.profilePic
+    })
+  }
+
   render() {
+    let aboutUserData = null;
+    aboutUserData = (
+      <div className="userAboutFilled">
+        <div onClick={() => this.displayModal(2)} className="profileEditButton">
+          <i class="fas fa-pencil-alt"></i>
+        </div>
+        <h6>{this.state.about}</h6>
+      </div>
+    );
+    if (this.state.about === null) {
+      aboutUserData = (
+        <div className="userAboutNull">
+          <h6 onClick={() => this.displayModal(2)}>
+            Add about yourself, so people get to know you better.
+          </h6>
+        </div>
+      );
+    }
+
+    let modalData = null;
+    if (this.state.showModal && this.state.modalNum === 1) {
+      modalData = (
+      <ChangeUserDetailsModal 
+      editUserDetails={this.editUserDetails}
+      hideModal={this.hideModal} />
+      );
+    }
+    if (this.state.showModal && this.state.modalNum === 2) {
+      modalData = (
+        <ChangeAboutModal
+          hideModal={this.hideModal}
+          changeAbout={this.changeAbout}
+        />
+      );
+    }
+
     return (
       <>
-        <Modal
-          show={this.state.showModal}
-          animation={false}
-          centered
-          onHide={this.hideModal}
-        >
-          <Modal.Header closeButton>
-            <h6>jsbchdfbj</h6>
-          </Modal.Header>
-        </Modal>
-        
+        {modalData}
+
         <div className="bannerImg">
-          <img src={bannerSrc} />
+          <img src={this.state.bannerSrc} />
         </div>
-        
+
         <div className="profilePic">
-          <img src={profilePic} />
-          <div onClick={this.displayModal} className="profileEditButton">
+          <img src={this.state.profilePic} />
+          <div
+            onClick={() => this.displayModal(1)}
+            className="profileEditButton"
+          >
             <i class="fas fa-user-edit"></i>
           </div>
         </div>
-        
+
         <div className="userDetails">
-          <h6 className="userName">
-            {userData.firstName} {userData.lastName}
-          </h6>
-          <h6 className="userDomain">
-            {userData.domain} at {userData.industry}
-          </h6>
-          <h6 className="userAddr">{userData.address}</h6>
+          <div>
+            <h6 className="userName">
+              {this.state.firstName} {this.state.lastName}
+            </h6>
+            <h6 className="userDomain">
+              {this.state.domain} at {this.state.industry}
+            </h6>
+            <h6 className="userAddr">{this.state.address}</h6>
+            <h6 className="userConn">
+              <NavLink to="/network">
+                {this.state.connections} connections
+              </NavLink>
+            </h6>
+          </div>
+
+          <div className="institutes">
+            <div className="institute">
+              <div className="instituteLeft">
+                <img src={this.state.profilePic} />
+              </div>
+              <div className="instituteRight">
+                <h6>Software Incubator (SDC-SI)</h6>
+              </div>
+            </div>
+            <div className="institute">
+              <div className="instituteLeft">
+                <img src={this.state.profilePic} />
+              </div>
+              <div className="instituteRight">
+                <h6>Ajay Kumar Garg Engineering College</h6>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {aboutUserData}
       </>
     );
   }
@@ -66,13 +165,13 @@ class ProfileBanner extends Component {
 export default ProfileBanner;
 
 // <button onClick={this.displayModal}>hwvehfver</button>
-        // <Modal
-        //   show={this.state.showModal}
-        //   animation={false}
-        //   centered
-        //   onHide={this.hideModal}
-        // >
-        //   <Modal.Header closeButton>
-        //     <h6>jsbchdfbj</h6>
-        //   </Modal.Header>
-        // </Modal>
+// <Modal
+//   show={this.state.showModal}
+//   animation={false}
+//   centered
+//   onHide={this.hideModal}
+// >
+//   <Modal.Header closeButton>
+//     <h6>jsbchdfbj</h6>
+//   </Modal.Header>
+// </Modal>

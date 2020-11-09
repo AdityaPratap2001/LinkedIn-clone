@@ -12,6 +12,7 @@
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
+    "react-indian-state-region-selector": "^6.1.0",
     "react-loading-skeleton": "^2.1.1",
     "react-otp-input": "^2.2.0",
     "react-router-dom": "^5.2.0",
