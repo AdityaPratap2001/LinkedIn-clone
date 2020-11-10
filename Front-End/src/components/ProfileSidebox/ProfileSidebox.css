@@ -64,6 +64,9 @@
   padding: 7px 20px;
   align-items: center;
   border-top: #ccc 1.8px solid;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   /* margin-bottom: 20px; */
 }
 .profileSideBox .savedPosts:hover{
@@ -78,11 +81,40 @@
 }
 
 
-
-
-
-
-
+.profileSideBox2{
+  position: fixed;
+  /* top: 470px; */
+  margin-top: 350px;
+  background-color: white;
+  /* box-shadow: 2px 2px 10px 2px #ccc; */
+  box-shadow: 0 4px 10px 3px #ccc;
+  border: #ccc 1.4px solid;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins';
+  padding: 7px 7px 0px 7px;
+  /* border-radius: 15px; */
+}
+.profileSideBox2 a{
+  width: 100%;
+  color: black;
+  background-color: #dee6f7;
+  text-align: center;
+  font-size: 13px;
+  padding: 6px;
+  margin-bottom: 7px;
+  font-weight: 500;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+.profileSideBox2 a:hover{
+  background-color: #bdc6d8;
+  text-decoration: none;
+}
 
 
 

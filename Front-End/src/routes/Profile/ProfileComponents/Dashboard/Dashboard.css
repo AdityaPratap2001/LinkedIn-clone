@@ -1,0 +1,37 @@
+.jobsBody .dashboard h5{
+  font-weight: 400;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,
+  Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,
+  Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,
+  Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
+}
+.jobsBody .dashboard h6{
+  font-weight: 350;
+}
+.jobsBody .dashboardBox{
+  width: 96%;
+  display: flex;
+  margin: 30px auto 2px auto;
+  border: #ccc 1px solid;
+  /* min-height: 80px; */
+  border-radius: 7px;
+  background-color: white;
+}
+.jobsBody .dashboardBox div{
+  width: 33.5%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  padding-bottom: 7px;
+}
+.jobsBody .dashboardBox h5{
+  font-size: 30px;
+  font-weight: 340;
+  color: #0a66c2;
+  margin-bottom: 7px;
+}
+.jobsBody .dashboardBox h6{
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+  font-size: 14px;
+}

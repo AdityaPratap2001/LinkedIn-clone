@@ -90,7 +90,28 @@ class ProfileSidebox extends Component {
       )
     }
 
-    return <div className="profileSideBox">{data}</div>;
+    return (
+      <>
+        <div className="profileSideBox">{data}</div>
+        {/* <div className="profileSideBox2">
+            <NavLink to='/postJob'>
+              <div>
+              Post Job
+              </div>
+            </NavLink>
+            <NavLink to='/createPost'>
+              <div>
+                Create Post
+              </div>
+            </NavLink>
+            <NavLink to='/createCompanyPage'>
+              <div>
+              Create Company page+
+              </div>
+            </NavLink>
+        </div> */}
+      </>
+    );
   }
 }
 

@@ -26,6 +26,11 @@
   background-color: #f5f5f5;
   min-height: 90vh;
 }
+.profPage{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 
 @media (max-width:701px){
   .body{
