@@ -70,11 +70,13 @@
   box-shadow: 0 4px 10px 3px #ccc;
   background-color: white;
   margin-top: 50px;
-  margin-bottom: 400px;
   padding: 40px 35px;
 }
 
-
+.jobsBody .skills{
+  margin-bottom: 400px;
+  padding-bottom: 15px;
+}
 
 
 

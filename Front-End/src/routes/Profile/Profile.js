@@ -7,6 +7,7 @@ import PopularDomains from "./ProfileComponents/PopularDomains/PopularDomains";
 import ProfileLevel from "./ProfileComponents/ProfileLevel/ProfileLevel";
 import Dashboard from "./ProfileComponents/Dashboard/Dashboard";
 import Experience from "./ProfileComponents/Experience/Experience";
+import Skills from "./ProfileComponents/Skills/Skills";
 
 class Profile extends Component {
   render() {
@@ -26,6 +27,9 @@ class Profile extends Component {
             </div>
             <div className="experience">
               <Experience/>
+            </div>
+            <div className="experience skills">
+              <Skills/>
             </div>
           </div>
 
