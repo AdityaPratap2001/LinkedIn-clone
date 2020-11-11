@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import Skeleton from "react-loading-skeleton";
 import AddSkills from "./Modals/AddSkills";
-import ShowEndorsedList from './Modals/ShowEndorsedList';
+import ShowEndorsedList from "./Modals/ShowEndorsedList";
 import "./Skills.css";
 
 const skillsData = [
@@ -38,10 +39,13 @@ class Skills extends Component {
     showingAllSkills: false,
     modalNum: null,
     modalData: null,
+    isLoading: true,
   };
 
-  componentDidMount(){
-    console.log(this.state.skills);
+  componentDidMount() {
+    setTimeout(()=>{
+      this.setState({isLoading : false});
+    },2500)
   }
 
   displayModal = (id) => {
@@ -58,7 +62,7 @@ class Skills extends Component {
   };
   showLess = () => {
     this.setState({
-      displaySkills: this.state.skills.slice(0,3),
+      displaySkills: this.state.skills.slice(0, 3),
       showingAllSkills: false,
     });
   };
@@ -75,22 +79,36 @@ class Skills extends Component {
     // console.log(this.state.displaySkills);
 
     let skillArr = this.state.skills;
-    skillArr.splice(id,1);
-    let displayArr = skillArr.slice(0,3);
+    skillArr.splice(id, 1);
+    let displayArr = skillArr.slice(0, 3);
     this.setState({
-      skills : skillArr,
-      displaySkills : displayArr
-    })
-  }
+      skills: skillArr,
+      displaySkills: displayArr,
+    });
+  };
   showEndorseList = (data) => {
     this.setState({
-      showModal : true,
-      modalNum : 2,
-      modalData : data
-    })
-  }
+      showModal: true,
+      modalNum: 2,
+      modalData: data,
+    });
+  };
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <>
+          <h5 style={{marginBottom : '20px'}} className="profStrength">
+            <Skeleton height={21} width={210} />
+          </h5>
+          <Skeleton style={{marginBottom:'12px'}} height={15} width={170}/><br/>
+          <Skeleton style={{marginBottom:'12px'}} height={15} width={130}/><br/>
+          <Skeleton style={{marginBottom:'12px'}} height={15} width={150}/><br/>
+          <Skeleton style={{marginBottom:'12px'}} height={15} width={170}/><br/>
+        </>
+      );
+    }
+
     let conditionalButton = null;
     if (this.state.skills.length > 3) {
       if (!this.state.showingAllSkills) {
@@ -123,8 +141,8 @@ class Skills extends Component {
       skillsData = this.state.displaySkills.map((elem, id) => {
         return (
           <div className="skillBox">
-            <h6 
-              onClick={()=>{
+            <h6
+              onClick={() => {
                 this.showEndorseList(elem);
               }}
               className="skill"
@@ -136,7 +154,7 @@ class Skills extends Component {
                   marginRight: "10px",
                   fontWeight: "500",
                   color: "rgb(112, 112, 112)",
-                  textDecoration: 'none !important'
+                  textDecoration: "none !important",
                 }}
               >
                 .

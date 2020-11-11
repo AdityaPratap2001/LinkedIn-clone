@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import Skeleton from "react-loading-skeleton";
 import AddExperience from "./Modals/AddExperience";
 import "./Experience.css";
 import defaultCompImg from "../../../../assets/defaultInstitute.png";
 // import EditExperience from "./Modals/EditExperience";
-import AddEducation from './Modals/AddEducation';
+import AddEducation from "./Modals/AddEducation";
 
 const experience = [
   {
@@ -25,27 +26,34 @@ const experience = [
 const education = [
   {
     img: null,
-    institute : 'AJAY KUMAR GARG ENGINEERING COLLEGE',
-    location : 'Ghaziabad, Uttar Pradesh',
+    institute: "AJAY KUMAR GARG ENGINEERING COLLEGE",
+    location: "Ghaziabad, Uttar Pradesh",
     startTime: "Oct 2019",
     endTime: "Nov 2020",
   },
   {
     img: null,
-    institute : 'ASSISI CONVENT SCHOOL',
-    location : 'Noida, Uttar Pradesh',
+    institute: "ASSISI CONVENT SCHOOL",
+    location: "Noida, Uttar Pradesh",
     startTime: "July 2019",
     endTime: "Nov 2017",
-  }
-]
+  },
+];
 
 class Experience extends Component {
   state = {
     showModal: false,
     modalNum: null,
     experData: experience,
-    eduData : education
+    eduData: education,
+    isLoading: true,
   };
+
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState({isLoading : false});
+    },2600)
+  }
 
   displayModal = (id) => {
     this.setState({ showModal: true, modalNum: id });
@@ -89,7 +97,7 @@ class Experience extends Component {
     console.log("Parent Add Edu");
     console.log(newArr);
     this.setState({ eduData: newArr });
-  }
+  };
 
   deleteExperience = (id) => {
     let Arr = this.state.experData;
@@ -101,9 +109,88 @@ class Experience extends Component {
     let Arr = this.state.eduData;
     Arr.splice(id, 1);
     this.setState({ eduData: Arr });
-  }
+  };
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <>
+          <h5 style={{ color: "red !important" }} className="profStrength">
+            <Skeleton height={21} width={210} />
+          </h5>
+          <div className="exper" style={{ border: "none" }}>
+            <div className="experLeft">
+              <Skeleton
+                style={{ transform: "translateY(-4px)", marginRight: "12px" }}
+                width={56}
+                height={56}
+              />
+            </div>
+            <div className="experMid">
+              <h6 className="position">
+                <Skeleton width={170} height={17} />
+              </h6>
+              <h6 className="industry">
+                <Skeleton width={140} height={14} />
+              </h6>
+              <h6>
+                <h6 className="time">
+                  <Skeleton height={12} width={80} />
+                </h6>
+              </h6>
+            </div>
+          </div>
+          <div className="exper" style={{ border: "none" }}>
+            <div className="experLeft">
+              <Skeleton
+                style={{ transform: "translateY(-4px)", marginRight: "12px" }}
+                width={56}
+                height={56}
+              />
+            </div>
+            <div className="experMid">
+              <h6 className="position">
+                <Skeleton width={170} height={17} />
+              </h6>
+              <h6 className="industry">
+                <Skeleton width={140} height={14} />
+              </h6>
+              <h6>
+                <h6 className="time">
+                  <Skeleton height={12} width={80} />
+                </h6>
+              </h6>
+            </div>
+          </div>
+          <h5 style={{ color: "red !important" }} className="profStrength">
+            <Skeleton height={21} width={210} />
+          </h5>
+          <div className="exper" style={{ border: "none" }}>
+            <div className="experLeft">
+              <Skeleton
+                style={{ transform: "translateY(-4px)", marginRight: "12px" }}
+                width={56}
+                height={56}
+              />
+            </div>
+            <div className="experMid">
+              <h6 className="position">
+                <Skeleton width={170} height={17} />
+              </h6>
+              <h6 className="industry">
+                <Skeleton width={140} height={14} />
+              </h6>
+              <h6>
+                <h6 className="time">
+                  <Skeleton height={12} width={80} />
+                </h6>
+              </h6>
+            </div>
+          </div>
+        </>
+      );
+    }
+
     let modalData = null;
     if (this.state.showModal && this.state.modalNum === 1) {
       modalData = (
@@ -215,7 +302,6 @@ class Experience extends Component {
       });
     }
 
-
     return (
       <>
         {modalData}
@@ -227,11 +313,14 @@ class Experience extends Component {
         </div>
         {experData}
 
-        <div style={{position:'relative',marginTop:'58px'}}>
+        <div style={{ position: "relative", marginTop: "58px" }}>
           <h5 style={{ color: "red !important" }} className="profStrength">
             Education
           </h5>
-          <div onClick={() => this.displayModal(2)} className="addExper addExper2">
+          <div
+            onClick={() => this.displayModal(2)}
+            className="addExper addExper2"
+          >
             <i class="fas fa-plus"></i>
           </div>
           {eduData}
