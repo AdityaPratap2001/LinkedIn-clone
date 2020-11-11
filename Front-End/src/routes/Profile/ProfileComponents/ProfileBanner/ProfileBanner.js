@@ -6,10 +6,11 @@ import Skeleton from "react-loading-skeleton";
 import bannerSrc from "../../../../assets/linkedBack2.jpg";
 // import bannerSrc from "../../../../assets/linkedBack3.jpg";
 // import bannerSrc from "../../../../assets/linkedBack4.jpeg";
-import profilePic from "../../../../assets/profileSample.jpg";
+import defaultProfilePic from "../../../../assets/defaultProfilePic.png";
 import ChangeAboutModal from "./Modals/ChangeAboutModal";
 import ChangeUserDetailsModal from "./Modals/ChangeUserDetailsModal";
 import './ProfileBanner.css';
+import defaultCompImg from '../../../../assets/defaultInstitute.png';
 
 const userData = {
   firstName: "Aditya",
@@ -18,7 +19,7 @@ const userData = {
   industry: "Software Incuabator (SDC-SI)",
   address: "Gautam Budh Nagar, Uttar Pradesh, India",
   connections: 293,
-  profilePic: profilePic,
+  profilePic: null,
   about:
     "I am an aspiring data scientist who enjoys connecting the dots: be it ideas from different disciplines, people from different teams, or applications from different industries. I have strong technical skills and an academic background in engineering, statistics, and machine learning.",
   // about: null,
@@ -60,9 +61,9 @@ class ProfileBanner extends Component {
   editUserDetails = (details) => {
     console.log("Parent");
     console.log(details);
-    if (details.profilePic === null) {
-      details.profilePic = profilePic;
-    }
+    // if (details.profilePic === null) {
+    //   details.profilePic = profilePic;
+    // }
     this.setState({
       firstName: details.firstName,
       lastName: details.lastName,
@@ -195,6 +196,11 @@ class ProfileBanner extends Component {
       );
     }
 
+    let profilePic = this.state.profilePic;
+    if(profilePic === null){
+      profilePic = defaultProfilePic;
+    }
+
     return (
       <>
         {modalData}
@@ -204,7 +210,7 @@ class ProfileBanner extends Component {
         </div>
 
         <div className="profilePic">
-          <img src={this.state.profilePic} />
+          <img src={profilePic} />
           <div
             onClick={() => this.displayModal(1)}
             className="profileEditButton"
@@ -232,7 +238,7 @@ class ProfileBanner extends Component {
           <div className="institutes">
             <div className="institute">
               <div className="instituteLeft">
-                <img src={this.state.profilePic} />
+                <img src={defaultCompImg} />
               </div>
               <div className="instituteRight">
                 <h6>Software Incubator (SDC-SI)</h6>
@@ -240,7 +246,7 @@ class ProfileBanner extends Component {
             </div>
             <div className="institute">
               <div className="instituteLeft">
-                <img src={this.state.profilePic} />
+                <img src={defaultCompImg} />
               </div>
               <div className="instituteRight">
                 <h6>Ajay Kumar Garg Engineering College</h6>

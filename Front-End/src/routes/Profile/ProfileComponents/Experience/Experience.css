@@ -1,0 +1,123 @@
+.profPage .profileLeft .experience{
+  position: relative;
+}
+.profPage .profileLeft .experience h5{
+  font-size: 19px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-family: 'Poppins';
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+.profPage .profileLeft .experience .addExper{
+  position: absolute;
+  top: 22px;
+  right: 35px;
+  /* border: red 1px solid; */
+  right: 35px;
+  top: 36px;
+  background-color: white;
+  padding: 7px 9px;
+  border-radius: 50px;
+  cursor: pointer;
+  /* width: fit-content;
+  height: fit-content; */
+}
+.profPage .profileLeft .experience .addExper2{
+  top: 0px;
+  right: 0;
+}
+.profPage .profileLeft .experience .addExper i{
+  font-size: 24px;
+  /* color: #0a66c2; */
+  /* color: black; */
+}
+.profPage .profileLeft .experience .addExper:hover{
+  background-color: #dce6f1;
+  padding: 7px 9px;
+  border-radius: 50px;
+  /* color: #70b5f9; */
+  color: #0a66c2;
+}
+/* .profPage .profileLeft .experience .addExper i:hover{
+  color: #70b5f9;
+} */
+
+
+.profPage .profileLeft .experience .exper{
+  /* border: red 1px solid; */
+  margin-top: 14px;
+  display: flex;
+  margin-bottom: 16px;
+  position: relative;
+  border-bottom: #d3e0f7 1.8px solid;
+
+  /* padding-bottom: 10px; */
+  /* align-items: center; */
+}
+.profPage .profileLeft .experience .exper .experLeft img{
+  height: 56px;
+  width: 56px;
+  margin-right: 24px;
+}
+.profPage .profileLeft .experience .exper .experMid{
+  /* padding: 7px 0px; */
+  /* border-bottom: #d3e0f7 1.8px solid; */
+  padding-bottom: 15px;
+}
+.profPage .profileLeft .experience .exper .experMid h6{
+  margin-bottom: 0px;
+}
+.profPage .profileLeft .experience .exper .experMid .position{
+  font-size: 15.5px;
+  margin-bottom: 3.5px;
+}
+.profPage .profileLeft .experience .exper .experMid .industry{
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+.profPage .profileLeft .experience .exper .experMid .time{
+  font-weight: 450;
+  font-size: 12.6px;
+  color: grey;
+}
+.profPage .profileLeft .experience .exper .experRight{
+  position: absolute;
+  right: 5px;
+  top: 12px;
+  /* border: red 2px solid; */
+}
+.profPage .profileLeft .experience .exper .experRight .editDiv{
+  padding : 5px 9px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.profPage .profileLeft .experience .exper .experRight .editDiv:hover{
+  color: #0a66c2;
+  background-color: #d3e0f7;
+}
+
+
+.modal-content .userAddAbout .addExperienceModal .form-group{
+  margin-bottom: 14px;
+}
+.modal-content .userAddAbout .addExperienceModal .form-group label{
+  margin-bottom: 1.4px;
+  font-size: 15px;
+}
+.modal-content .userAddAbout .addExperienceModal .form-group input{
+  height: 30px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-size: 14px;
+}
+
+
+
+
+
+
+

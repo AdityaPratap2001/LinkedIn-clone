@@ -1,13 +1,17 @@
+.profPage .profileLeft{
+  width: 64vw;
+  margin-right: 60px;
+}
 .jobsBody .profileBanner {
   /* border: #ccc 1.5px solid; */
   width: 64vw;
   background-color: white;
   box-shadow: 0 4px 10px 3px #ccc;
   padding-bottom: 24px;
-  margin-right: 60px;
 }
 .jobsBody .popularDomains{
   width: 19vw;
+  /* float: right; */
   height: fit-content;
   border: #ccc 1px solid;
   box-shadow: 0 4px 10px 3px #ccc;
@@ -20,15 +24,19 @@
 }
 .jobsBody .profileLevel{
   width: 64vw;
+  /* max-height: 150px; */
   margin-top: 50px;
   background-color: white;
   padding: 40px 35px;
   border: #ccc 1px solid;
   box-shadow: 0 4px 10px 3px #ccc;
-  margin-right: 60px;
 }
 .jobsBody .suggestions{
   width: 19vw;
+  margin-top: 60px;
+  /* float: right; */
+  /* position: absolute; */
+  /* min-height: 600px; */
   height: fit-content;
   border: #ccc 1px solid;
   box-shadow: 0 4px 10px 3px #ccc;
@@ -44,7 +52,6 @@
   width: 64vw;
   padding: 40px 35px;
   margin-top: 50px;
-  margin-bottom: 400px;
   border: #ccc 1px solid;
   /* box-shadow: 0 4px 10px 3px #ccc; */
   background-color: white;
@@ -58,7 +65,14 @@
   /* background-color: #a8d4ff; */
 }
 
-
+.jobsBody .experience{
+  border: #ccc 1px solid;
+  box-shadow: 0 4px 10px 3px #ccc;
+  background-color: white;
+  margin-top: 50px;
+  margin-bottom: 400px;
+  padding: 40px 35px;
+}
 
 
 
