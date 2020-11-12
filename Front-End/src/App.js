@@ -8,6 +8,7 @@ import Network from './routes/Network/Network';
 import Jobs from './routes/Jobs/Jobs';
 import ForgotPassword from './routes/Login/ForgotPassword/ForgotPassword';
 import Profile from './routes/Profile/Profile';
+import User from './routes/User/User';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/network' exact component={Network}/>
         <Route path='/jobs' exact component={Jobs}/>
         <Route path='/profile' exact component={Profile}/>
+        <Route path='/user/:id' render={props => <User key={props.location.pathname} {...props}/>}/>
 
       </BrowserRouter>
     </div>

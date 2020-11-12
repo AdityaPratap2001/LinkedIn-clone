@@ -1,0 +1,44 @@
+.jobsBody .suggestions .heading{
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 22px;
+  /* padding-left: 10px; */
+}
+.jobsBody .suggestions .user{
+  display: flex;
+  border-bottom: #d1d5dd 1.8px solid;
+  margin-bottom: 9px;
+}
+.jobsBody .suggestions .user a{
+  color: black;
+}
+.jobsBody .suggestions .user .userPic img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.jobsBody .suggestions .user h6{
+  margin-bottom: 0px;
+}
+.jobsBody .suggestions .user .userDescBottom{
+  font-weight: 350;
+  font-size: 13px;
+  padding-bottom: 10px;
+}
+.jobsBody .suggestions .user .userDescTop{
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+.jobsBody .suggestions .showMore{
+  border: #d3e0f7 2px solid;
+  text-align: center;
+  color: #0a66c2;
+  cursor: pointer;
+  padding: 9px;
+  font-size: 13px;
+  margin-top: 14px;
+}
+.jobsBody .suggestions .showMore:hover{
+  background-color: #d3e0f7;
+}

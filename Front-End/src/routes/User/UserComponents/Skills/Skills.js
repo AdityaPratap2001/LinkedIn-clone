@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
-import AddSkills from "./Modals/AddSkills";
 import ShowEndorsedList from "./Modals/ShowEndorsedList";
 import "./Skills.css";
 
@@ -8,6 +7,7 @@ const skillsData = [
   {
     skill: "Competitive Coding",
     endorsed: 4,
+    isEndorsed: true,
     list: [
       {
         profPic : null,
@@ -28,22 +28,27 @@ const skillsData = [
   {
     skill: "React JS",
     endorsed: 13,
+    isEndorsed: false,
   },
   {
     skill: "Node JS",
     endorsed: 19,
+    isEndorsed: true,
   },
   {
     skill: "DJango",
     endorsed: 25,
+    isEndorsed: false,
   },
   {
     skill: "C++",
     endorsed: 30,
+    isEndorsed: true,
   },
   {
     skill: "Cascading Style Sheet",
     endorsed: 7,
+    isEndorsed: true,
   },
 ];
 
@@ -56,6 +61,7 @@ class Skills extends Component {
     modalNum: null,
     modalData: null,
     isLoading: true,
+    connectStatus: 'connected'
   };
 
   componentDidMount() {
@@ -82,26 +88,6 @@ class Skills extends Component {
       showingAllSkills: false,
     });
   };
-  deleteSkill = (id) => {
-    // console.log(this.state.skills);
-    // console.log(this.state.displaySkills);
-    // let skillArr = this.state.skills;
-    // skillArr.splice(id,1);
-    // this.setState({
-    //   skills : skillArr,
-    //   // displaySkills : skillArr.slice(0,3)
-    // })
-    // console.log(this.state.skills);
-    // console.log(this.state.displaySkills);
-
-    let skillArr = this.state.skills;
-    skillArr.splice(id, 1);
-    let displayArr = skillArr.slice(0, 3);
-    this.setState({
-      skills: skillArr,
-      displaySkills: displayArr,
-    });
-  };
   showEndorseList = (data) => {
     this.setState({
       showModal: true,
@@ -109,6 +95,25 @@ class Skills extends Component {
       modalData: data,
     });
   };
+
+  endorseSkill = (id) => {
+    let arr = this.state.skills;
+    arr[id].isEndorsed = true;
+    arr[id].endorsed = arr[id].endorsed + 1;
+    this.setState({skills : arr});
+  }
+  unendorseSkill = (id) => {
+    let arr = this.state.skills;
+    arr[id].isEndorsed = false;
+    if(arr[id].endorsed !== 0){
+      arr[id].endorsed = arr[id].endorsed - 1;
+    }
+    this.setState({skills : arr});
+  }
+
+  hideAlert = () => {
+    this.setState({showAlert : false});
+  }
 
   render() {
     if (this.state.isLoading) {
@@ -159,9 +164,23 @@ class Skills extends Component {
     }
     if (this.state.skills.length !== 0) {
       skillsData = this.state.displaySkills.map((elem, id) => {
+        let endorseIcon = null;
+        if(this.state.connectStatus === 'connected'){
+          if (elem.isEndorsed) {
+            endorseIcon = <i onClick={()=>this.unendorseSkill(id)} class="far endorseIcon fa-check-circle"></i>;
+          }
+          if (!elem.isEndorsed) {
+            endorseIcon = <i onClick={()=>this.endorseSkill(id)} class="fas endorseIcon fa-plus-circle"></i>;
+          }
+        }
+        if(this.state.connectStatus === 'notConnected' || this.state.connectStatus === 'pending'){
+          endorseIcon = null;
+        }
+
         return (
           <div className="skillBox">
             <h6 className="skill">
+              {endorseIcon}
               <span
                 onClick={() => {
                   this.showEndorseList(elem);
@@ -176,6 +195,7 @@ class Skills extends Component {
                   marginRight: "10px",
                   fontWeight: "500",
                   color: "rgb(112, 112, 112)",
+                  textDecoration: "none !important",
                 }}
               >
                 .
@@ -189,26 +209,12 @@ class Skills extends Component {
                 {elem.endorsed}
               </span>
             </h6>
-            <div onClick={() => this.deleteSkill(id)} className="editDiv">
-              {/* <i class="fas fa-pencil-alt"></i> */}
-              {/* <i class="fas fa-trash"></i> */}
-              <i class="fas fa-times"></i>
-              {/* <span style={{fontSize:'12px'}}>remove</span> */}
-            </div>
           </div>
         );
       });
     }
 
     let modalData = null;
-    if (this.state.showModal && this.state.modalNum === 1) {
-      modalData = (
-        <AddSkills
-          hideModal={this.hideModal}
-          // addExperience={this.addExperience}
-        />
-      );
-    }
     if (this.state.showModal && this.state.modalNum === 2) {
       modalData = (
         <ShowEndorsedList
@@ -225,9 +231,6 @@ class Skills extends Component {
         <h5 style={{ color: "red !important" }} className="profStrength">
           Skills & Endorsements
         </h5>
-        <div onClick={() => this.displayModal(1)} className="addExper">
-          <i class="fas fa-plus"></i>
-        </div>
         {skillsData}
         {conditionalButton}
       </>

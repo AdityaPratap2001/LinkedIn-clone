@@ -1,0 +1,45 @@
+.jobsBody .profileLevel .profStrength{
+  font-size: 19px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-family: 'Poppins';
+  font-weight: 300;
+}
+
+.jobsBody .profileLevel .profStrength .profStrengthString{
+  font-weight: 700;
+}
+
+.jobsBody .profileLevel .profileBar{
+  margin-top: 33px;
+  width: 100%;
+  height: 11.4px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.jobsBody .profileLevel .profileBar .inter{
+  transform: scale(1.8)  translateY(-7%);
+  left: 56%;
+  background-color: white;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+}
+.jobsBody .profileLevel .profileBar .star{
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  right: 0;
+  transform: scale(1)  translate(7px,-33%);
+  /* color: #07522f; */
+  background-color: white;
+  padding: 1px 5.6px 4px 5.6px;
+  border-radius: 50%;
+  /* border: #07522f 2px solid; */
+}
+.jobsBody .profileLevel .profileBar div{
+  width: 13.9%;
+  border: rgb(192, 192, 192) 0.7px solid;
+}

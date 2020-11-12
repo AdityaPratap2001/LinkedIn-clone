@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 .jobsBody .profileLeft .skills .skill:hover{
-  text-decoration: none !important;
+  text-decoration: underline;
 }
 .jobsBody .profileLeft .skills .skill .skillName{
   margin-right: 10px;
@@ -14,12 +14,6 @@
 .jobsBody .profileLeft .skills .skill .endorse{
   font-weight: 450;
   color: rgb(112, 112, 112);
-}
-.jobsBody .profileLeft .skills .skill .skillName:hover{
-  text-decoration: underline;
-}
-.jobsBody .profileLeft .skills .skill .endorse:hover{
-  text-decoration: underline;
 }
 .jobsBody .profileLeft .skills .skillBox{
   display: flex;
@@ -53,38 +47,4 @@
 }
 .jobsBody .profileLeft .skills .showMore:hover{
   background-color: #d3e0f7;
-}
-
-.modal-content .userAddAbout .skillUser{
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  border-bottom: #0a66c2 1.3px solid;
-  padding-bottom: 12px;
-}
-.modal-content .userAddAbout .skillUser a{
-  color: black;
-}
-.modal-content .userAddAbout .skillUser h6{
-  margin-bottom: 0px;
-}
-.modal-content .userAddAbout .skillUser .desc{
-  font-weight: 340;
-  margin-top: 3px;
-  font-size: 14px;
-}
-.modal-content .userAddAbout .skillUser img{
-  height: 54px;
-  width: 54px;
-  border-radius: 50%;
-  margin-right: 14px;
-}
-.modal-content .userAddAbout hr{
-  margin: 10px;
-}
-.modal-content .userAddAbout .skillHead{
-  margin-bottom: 10px;
-  font-size: 20px;
-  padding-left: 15px;
-  font-weight: 400;
 }

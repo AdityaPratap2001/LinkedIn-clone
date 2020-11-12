@@ -1,0 +1,52 @@
+.jobsBody .profileLeft .profileBanner .statusButton{
+  position: absolute;
+  cursor: pointer;
+  right: 40px;
+  top: 25px;
+  color: #0a66c2;
+  border: #0a66c2 1.8px solid;
+  padding: 4.5px 8px;
+  font-weight: 500;
+  background-color: #ecf0f8;
+}
+.jobsBody .profileLeft .profileBanner .statusButton:hover{
+  background-color: #3a6b9b;
+  border: #3a6b9b 1.8px solid;
+  color: white;
+}
+.jobsBody .profileLeft .profileBanner .statusButton2{
+  position: absolute;
+  cursor: pointer;
+  right: 138px;
+  top: 25px;
+  color: #5e5e5e;
+  border:#5e5e5e 1.8px solid;
+  padding: 4.5px 8px;
+  font-weight: 500;
+  background-color: #e6e6e6;
+}
+.jobsBody .profileLeft .profileBanner .statusButton2:hover{
+  background-color: #3a6b9b;
+  border: #3a6b9b 1.8px solid;
+  color: white;
+}
+
+
+.jobsBody .profileLeft .skills .endorseIcon{
+  color: #a2aab9;
+  font-size: 28px;
+  margin-right: 10px;
+  transform: translateY(1px);
+}
+.jobsBody .profileLeft .skills .endorseIcon:hover{
+  color: #3869c5;
+  transform: translateY(1px) scale(1.1);
+}
+
+
+
+
+
+
+
+

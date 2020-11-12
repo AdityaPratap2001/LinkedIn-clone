@@ -1,0 +1,291 @@
+.jobsBody .profileBanner .bannerImg img {
+  width: 100%;
+  height: 150px;
+}
+.jobsBody .profileBanner .profilePic {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.jobsBody .profileBanner .profilePic img {
+  height: 135px;
+  width: 135px;
+  border-radius: 50%;
+  /* transform: translate(30px,-90px); */
+  border: white 4px solid;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  position: absolute;
+  left: 35px;
+  transform: translateY(-70px);
+}
+.jobsBody .profileBanner .profilePic .profileEditButton {
+  position: absolute;
+  cursor: pointer;
+  right: 44px;
+  top: 15px;
+  /* background-color: #F5F4F4; */
+  background-color: #ffffff;
+  padding: 7px 8.5px;
+  border: #ccc 1px solid;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.jobsBody .profileBanner .profilePic .profileEditButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.jobsBody .profileBanner .userDetails {
+  padding: 78px 35px 18px;
+  display: flex;
+  justify-content: space-between;
+}
+.jobsBody .profileBanner .userDetails .userName {
+  font-size: 24px;
+  font-weight: 500;
+  /* font-family: 'Poppins'; */
+}
+.jobsBody .profileBanner .userDetails .userDomain {
+  font-size: 16.9px;
+  font-weight: 400;
+  /* font-family: 'Poppins'; */
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+.jobsBody .profileBanner .userDetails .userAddr {
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.jobsBody .profileBanner .userDetails .userConn {
+  color: #175fa3;
+}
+.jobsBody .profileBanner .userDetails .userConn a:hover {
+  text-decoration: none;
+}
+.jobsBody .profileBanner .userDetails .institutes {
+  /* border: orangered 1px solid; */
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+.jobsBody .profileBanner .userDetails .institute {
+  /* border: green 1px solid; */
+  width: 230px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.jobsBody .profileBanner .userDetails .institute .instituteLeft img {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+.jobsBody .profileBanner .userDetails .institute .instituteRight h6 {
+  font-size: 12.9px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+.jobsBody .profileBanner .userAboutFilled {
+  position: relative;
+}
+.jobsBody .profileBanner .userAboutFilled h6 {
+  padding: 0px 35px 0px 35px;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 15px;
+  /* margin-bottom: 0px; */
+}
+.jobsBody .profileBanner .userAboutFilled .profileEditButton {
+  position: absolute;
+  width: fit-content;
+  cursor: pointer;
+  right: 44px;
+  top: -30px;
+  background-color: #f5f4f4;
+  background-color: #ffffff;
+  padding: 2.5px 8.5px;
+  padding: 1.6px 7px;
+  border: #ccc 1px solid;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  /* color: #175fa3; */
+}
+.jobsBody .profileBanner .userAboutFilled .profileEditButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.jobsBody .profileBanner .userAboutFilled i {
+  font-size: 13px;
+}
+.jobsBody .profileBanner .userAboutNull {
+  margin: 0px 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border: rgb(85, 85, 85) 1.8px dashed;
+  border-radius: 7px;
+  color: rgb(85, 85, 85);
+  font-weight: 300;
+}
+.jobsBody .profileBanner .userAboutNull h6 {
+  cursor: pointer;
+}
+.jobsBody .profileBanner .userAboutNull h6:hover {
+  text-decoration: underline;
+}
+.modal-content .userAddAbout {
+  /* border: red 3px solid; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 45px 20px;
+  position: relative;
+  /* font-size: 10px; */
+}
+.modal-content .userAddAbout i {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #8f8f8f;
+}
+.modal-content .userAddAbout i:hover {
+  color: black;
+  transform: scale(1.08);
+}
+.modal-content .userAddAbout h5 {
+  font-weight: 350;
+  font-size: 26px;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+.modal-content .userAddAbout .form-group {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.modal-content .userAddAbout textarea {
+  /* border: deeppink 2px solid; */
+  height: 140px;
+  font-size: 14px;
+  border-radius: 0;
+}
+.modal-content .userAddAbout .modalBottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+.modal-content .userAddAbout .modalBottom h6 {
+  margin-bottom: 0px;
+  font-size: 13.6px;
+}
+.modal-content .userAddAbout .userSaveButton {
+  padding: 3.8px 14px;
+  background-color: #ffffff;
+  border: rgb(16, 117, 233) 1.4px solid;
+  color: rgb(16, 117, 233);
+  cursor: pointer;
+  font-size: 14px;
+}
+.modal-content .userAddAbout .userSaveButton:hover {
+  background-color: rgb(16, 117, 233);
+  color: white;
+}
+.modal-content .userAddAbout .userCloseButton {
+  color: #525252;
+  margin-right: 16px;
+  cursor: pointer;
+}
+.modal-content .userAddAbout .userCloseButton:hover {
+  color: rgb(34, 34, 34);
+}
+
+
+
+/* USER EDIT FORM */
+
+.modal-content .userEditDetails{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 38px 20px;
+  position: relative;
+}
+.modal-content .userEditDetails form .form-group{
+  /* border: red 2px solid !important; */
+  margin-bottom: 10px;
+}
+.modal-content .userEditDetails form .form-group label{
+  margin-bottom: 1.4px;
+  font-size: 15px;
+}
+.modal-content .userEditDetails form .form-group input{
+  height: 30px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-size: 14px;
+}
+.modal-content .userEditDetails i {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #8f8f8f;
+}
+.modal-content .userEditDetails i:hover {
+  color: black;
+  transform: scale(1.08);
+}
+.modal-content .userEditDetails h5 {
+  font-weight: 350;
+  font-size: 26px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+.modal-content .userEditDetails .modalBottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+.modal-content .userEditDetails .modalBottom h6 {
+  margin-bottom: 0px;
+  font-size: 13.6px;
+}
+.modal-content .userEditDetails .userSaveButton {
+  padding: 3.8px 14px;
+  background-color: #ffffff;
+  border: rgb(16, 117, 233) 1.4px solid;
+  color: rgb(16, 117, 233);
+  cursor: pointer;
+  font-size: 14px;
+}
+.modal-content .userEditDetails .userSaveButton:hover {
+  background-color: rgb(16, 117, 233);
+  color: white;
+}
+.modal-content .userEditDetails .userCloseButton {
+  color: #525252;
+  margin-right: 16px;
+  cursor: pointer;
+}
+.modal-content .userEditDetails .userCloseButton:hover {
+  color: rgb(34, 34, 34);
+}

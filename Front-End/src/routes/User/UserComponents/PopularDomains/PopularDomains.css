@@ -1,0 +1,20 @@
+.jobsBody .popularDomains .domain{
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+.jobsBody .popularDomains .heading{
+  font-weight: 650;
+  font-size: 17px;
+  margin-bottom: 22px;
+  /* padding-left: 10px; */
+}
+.jobsBody .popularDomains .domainPeople{
+  font-weight: 400;
+  font-size: 13.4px;
+  padding-left: 12px;
+  margin-bottom: 16px;
+}
+.jobsBody .domain a{
+  color: black;
+}
