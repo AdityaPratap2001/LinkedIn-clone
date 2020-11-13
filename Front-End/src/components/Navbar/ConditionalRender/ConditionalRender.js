@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
-import LoggedIn from './LoggedIn/LoggedIn';
-import LoggedOut from './LoggedOut/LoggedOut';
+import React, { Component } from "react";
+import LoggedIn from "./LoggedIn/LoggedIn";
+import LoggedOut from "./LoggedOut/LoggedOut";
 
 class ConditionalRender extends Component {
-  
   state = {
-    isLoggedIn : true,
-  }
-  
-  render() {
+    isLoggedIn: false,
+  };
 
-    let navData = (
-      <LoggedOut/>
-    );
-    if(this.state.isLoggedIn){
-      navData = (
-        <LoggedIn/>
-      )
+  componentDidMount() {
+    let logStatus = localStorage.getItem("logStatus");
+    if (logStatus) {
+      this.setState({ isLoggedIn: true });
+    }
+  }
+
+  render() {
+    let navData = <LoggedOut />;
+    if (this.state.isLoggedIn) {
+      navData = <LoggedIn />;
     }
 
-    return (
-      <>
-      {navData}
-      </>
-    );
+    return <>{navData}</>;
   }
 }
 

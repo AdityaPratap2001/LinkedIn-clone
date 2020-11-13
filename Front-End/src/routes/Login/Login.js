@@ -33,6 +33,9 @@ class Login extends Component {
         if(res.status === 200){
           localStorage.setItem('accessToken',res.data.access);
           localStorage.setItem('refreshToken',res.data.refresh);
+          localStorage.setItem('logStatus',true);
+          localStorage.setItem('profileID',res.data.profile_id);
+          localStorage.setItem('aboutID',res.data.about_id);
           this.setState({
             loading : false,
             showAlert : true,

@@ -191,7 +191,7 @@ class Signup extends Component {
             alertColor : 'danger'
           })
         }
-        if(err.response.status === 401){
+        if(err.response.status === 403){
           this.setState({
             showAlert : true, 
             alertData : 'Wrong OTP entered!', 

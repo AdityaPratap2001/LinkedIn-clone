@@ -9,43 +9,79 @@ import bannerSrc from "../../../../assets/linkedBack2.jpg";
 import defaultProfilePic from "../../../../assets/defaultProfilePic.png";
 import ChangeAboutModal from "./Modals/ChangeAboutModal";
 import ChangeUserDetailsModal from "./Modals/ChangeUserDetailsModal";
-import './ProfileBanner.css';
-import defaultCompImg from '../../../../assets/defaultInstitute.png';
+import "./ProfileBanner.css";
+import defaultCompImg from "../../../../assets/defaultInstitute.png";
+import axios from "../../../../API/baseURL/baseURL";
 
-const userData = {
-  firstName: "Aditya",
-  lastName: "Pratap Singh",
-  domain: "Web Developer",
-  industry: "Software Incuabator (SDC-SI)",
-  address: "Gautam Budh Nagar, Uttar Pradesh, India",
-  connections: 293,
-  profilePic: null,
-  about:
-    "I am an aspiring data scientist who enjoys connecting the dots: be it ideas from different disciplines, people from different teams, or applications from different industries. I have strong technical skills and an academic background in engineering, statistics, and machine learning.",
-  // about: null,
-};
+// const userData = {
+//   firstName: "Aditya",
+//   lastName: "Pratap Singh",
+//   domain: "Web Developer",
+//   industry: "Software Incuabator (SDC-SI)",
+//   address: "Gautam Budh Nagar, Uttar Pradesh, India",
+//   connections: 293,
+//   profilePic: null,
+//   about:
+//     "I am an aspiring data scientist who enjoys connecting the dots: be it ideas from different disciplines, people from different teams, or applications from different industries. I have strong technical skills and an academic background in engineering, statistics, and machine learning.",
+//   // about: null,
+// };
 
 class ProfileBanner extends Component {
   state = {
     showModal: false,
     modalNum: null,
+    // data: null,
+    // isLoading: true,
+    // firstName: userData.firstName,
+    // lastName: userData.lastName,
+    // domain: userData.domain,
+    // industry: userData.industry,
+    // address: userData.address,
+    // connections: userData.connections,
+    // about: userData.about,
+    // bannerSrc: bannerSrc,
+    // profilePic: userData.profilePic,
     data: null,
     isLoading: true,
-    firstName: userData.firstName,
-    lastName: userData.lastName,
-    domain: userData.domain,
-    industry: userData.industry,
-    address: userData.address,
-    connections: userData.connections,
-    about: userData.about,
+    firstName: null,
+    lastName: null,
+    domain: null,
+    industry: null,
+    address: null,
+    connections: null,
+    about: null,
     bannerSrc: bannerSrc,
-    profilePic: userData.profilePic,
+    profilePic: null,
+    experience: null,
   };
 
-  componentDidMount(){
-    setTimeout(()=>{
-      this.setState({isLoading : false});
-    },2000)
+  componentDidMount() {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    axios.get("/user/profile/brief_info/", config)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoading: false,
+          data: res.data,
+          firstName: res.data.first_name,
+          lastName: res.data.last_name,
+          profilePic: res.data.avatar,
+          domain: res.data.position,
+          industry: res.data.organization,
+          connections: res.data.connection,
+          address: res.data.location,
+          about: res.data.about,
+          experience: res.data.experience,
+        });
+        console.log(this.state);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   displayModal = (id) => {
@@ -56,8 +92,25 @@ class ProfileBanner extends Component {
   };
 
   changeAbout = (updatedAbout) => {
+    
     this.setState({ about: updatedAbout });
+    let aboutID = localStorage.getItem('aboutID');
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let aboutData = {
+      bio : updatedAbout
+    }
+    axios.patch(`/user/profile/social/${aboutID}/`,aboutData,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   };
+  
   editUserDetails = (details) => {
     console.log("Parent");
     console.log(details);
@@ -102,11 +155,12 @@ class ProfileBanner extends Component {
             style={{
               marginTop: "78px",
               marginLeft: "35px",
-              marginBottom:'4.4px'
+              marginBottom: "4.4px",
             }}
             height={20}
             width={300}
-          /><br/>
+          />
+          <br />
           <Skeleton
             style={{
               // marginTop: "78px",
@@ -114,7 +168,8 @@ class ProfileBanner extends Component {
             }}
             height={16}
             width={260}
-          /><br/>
+          />
+          <br />
           <Skeleton
             style={{
               // marginTop: "78px",
@@ -122,14 +177,15 @@ class ProfileBanner extends Component {
             }}
             height={14}
             width={220}
-          /><br/>
+          />
+          <br />
           <Skeleton
             style={{
               marginTop: "30px",
-              marginLeft: "35px"
+              marginLeft: "35px",
             }}
             height={12}
-            width='91%'
+            width="91%"
           />
           <Skeleton
             style={{
@@ -137,7 +193,7 @@ class ProfileBanner extends Component {
               marginLeft: "35px",
             }}
             height={12}
-            width='91%'
+            width="91%"
           />
           <Skeleton
             style={{
@@ -145,7 +201,7 @@ class ProfileBanner extends Component {
               marginLeft: "35px",
             }}
             height={12}
-            width='91%'
+            width="91%"
           />
           <Skeleton
             style={{
@@ -153,7 +209,7 @@ class ProfileBanner extends Component {
               marginLeft: "35px",
             }}
             height={12}
-            width='91%'
+            width="91%"
           />
         </>
       );
@@ -168,7 +224,7 @@ class ProfileBanner extends Component {
         <h6>{this.state.about}</h6>
       </div>
     );
-    if (this.state.about === null) {
+    if (this.state.about === undefined) {
       aboutUserData = (
         <div className="userAboutNull">
           <h6 onClick={() => this.displayModal(2)}>
@@ -197,8 +253,24 @@ class ProfileBanner extends Component {
     }
 
     let profilePic = this.state.profilePic;
-    if(profilePic === null){
+    if (profilePic === null) {
       profilePic = defaultProfilePic;
+    }
+
+    let instituteData = null;
+    if (this.state.experience) {
+      instituteData = this.state.experience.map((elem) => {
+        return (
+          <div className="institute">
+            <div className="instituteLeft">
+              <img src={defaultCompImg} />
+            </div>
+            <div className="instituteRight">
+              <h6>{elem}</h6>
+            </div>
+          </div>
+        );
+      });
     }
 
     return (
@@ -210,7 +282,7 @@ class ProfileBanner extends Component {
         </div>
 
         <div className="profilePic">
-          <img src={profilePic} />
+          <img src={this.state.profilePic} />
           <div
             onClick={() => this.displayModal(1)}
             className="profileEditButton"
@@ -236,7 +308,8 @@ class ProfileBanner extends Component {
           </div>
 
           <div className="institutes">
-            <div className="institute">
+            {instituteData}
+            {/* <div className="institute">
               <div className="instituteLeft">
                 <img src={defaultCompImg} />
               </div>
@@ -251,7 +324,7 @@ class ProfileBanner extends Component {
               <div className="instituteRight">
                 <h6>Ajay Kumar Garg Engineering College</h6>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
