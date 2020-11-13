@@ -65,7 +65,7 @@ class Signup extends Component {
 
   submitFormTwo = (details) => {
 
-    // console.log(details);
+    console.log(details);
 
     let userId = localStorage.getItem('userID');
     let userDetails = new FormData();
@@ -73,7 +73,7 @@ class Signup extends Component {
     userDetails.append('last_name',details.lastName);
     userDetails.append('avatar',details.selectedFile);
     userDetails.append('location',details.location);
-    userDetails.append('is_employed',!details.isStudent);
+    userDetails.append('is_employed',details.isStudent);
     userDetails.append('organization_name',details.industry);
     userDetails.append('position',details.position);
     userDetails.append('start_date','2020-12-04');

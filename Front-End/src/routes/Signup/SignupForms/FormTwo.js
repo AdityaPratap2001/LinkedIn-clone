@@ -15,10 +15,9 @@ const formValid = ({ formErrors, ...rest }) => {
   // validate the form was filled out
   // console.log('Val :')
   Object.values(rest).forEach((val) => {
-
-  //   // if(val !== 'selectedFile'){
-  //     val === null && (valid = false);
-  //   // }
+    //   // if(val !== 'selectedFile'){
+    //     val === null && (valid = false);
+    //   // }
   });
 
   return valid;
@@ -55,16 +54,18 @@ class FormTwo extends Component {
     e.preventDefault();
 
     if (formValid(this.state)) {
+      console.log(this.state);
       this.props.submitHandler(this.state);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
 
-  handleStudentChange = () => {
-    let isUserStudent = this.state.isStudent;
-    this.setState({isStudent : !isUserStudent});
-  }
+  // handleStudentChange = () => {
+  //   let isUserStudent = this.state.isStudent;
+  //   this.setState({isStudent : !isUserStudent});
+  //   console.log(this.state);
+  // }
 
   handleChange = (e) => {
     e.preventDefault();
@@ -131,7 +132,11 @@ class FormTwo extends Component {
         <h5 className="formOneHead formTwoHead">Personal Details</h5>
         {/* <i class="fas fa-plus-circle" onClick={this.handleClick} style={{cursor:'pointer'}}></i>
         <input type="file" id="file" ref="fileUploader" style={{display: "none"}}/> */}
-        <form encType="multipart/form-data" className="signupFormTwo" onSubmit={this.handleSubmit}>
+        <form
+          encType="multipart/form-data"
+          className="signupFormTwo"
+          onSubmit={this.handleSubmit}
+        >
           <div className="form-group">
             <div>
               <label>Firstname : </label>
@@ -314,25 +319,34 @@ class FormTwo extends Component {
           </div>
 
           <div className="form-group">
-            <input 
-              type='checkbox'
-              style={{marginRight : '7px',transform : 'translateY(1px)'}}
-              checked={this.state.isStudent}
-              onChange={this.handleStudentChange}
+            <input
+              type="checkbox"
+              style={{ marginRight: "7px", transform: "translateY(1px)" }}
+              // checked={!this.state.isStudent}
+              // onChange={this.handleStudentChange}
+              onChange={() => {
+                console.log(this.state);
+                this.setState({ isStudent: !this.state.isStudent });
+              }}
+              defaultChecked={!this.state.isStudent}
             />
             <label>I'm a student</label>
           </div>
 
-          <div style={{textAlign:'center'}}>
+          <div style={{ textAlign: "center" }}>
             <button
               type="submit"
               className="btn btn-dark"
-              style={{ width:"50%"}}
+              style={{ width: "50%" }}
             >
               Sign up
             </button>
             <Link to="/userLogin" className="link">
-              <h6 style={{fontSize:'12px',marginTop:'4px',color:'black'}}>Already have an account? Sign In!</h6>
+              <h6
+                style={{ fontSize: "12px", marginTop: "4px", color: "black" }}
+              >
+                Already have an account? Sign In!
+              </h6>
             </Link>
           </div>
         </form>

@@ -74,6 +74,10 @@
   font-size: 15.5px;
   margin-bottom: 3.5px;
 }
+.profPage .profileLeft .experience .exper .experMid .timeSpan{
+  margin-bottom: 16px !important;
+  color: red !important;
+}
 .profPage .profileLeft .experience .exper .experMid .industry{
   font-size: 14px;
   font-weight: 400;

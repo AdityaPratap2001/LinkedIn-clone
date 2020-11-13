@@ -1,22 +1,41 @@
 import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
+import axios from '../../../../API/baseURL/baseURL';
 import "./Dashboard.css";
 
-const dashBoardData = {
-  views: 80,
-  views2: 237,
-  views3: 24,
-};
+// const dashBoardData = {
+//   views: 80,
+//   views2: 237,
+//   views3: 24,
+// };
 
 class Dashboard extends Component {
   state = {
     isLoading: true,
+    profViews: null,
+    numPosts: null,
+    numBookmark: null
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2800);
+
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get(`/user/profile/dashboard`,config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({
+          isLoading : false,
+          profViews : res.data.profile_views,
+          numPosts : res.data.no_of_articles,
+          numBookmark : res.data.bookmarked_posts
+        });
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   }
 
   render() {
@@ -53,16 +72,16 @@ class Dashboard extends Component {
         </h6>
         <div className="dashboardBox">
           <div style={{ borderRight: "#ccc 1px solid" }}>
-            <h5>{dashBoardData.views}</h5>
+            <h5>{this.state.profViews}</h5>
             <h6>People viewed your profile</h6>
           </div>
           <div style={{ borderRight: "#ccc 1px solid" }}>
-            <h5>{dashBoardData.views2}</h5>
-            <h6>Video views</h6>
+            <h5>{this.state.numPosts}</h5>
+            <h6>Posts created</h6>
           </div>
           <div>
-            <h5>{dashBoardData.views3}</h5>
-            <h6>Search appearances</h6>
+            <h5>{this.state.numBookmark}</h5>
+            <h6>Bookmarked Posts</h6>
           </div>
         </div>
       </>

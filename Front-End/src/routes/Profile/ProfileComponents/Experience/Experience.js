@@ -5,54 +5,73 @@ import "./Experience.css";
 import defaultCompImg from "../../../../assets/defaultInstitute.png";
 // import EditExperience from "./Modals/EditExperience";
 import AddEducation from "./Modals/AddEducation";
+import axios from '../../../../API/baseURL/baseURL';
 
-const experience = [
-  {
-    img: null,
-    position: "App Developer",
-    industry: "Software Incubator (SDC-SI)",
-    startTime: "Oct 2019",
-    endTime: "Nov 2020",
-  },
-  {
-    img: defaultCompImg,
-    position: "Web Developer",
-    industry: "Software Incubator (SDC-SI)",
-    startTime: "Oct 2019",
-    endTime: "Nov 2020",
-  },
-];
+// const experience = [
+//   {
+//     img: null,
+//     position: "App Developer",
+//     industry: "Software Incubator (SDC-SI)",
+//     startTime: "Oct 2019",
+//     endTime: "Nov 2020",
+//   },
+//   {
+//     img: defaultCompImg,
+//     position: "Web Developer",
+//     industry: "Software Incubator (SDC-SI)",
+//     startTime: "Oct 2019",
+//     endTime: "Nov 2020",
+//   },
+// ];
 
-const education = [
-  {
-    img: null,
-    institute: "AJAY KUMAR GARG ENGINEERING COLLEGE",
-    location: "Ghaziabad, Uttar Pradesh",
-    startTime: "Oct 2019",
-    endTime: "Nov 2020",
-  },
-  {
-    img: null,
-    institute: "ASSISI CONVENT SCHOOL",
-    location: "Noida, Uttar Pradesh",
-    startTime: "July 2019",
-    endTime: "Nov 2017",
-  },
-];
+// const education = [
+//   {
+//     img: null,
+//     institute: "AJAY KUMAR GARG ENGINEERING COLLEGE",
+//     location: "Ghaziabad, Uttar Pradesh",
+//     startTime: "Oct 2019",
+//     endTime: "Nov 2020",
+//   },
+//   {
+//     img: null,
+//     institute: "ASSISI CONVENT SCHOOL",
+//     location: "Noida, Uttar Pradesh",
+//     startTime: "July 2019",
+//     endTime: "Nov 2017",
+//   },
+// ];
 
 class Experience extends Component {
   state = {
     showModal: false,
     modalNum: null,
-    experData: experience,
-    eduData: education,
+    experData: [],
+    eduData: [],
     isLoading: true,
   };
 
   componentDidMount(){
-    setTimeout(()=>{
-      this.setState({isLoading : false});
-    },2600)
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get('/user/profile/get_work/',config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({isLoading : false,experData : res.data});
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+    axios.get('/user/profile/get_academic/',config)
+    .then((res)=>{
+      console.log(res);
+      this.setState({isLoading : false,eduData : res.data});
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
 
   displayModal = (id) => {
@@ -64,14 +83,32 @@ class Experience extends Component {
 
   addExperience = (details) => {
     // let oldArr = this.state.experData;
+
+    let profID = localStorage.getItem("profileID");
     let newExperData = {
-      img: details.compLogo,
+      user: profID,
+      // img: details.compLogo,
       position: details.position,
-      industry: details.industry,
-      startTime: details.startDate,
-      endTime: details.endDate,
+      organization_name: details.industry,
+      // start_date: details.startDate,
+      // end_date: details.endDate,
+      start_date: '2007-03-14',
+      end_date: '2009-09-11',
     };
     // let newArr = [{...newExperData},{...oldArr}];
+
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.post(`/user/profile/work/`,newExperData,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
     let newArr = [newExperData];
     for (let index in this.state.experData) {
       newArr.push(this.state.experData[index]);
@@ -82,13 +119,32 @@ class Experience extends Component {
   };
 
   addEducation = (details) => {
+
+    let profID = localStorage.getItem("profileID");
     let newEduData = {
-      img: details.compLogo,
-      institute: details.institute,
-      location: details.location,
-      startTime: details.startDate,
-      endTime: details.endDate,
+      // img: details.compLogo,
+      // position: 'Student',
+      user: profID,
+      organization_name: details.institute,
+      // start_date: details.startDate,
+      // end_date: details.endDate,
+      start_date : '2019-11-12',
+      end_date : '2020-02-29'
     };
+
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.post("/user/profile/education/",newEduData,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+
     // let newArr = [{...newExperData},{...oldArr}];
     let newArr = [newEduData];
     for (let index in this.state.eduData) {
@@ -99,16 +155,40 @@ class Experience extends Component {
     this.setState({ eduData: newArr });
   };
 
-  deleteExperience = (id) => {
+  deleteExperience = (id,index) => {
     let Arr = this.state.experData;
-    Arr.splice(id, 1);
+    Arr.splice(index, 1);
     this.setState({ experData: Arr });
+
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.delete(`/user/profile/work/${id}/`,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   };
 
-  deleteEducation = (id) => {
+  deleteEducation = (id,index) => {
     let Arr = this.state.eduData;
-    Arr.splice(id, 1);
+    Arr.splice(index, 1);
     this.setState({ eduData: Arr });
+    
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.delete(`/user/profile/education/${id}/`,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   };
 
   render() {
@@ -223,9 +303,9 @@ class Experience extends Component {
     }
 
     if (this.state.experData.length !== 0) {
-      experData = this.state.experData.map((exper, id) => {
+      experData = this.state.experData.map((exper, index) => {
         let compLogoSrc = exper.img;
-        if (compLogoSrc === null) {
+        if (compLogoSrc === null || compLogoSrc === undefined) {
           compLogoSrc = defaultCompImg;
         }
 
@@ -236,15 +316,15 @@ class Experience extends Component {
             </div>
             <div className="experMid">
               <h6 className="position">{exper.position}</h6>
-              <h6 className="industry">{exper.industry}</h6>
+              <h6 className="industry">{exper.organization_name}</h6>
               <h6>
-                <span className="time">{exper.startTime} - </span>
-                <span className="time">{exper.endTime}</span>
+                <span className="time">{exper.start_date} - </span>
+                <span className="time">{exper.end_date}</span>
               </h6>
             </div>
             {/* <div onClick={() => this.displayEditModal(exper,id)} className="experRight"> */}
             <div
-              onClick={() => this.deleteExperience(id)}
+              onClick={() => this.deleteExperience(exper.id,index)}
               className="experRight"
             >
               <div className="editDiv">
@@ -268,9 +348,9 @@ class Experience extends Component {
     }
 
     if (this.state.eduData.length !== 0) {
-      eduData = this.state.eduData.map((edu, id) => {
+      eduData = this.state.eduData.map((edu,index) => {
         let compLogoSrc = edu.img;
-        if (compLogoSrc === null) {
+        if (compLogoSrc === null || compLogoSrc === undefined) {
           compLogoSrc = defaultCompImg;
         }
 
@@ -280,16 +360,17 @@ class Experience extends Component {
               <img src={compLogoSrc} />
             </div>
             <div className="experMid">
-              <h6 className="position">{edu.institute}</h6>
-              <h6 className="industry">{edu.location}</h6>
+              {/* <h6 className="position">{edu.position}</h6> */}
+              <h6 className="position">Student</h6>
+              <h6 className="industry">{edu.organization_name}</h6>
               <h6>
-                <span className="time">{edu.startTime} - </span>
-                <span className="time">{edu.endTime}</span>
+                <span className="time">{edu.start_date} - </span>
+                <span className="time">{edu.end_date}</span>
               </h6>
             </div>
             {/* <div onClick={() => this.displayEditModal(exper,id)} className="experRight"> */}
             <div
-              onClick={() => this.deleteEducation(id)}
+              onClick={() => this.deleteEducation(edu.id,index)}
               className="experRight"
             >
               <div className="editDiv">

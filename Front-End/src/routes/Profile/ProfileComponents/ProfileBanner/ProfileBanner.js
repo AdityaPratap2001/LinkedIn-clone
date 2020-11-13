@@ -282,7 +282,7 @@ class ProfileBanner extends Component {
         </div>
 
         <div className="profilePic">
-          <img src={this.state.profilePic} />
+          <img src={profilePic} />
           <div
             onClick={() => this.displayModal(1)}
             className="profileEditButton"

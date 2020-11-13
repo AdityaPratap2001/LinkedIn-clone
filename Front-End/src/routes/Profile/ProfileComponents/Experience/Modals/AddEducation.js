@@ -24,14 +24,14 @@ const formValid = ({ formErrors, ...rest }) => {
 class AddEducation extends Component {
   state = {
     institute: null,
-    location: null,
+    // location: null,
     startDate: null,
     endDate: null,
     selectedFile: null,
     compLogo : null,
     formErrors: {
       institute: "",
-      location: "",
+      // location: "",
       startDate: "",
       endDate: "",
     },
@@ -69,10 +69,10 @@ class AddEducation extends Component {
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
 
-      case "location":
-        formErrors.location =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        break;
+      // case "location":
+      //   formErrors.location =
+      //     value.length < 3 ? "minimum 3 characaters required" : "";
+      //   break;
 
       default:
         break;
@@ -123,7 +123,7 @@ class AddEducation extends Component {
                 )}
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <div>
                   <label>Location :</label>
                   <br></br>
@@ -144,7 +144,7 @@ class AddEducation extends Component {
                 {formErrors.location.length > 0 && (
                   <span className="errorMessage">{formErrors.location}</span>
                 )}
-              </div>
+              </div> */}
 
               <div className="form-group formTwoDateSection">
                 <div

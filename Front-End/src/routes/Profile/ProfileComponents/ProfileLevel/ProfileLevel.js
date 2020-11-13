@@ -1,21 +1,43 @@
 import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
+import axios from '../../../../API/baseURL/baseURL';
 import "./ProfileLevel.css";
 
-const profileData = {
-  strength: "Intermediate",
-  strengthInt: 6,
-};
+// const profileData = {
+//   strength: "Beginner",
+//   strengthInt: 6,
+// };
 
 class ProfileLevel extends Component {
   state = {
     isLoading: true,
+    strengthInt: null,
+    strengthStr: null,
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2600);
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    axios.get('/user/profile/strength/',config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({strengthInt : res.data.profile_strength,isLoading : false});
+        if(res.data.profile_strength < 4){
+          this.setState({strengthStr : 'Begginer'});
+        }
+        else if(res.data.profile_strength <= 4 && res.data.profile_strength >= 5){
+          this.setState({strengthStr : 'Intermediate'});
+        }
+        else{
+          this.setState({strengthStr : 'Expert'});
+        }
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   }
 
   render() {
@@ -43,12 +65,12 @@ class ProfileLevel extends Component {
       border: "rgb(167, 167, 167) 2px solid",
     };
 
-    if (profileData.strengthInt === 1) {
+    if (this.state.strengthInt === 1) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
     }
-    if (profileData.strengthInt === 2) {
+    if (this.state.strengthInt === 2) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
@@ -56,7 +78,7 @@ class ProfileLevel extends Component {
         background: "linear-gradient(to right,#0A66C2,#378FE9)",
       };
     }
-    if (profileData.strengthInt === 3) {
+    if (this.state.strengthInt === 3) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
@@ -67,7 +89,7 @@ class ProfileLevel extends Component {
         background: "linear-gradient(to right,#378FE9,#70B5F9)",
       };
     }
-    if (profileData.strengthInt === 4) {
+    if (this.state.strengthInt === 4) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
@@ -85,7 +107,7 @@ class ProfileLevel extends Component {
         color: "#0A66C2"
       };
     }
-    if (profileData.strengthInt === 5) {
+    if (this.state.strengthInt === 5) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
@@ -106,7 +128,7 @@ class ProfileLevel extends Component {
         color: "#0A66C2"
       };
     }
-    if (profileData.strengthInt === 6) {
+    if (this.state.strengthInt === 6) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
@@ -130,7 +152,7 @@ class ProfileLevel extends Component {
         color: "#0A66C2"
       };
     }
-    if (profileData.strengthInt === 7) {
+    if (this.state.strengthInt === 7) {
       style1 = {
         background: "linear-gradient(to right,#004182,#0A66C2)",
       };
@@ -166,7 +188,7 @@ class ProfileLevel extends Component {
       <>
         <h5 className="profStrength">
           Profile Strength :
-          <span className="profStrengthString"> {profileData.strength}</span>
+          <span className="profStrengthString"> {this.state.strengthStr}</span>
         </h5>
 
         <div className="profileBar">
