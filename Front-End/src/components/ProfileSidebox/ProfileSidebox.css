@@ -2,7 +2,7 @@
   position: fixed;
   background-color: white;
   /* box-shadow: 2px 2px 10px 2px #ccc; */
-  box-shadow: 0 4px 10px 3px #ccc;
+  /* box-shadow: 0 4px 10px 3px #ccc; */
   border: #ccc 1.4px solid;
   width: 230px;
   display: flex;

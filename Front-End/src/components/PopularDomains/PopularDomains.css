@@ -1,0 +1,39 @@
+.popularDomains2{
+  position: fixed;
+  right: 0px;
+  margin-right: 70px;
+  top: 114px;
+  width: 19vw;
+  /* top: 0; */
+  /* color: red; */
+  /* float: right; */
+  height: fit-content;
+  border: #ccc 1px solid;
+  /* box-shadow: 0 4px 10px 3px #ccc; */
+  background-color: white;
+  padding: 24px 22px 16px 22px;
+  font-family: 'Poppins';
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+.popularDomains2 .domain{
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+.popularDomains2 .heading{
+  font-weight: 650;
+  font-size: 17px;
+  margin-bottom: 22px;
+  /* padding-left: 10px; */
+}
+.popularDomains2 .domainPeople{
+  font-weight: 400;
+  font-size: 13.4px;
+  padding-left: 12px;
+  margin-bottom: 16px;
+}
+.domain a{
+  color: black;
+}

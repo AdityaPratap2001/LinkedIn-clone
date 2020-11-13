@@ -70,7 +70,7 @@ class Jobs extends Component {
 
             {jobsData}
 
-            <RecommendedJobs />
+            {/* <RecommendedJobs /> */}
           </div>
 
         </div>

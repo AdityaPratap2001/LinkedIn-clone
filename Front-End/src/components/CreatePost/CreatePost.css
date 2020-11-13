@@ -1,0 +1,71 @@
+.createPost{
+  margin-bottom: 30px;
+  background-color: white;
+  border: #ccc 1.4px solid;
+  /* box-shadow: 0 4px 10px 3px #ccc; */
+}
+.createPost .createPostHead{
+  padding: 13px;
+  padding-bottom: 0px;
+}
+.createPost .createPostHead h6{
+  cursor: pointer;
+  border: #ccc 1.8px solid;
+  padding: 12px;
+  padding-left: 27px;
+  border-radius: 20px;
+  color: rgba(0,0,0,0.6);
+  font-size: 13.5px;
+}
+.createPost .createPostHead h6:hover{
+  background-color: #ededed;
+}
+.createPost .createPostBottom{
+  display: flex;
+  padding: 4px 40px;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.createPost .createPostBottom i{
+  margin-right: 8px;
+  font-size: 16px;
+}
+.createPost .createPostBottom .button{
+  padding: 10px;
+  color: rgba(0,0,0,0.6);
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 5px;
+}
+.createPost .createPostBottom .button:hover{
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+
+
+.createPostModal .modal-dialog{
+  position: relative;
+  max-width: 580px;
+  width: 800px !important;
+  /* border: red 2px solid; */
+}
+.createPostModal .modal-dialog .postModal{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
