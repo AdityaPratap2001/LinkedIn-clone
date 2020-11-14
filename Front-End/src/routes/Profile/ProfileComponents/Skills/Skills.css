@@ -88,3 +88,7 @@
   padding-left: 15px;
   font-weight: 400;
 }
+.modal-content .userAddAbout .endorseDisplay{
+  max-height: 60vh;
+  overflow-y: scroll;
+}

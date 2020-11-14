@@ -125,6 +125,36 @@ class ProfileBanner extends Component {
       address: details.location,
       profilePic: details.profilePic,
     });
+
+    let token = localStorage.getItem("accessToken");
+    let profID = localStorage.getItem("profileID");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    let updateData = new FormData;
+    updateData.append('first_name',details.firstName);
+    updateData.append('last_name',details.lastName);
+    updateData.append('location',details.location);
+    updateData.append('avatar',details.selectedFile);
+    updateData.append('position',details.position);
+    updateData.append('organization_name',details.industry);
+    // let updateData = {
+    //   first_name : details.firstName,
+    //   last_name : details.lastName,
+    //   location : details.location,
+    //   avatar : details.selectedFile,
+    //   position : details.position,
+    //   organization_name : details.industry,
+    // }
+    axios.patch(`/user/profile/update/${profID}/`,updateData,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
   };
 
   render() {
@@ -221,10 +251,10 @@ class ProfileBanner extends Component {
         <div onClick={() => this.displayModal(2)} className="profileEditButton">
           <i class="fas fa-pencil-alt"></i>
         </div>
-        <h6>{this.state.about}</h6>
+        <h6 style={{whiteSpace:'pre-wrap'}}>{this.state.about}</h6>
       </div>
     );
-    if (this.state.about === undefined) {
+    if (this.state.about === undefined || this.state.about === '') {
       aboutUserData = (
         <div className="userAboutNull">
           <h6 onClick={() => this.displayModal(2)}>

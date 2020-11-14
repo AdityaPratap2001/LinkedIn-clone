@@ -22,7 +22,42 @@ const skillsData = [
         lastName : 'Kishore',
         position : 'Web Developer',
         industry : 'IIT Kharagpur'
-      }
+      },
+      {
+        profPic : null,
+        firstName : 'Aryan',
+        lastName : 'Kishore',
+        position : 'Web Developer',
+        industry : 'IIT Kharagpur'
+      },
+      {
+        profPic : null,
+        firstName : 'Aryan',
+        lastName : 'Kishore',
+        position : 'Web Developer',
+        industry : 'IIT Kharagpur'
+      },
+      {
+        profPic : null,
+        firstName : 'Aryan',
+        lastName : 'Kishore',
+        position : 'Web Developer',
+        industry : 'IIT Kharagpur'
+      },
+      {
+        profPic : null,
+        firstName : 'Aryan',
+        lastName : 'Kishore',
+        position : 'Web Developer',
+        industry : 'IIT Kharagpur'
+      },
+      {
+        profPic : null,
+        firstName : 'Aryan',
+        lastName : 'Kishore',
+        position : 'Web Developer',
+        industry : 'IIT Kharagpur'
+      },
     ]
   },
   {

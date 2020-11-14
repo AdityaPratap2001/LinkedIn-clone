@@ -1,124 +1,102 @@
 import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
-
-const nameRegex = RegExp(/^[a-zA-Z_-]{0,30}$/);
-const lastnameRegex = RegExp(/^[a-zA-Z\s]+$/);
-
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
-
-  // validate form errors being empty
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  // console.log('Val :')
-  Object.values(rest).forEach((val) => {
-    //   // if(val !== 'selectedFile'){
-    //     val === null && (valid = false);
-    //   // }
-  });
-
-  return valid;
-};
+import defaultPropfPic from "../../../assets/defaultProfilePic.png";
 
 class CreatePostModal extends Component {
   state = {
-    firstName: null,
-    lastName: null,
-    location: null,
-    position: null,
-    industry: null,
-    selectedFile: null,
+    userName: null,
     profilePic: null,
-    formErrors: {
-      firstName: "",
-      lastName: "",
-      location: "",
-      position: "",
-      industry: "",
-      // selectedFile: ""
-    },
+    postText: null,
+    selectedType: null,
+    videoSelected: null,
+    videoSelectedSrc: null,
+    imgSelected: null,
+    imgSelectedSrc: null,
   };
 
-  fileChangedHandler = (event) => {
+  // handleImgClick = (e) => {
+  //   this.refs.imgUploader.click();
+  //   console.log(e);
+  // }
+
+  // imgChangeHandler = (event) => {
+  //   console.log(event);
+  //   console.log(URL.createObjectURL(event.target.files[0]));
+  //   this.setState({
+  //     imgSelected: event.target.files[0],
+  //     // profilePic : event.target.result
+  //     imgSelectedSrc: URL.createObjectURL(event.target.files[0]),
+  //   });
+  //   console.log(this.state);
+  // };
+
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (formValid(this.state)) {
+  //     setTimeout(() => {
+  //       this.props.editUserDetails(this.state);
+  //       this.props.hideModal();
+  //     }, 1000);
+  //   } else {
+  //     console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+  //   }
+  // };
+
+  handleSubmit= (e) => {
+    e.preventDefault();
+    this.props.createPost(this.state);
+    setTimeout(()=>{
+      this.props.hideModal();
+    },500)
+  }
+
+  onChangeImg = (event) => {
+    console.log(event);
     console.log(URL.createObjectURL(event.target.files[0]));
-    this.setState({ 
-      selectedFile: event.target.files[0],
-      // profilePic : event.target.result
-      profilePic: URL.createObjectURL(event.target.files[0]),
+    this.setState({
+      selectedType: "img",
+      imgSelected: event.target.files[0],
+      imgSelectedSrc: URL.createObjectURL(event.target.files[0]),
     });
+    console.log(this.state);
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (formValid(this.state)) {
-      setTimeout(() => {
-        this.props.editUserDetails(this.state);
-        this.props.hideModal();
-      }, 1000);
-    } else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-    }
-  };
-
-  handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    let formErrors = { ...this.state.formErrors };
-
-    switch (name) {
-      case "firstName":
-        formErrors.firstName =
-          (value.length < 3 && value.length > 0
-            ? "minimum 3 characaters required"
-            : "") ||
-          (formErrors.firstName = nameRegex.test(value)
-            ? ""
-            : "only characters allowed!");
-        break;
-
-      case "lastName":
-        let spaceNum = 0;
-        for (let ch in value) {
-          if (value[ch] === " ") {
-            spaceNum = spaceNum + 1;
-          }
-        }
-        formErrors.lastName =
-          (spaceNum > 1 ? "more than one space prohibited" : "") ||
-          (value.length < 3 ? "minimum 3 characaters required" : "") ||
-          (formErrors.lastName = lastnameRegex.test(value)
-            ? ""
-            : "only characters allowed!");
-        break;
-
-      case "location":
-        formErrors.location =
-          value.length < 3 ? "minimum 3 characters required" : "";
-        break;
-
-      case "position":
-        formErrors.position =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        break;
-
-      case "industry":
-        formErrors.industry =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        break;
-
-      default:
-        break;
-    }
-
-    this.setState({ formErrors, [name]: value });
+  onChangeVideo = (event) => {
+    console.log(event);
+    console.log(URL.createObjectURL(event.target.files[0]));
+    this.setState({
+      selectedType: "video",
+      videoSelected: event.target.files[0],
+      videoSelectedSrc: URL.createObjectURL(event.target.files[0]),
+    });
+    console.log(this.state);
   };
 
   render() {
-    const { formErrors } = this.state;
+    let userPic = this.state.profilePic;
+    if (userPic === null) {
+      userPic = defaultPropfPic;
+    }
+
+    let displayData = null;
+    if (this.state.selectedType === "img" && this.state.imgSelected !== null) {
+      displayData = (
+        <div className="displaySelected">
+          <img src={this.state.imgSelectedSrc} />
+        </div>
+      );
+    }
+    if (
+      this.state.selectedType === "video" &&
+      this.state.videoSelected !== null
+    ) {
+      displayData = (
+        <div className="displaySelected">
+          <video src={this.state.videoSelectedSrc} controls/>
+        </div>
+      );
+    }
 
     return (
       <>
@@ -129,82 +107,46 @@ class CreatePostModal extends Component {
           className="createPostModal"
         >
           <div className="postModal">
-            <h5>Edit personal details!</h5>
-            <i onClick={this.props.hideModal} class="fas fa-times"></i>
+            <h5 className="postModalHead">Create post</h5>
+            <i
+              onClick={this.props.hideModal}
+              class="fas closeModal fa-times"
+            ></i>
+
             <form
               encType="multipart/form-data"
               className="editUserDetails"
               onSubmit={this.handleSubmit}
             >
-              <div className="form-group">
-                <div>
-                  <label>Firstname : </label>
-                  <input
-                    type="text"
-                    autoComplete="off"
-                    className={
-                      formErrors.firstName.length > 0
-                        ? "error form-control"
-                        : "form-control"
-                    }
-                    name="firstName"
-                    placeholder="First Name"
-                    onChange={this.handleChange}
-                    required
-                  />
+              <div className="createPostModalHead">
+                <div className="userPic">
+                  <img src={userPic} />
                 </div>
-                {formErrors.firstName.length > 0 && (
-                  <span className="errorMessage">{formErrors.firstName}</span>
-                )}
+
+                <div className="userDesc">
+                  <h6 className="name">Aditya Pratap Singh</h6>
+                  <h6 className="tagline">
+                    Web Developer at Software Incubator (SDC-SI)
+                  </h6>
+                </div>
+
+                <textarea
+                  required
+                  value={this.state.postText}
+                  onChange={(e) => {
+                    this.setState({ postText: e.target.value });
+                  }}
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="What do you want to talk about?"
+                />
+
+                {displayData}
               </div>
 
-              <div className="form-group">
-                <div>
-                  <label>Lastname :</label>
-                  <br></br>
-                  <input
-                    type="text"
-                    autoComplete="off"
-                    className={
-                      formErrors.lastName.length > 0
-                        ? "error form-control"
-                        : "form-control"
-                    }
-                    name="lastName"
-                    placeholder="Last Name"
-                    onChange={this.handleChange}
-                    required
-                  />
-                </div>
-                {formErrors.lastName.length > 0 && (
-                  <span className="errorMessage">{formErrors.lastName}</span>
-                )}
-              </div>              
-
-              <div className="form-group">
-                <div>
-                  <label>Institute/Industry :</label>
-                  <br></br>
-                  <input
-                    type="text"
-                    autoComplete="off"
-                    className={
-                      formErrors.industry.length > 0
-                        ? "error form-control"
-                        : "form-control"
-                    }
-                    name="industry"
-                    placeholder="Enter Institute or Industry"
-                    onChange={this.handleChange}
-                    required
-                  />
-                </div>
-                {formErrors.industry.length > 0 && (
-                  <span className="errorMessage">{formErrors.industry}</span>
-                )}
-              </div>
-
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Profile Img : </label>
                 <br></br>
                 <div>
@@ -215,16 +157,46 @@ class CreatePostModal extends Component {
                     style={{ width: "100%" }}
                   ></input>
                 </div>
-              </div>
-              
+              </div>  */}
+
               <div className="modalBottom">
-                <h6 className="userCloseButton" onClick={this.props.hideModal}>
+                {/* <h6 className="userCloseButton" onClick={this.props.hideModal}>
                   Close
-                </h6>
+                </h6> */}
+                <div>
+                  {/* <i class="fas fa-image" onClick={this.handleImgClick}></i>
+                  <input type='file' ref="imgUploader"></input> */}
+
+                  <input
+                    type="file"
+                    id="file1"
+                    style={{ display: "none" }}
+                    onChange={this.onChangeImg}
+                  />
+                  <label htmlFor="file1">
+                    <i class="fas fa-image"></i>
+                  </label>
+
+                  {/* <input
+                    name="img"
+                    onChange={this.imgChangeHandler}
+                    type="file"
+                  ></input> */}
+
+                  <input
+                    type="file"
+                    id="file2"
+                    style={{ display: "none" }}
+                    onChange={this.onChangeVideo}
+                  />
+                  <label htmlFor="file2">
+                    <i class="fas fa-video"></i>
+                  </label>
+                </div>
+
                 <button type="submit" className="userSaveButton">
-                  Save
+                  Post
                 </button>
-                {/* <h6 type='submit' className="userSaveButton">Save</h6> */}
               </div>
             </form>
           </div>

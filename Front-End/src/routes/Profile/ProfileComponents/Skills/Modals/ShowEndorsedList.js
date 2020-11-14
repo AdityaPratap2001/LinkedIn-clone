@@ -46,7 +46,7 @@ class ShowEndorsedList extends Component {
             <hr />
             <i onClick={this.props.hideModal} class="fas fa-times"></i>
 
-            {userListData}
+            <div className='endorseDisplay'>{userListData}</div>
           </div>
         </Modal>
       </>

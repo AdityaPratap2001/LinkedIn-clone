@@ -10,9 +10,16 @@ const CustomAlert = (props) => {
     props.hidePop();
   }
 
+  let styles = null;
+  if(props.where === 'createPost'){
+    styles = {
+      marginLeft : '-16px',
+      transform : 'translateY(-60px)'
+    }
+  }
 
   return (
-    <Alert className='customAlert' color={props.color} isOpen={true} toggle={onDismiss}>
+    <Alert style={styles} className='customAlert' color={props.color} isOpen={true} toggle={onDismiss}>
       {props.content}
     </Alert>
   );

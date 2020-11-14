@@ -55,10 +55,123 @@
   flex-direction: column;
   position: relative;
 }
+.modal-content .postModal .closeModal {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #8f8f8f;
+}
+.modal-content .postModal .closeModal:hover {
+  color: black;
+  transform: scale(1.08);
+}
+.modal-content .postModal .postModalHead{
+  padding: 20px;
+  font-weight: 400;
+  border-bottom: 1.8px #ccc solid;
+  margin-bottom: 0px;
+}
+.modal-content .postModal .createPostModalHead{
+  padding: 10px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-height: 440px;
+  overflow-y: scroll;
+}
+.modal-content .postModal .createPostModalHead .userPic img{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-right: 13px;
+}
+.modal-content .postModal .createPostModalHead h6{
+  margin-bottom: 0px;
+}
+.modal-content .postModal .createPostModalHead .name{
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.modal-content .postModal .createPostModalHead .tagline{
+  font-size: 13.6px;
+  font-weight: 450;
+}
+.modal-content .postModal .createPostModalHead textarea{
+  width: 100%;
+  height: 140px;
+  color: black;
+  outline: none;
+  border: none;
+  padding: 14px;
+  margin-top: 18px;
+  font-size: 14.8px;
+}
+.modal-content .postModal .displaySelected{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
+}
+.modal-content .postModal .displaySelected img{
+  width: 100%;
+  margin: auto;
+}
+.modal-content .postModal .displaySelected video{
+  width: 100%;
+  margin: auto;
+}
 
 
 
 
+
+
+.modal-content .postModal .modalBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 90%; */
+  padding: 0 5%;
+  margin: auto;
+  padding-bottom: 15px;
+  padding-top: 14px;
+}
+.modal-content .postModal .modalBottom i{
+  font-size: 20px;
+  margin-right: 16px;
+  color: #525252;
+  cursor: pointer;
+}
+.modal-content .postModal .modalBottom i:hover{
+  color: black;
+  transform: scale(1.14);
+}
+.modal-content .postModal .modalBottom h6 {
+  margin-bottom: 0px;
+  font-size: 13.6px;
+}
+.modal-content .postModal .userSaveButton {
+  padding: 3.8px 14px;
+  background-color: #ffffff;
+  border: rgb(16, 117, 233) 1.4px solid;
+  color: rgb(16, 117, 233);
+  cursor: pointer;
+  font-size: 14px;
+}
+.modal-content .postModal .userSaveButton:hover {
+  background-color: rgb(16, 117, 233);
+  color: white;
+}
+.modal-content .postModal .userCloseButton {
+  color: #525252;
+  margin-right: 16px;
+  cursor: pointer;
+}
+.modal-content .postModal .userCloseButton:hover {
+  color: rgb(34, 34, 34);
+}
 
 
 
