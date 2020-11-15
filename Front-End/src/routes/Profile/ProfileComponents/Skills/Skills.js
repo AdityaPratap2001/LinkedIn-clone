@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
 import AddSkills from "./Modals/AddSkills";
 import ShowEndorsedList from "./Modals/ShowEndorsedList";
+import axios from "../../../../API/baseURL/baseURL";
 import "./Skills.css";
 
 const skillsData = [
@@ -10,55 +11,55 @@ const skillsData = [
     endorsed: 4,
     list: [
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
-    ]
+    ],
   },
   {
     skill: "React JS",
@@ -85,18 +86,40 @@ const skillsData = [
 class Skills extends Component {
   state = {
     showModal: false,
-    skills: skillsData,
-    displaySkills: skillsData.slice(0, 3),
+    // skills: skillsData,
+    // displaySkills: skillsData.slice(0, 3),
     showingAllSkills: false,
     modalNum: null,
     modalData: null,
     isLoading: true,
+    skills: [],
+    displaySkills: [],
+    skillID: null,
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2500);
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get("/user/profile/skills/", config)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoading: false,
+          skills: res.data.skills_list,
+          displaySkills: res.data.skills_list.slice(0, 3),
+          skillID: res.data.id,
+        });
+        console.log(this.state.displaySkills);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        // if (err.response.status === 404) {
+        this.setState({ isLoading: false, skills: [] });
+        // }
+      });
   }
 
   displayModal = (id) => {
@@ -131,12 +154,69 @@ class Skills extends Component {
 
     let skillArr = this.state.skills;
     skillArr.splice(id, 1);
-    let displayArr = skillArr.slice(0, 3);
+    // let displayArr = skillArr.slice(0, 3);
+    let displayArr = this.state.skills.slice(0, 3);
+    let showStatus = true;
+    if (skillArr.length < 4) {
+      showStatus = false;
+    }
     this.setState({
       skills: skillArr,
       displaySkills: displayArr,
+      showingAllSkills: showStatus,
     });
+
+    console.log(this.state.skills);
+    console.log(this.state.displaySkills);
   };
+
+  submitSkills = (details) => {
+    console.log(details);
+
+    if (this.state.skills.length === 0) {
+      let profId = localStorage.getItem("profileID");
+      let token = localStorage.getItem("accessToken");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      let skillsData = {
+        user: profId,
+        skills_list: details,
+      };
+      console.log(skillsData);
+      axios
+        .post("/user/profile/skills/", skillsData, config)
+        .then((res) => {
+          console.log(res);
+          this.setState({ showModal: false });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } 
+    else {
+      let profId = localStorage.getItem("profileID");
+      let token = localStorage.getItem("accessToken");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      let skillsData = {
+        skills_list: details,
+        user: profId,
+      };
+      console.log(skillsData);
+      axios
+        .put(`/user/profile/skills/${this.state.skillID}/`, skillsData, config)
+        .then((res) => {
+          console.log(res);
+          this.setState({ showModal: false });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   showEndorseList = (data) => {
     this.setState({
       showModal: true,
@@ -203,7 +283,7 @@ class Skills extends Component {
                 }}
                 className="skillName"
               >
-                {elem.skill}
+                {elem}
               </span>
               <span
                 style={{
@@ -239,6 +319,7 @@ class Skills extends Component {
     if (this.state.showModal && this.state.modalNum === 1) {
       modalData = (
         <AddSkills
+          submitSkills={this.submitSkills}
           hideModal={this.hideModal}
           // addExperience={this.addExperience}
         />

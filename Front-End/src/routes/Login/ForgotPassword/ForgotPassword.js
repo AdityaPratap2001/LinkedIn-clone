@@ -134,15 +134,14 @@ class ForgotPassword extends Component {
     //   user_id : userId,
     //   Password : details.password
     // }
-
-    axios.patch('/user/password/reset/new_password/',{
+    const config = {
+      headers: { Authorization: `Bearer ${refreshToken}`},
+    };
+    let resetPassData = {
       user_id : userId,
       password : details.password
-    },{
-      headers: {
-        'Authorization': `Bearer ${refreshToken}`
-      }
-    })
+    }
+    axios.patch('/user/password/reset/new_password/',resetPassData,config)
       .then((res)=>{
         console.log(res);
         if(res.status === 202){

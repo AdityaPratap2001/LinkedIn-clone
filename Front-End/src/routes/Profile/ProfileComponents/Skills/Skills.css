@@ -92,3 +92,34 @@
   max-height: 60vh;
   overflow-y: scroll;
 }
+.modal-content .userAddAbout .displaySkillsArea{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  /* height: 300px; */
+  max-height: 230px;
+  overflow-y: scroll;
+}
+.modal-content .userAddAbout .displaySkillsArea div{
+  font-size: 13.8px;
+  border: white 1.4px solid;
+  padding: 6.6px 16px;
+  border-radius: 20px;
+  margin: 7px 6px;
+  color: white;
+  background-color: #297ed4;
+  display: flex;
+}
+.modal-content .userAddAbout .displaySkillsArea div i{
+  position: relative;
+  color: white;
+  right: 0px;
+  top: 0px;
+  transform: translateY(2px);
+  margin-left: 10px;
+}
+.modal-content .userAddAbout .displaySkillsArea div i:hover{
+  color: #d3e0f7;
+}

@@ -13,6 +13,7 @@ class LoggedIn extends Component {
         
         <div className="postColumn">
           <CreatePost/>
+          <hr style={{margin :'0px',marginBottom:'12px'}}/>
           <Posts />
         </div>
         

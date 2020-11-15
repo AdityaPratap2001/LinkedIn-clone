@@ -1,3 +1,50 @@
-.posts{
-  height: 1000px;
+.post {
+  background-color: white;
+  border: #ccc 1.4px solid;
+  border-radius: 5px;
+  /* min-height: 40px; */
+}
+.post .postHeader .userDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px;
+  padding-bottom: 10px;
+}
+.post .postHeader .userDetails a {
+  display: flex;
+  color: black;
+  align-items: center;
+}
+.post .postHeader img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  margin-right: 9px;
+}
+.post .postHeader .userDetails .userAbout h6 {
+  margin-bottom: 0px;
+}
+.post .postHeader .userDetails .userAbout .name {
+  font-weight: 500;
+  font-size: 14.5px;
+  margin-bottom: 1.2px;
+}
+.post .postHeader .userDetails .userAbout .tag {
+  font-weight: 350;
+  font-size: 11.9px;
+  height: 15px;
+  overflow-y: hidden;
+  margin-bottom: 0.4px;
+}
+.post .strike {
+  height: 1.15px;
+  width: 90%;
+  margin: 0px auto;
+  margin-bottom: 6px;
+  color: #ccc;
+  background-color: #ccc;
+}
+.post .postHeader .userDetails .bookmark{
+  margin-right: 25px;
 }

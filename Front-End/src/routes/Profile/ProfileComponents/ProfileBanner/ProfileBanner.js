@@ -61,7 +61,7 @@ class ProfileBanner extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    axios.get("/user/profile/brief_info/", config)
+    axios.get("/user/profile/banner/", config)
       .then((res) => {
         console.log(res);
         this.setState({

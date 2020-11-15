@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .body{
-  /* min-height: 90vh; */
+  min-height: 90vh;
   margin-top: 10vh;
   /* height: auto; */
   /* border: red 2px solid; */
