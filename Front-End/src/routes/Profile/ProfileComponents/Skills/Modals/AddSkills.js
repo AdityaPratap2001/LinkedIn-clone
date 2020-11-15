@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 class AddSkills extends Component {
   state = {
     skill: "",
-    list: [],
+    list: this.props.prevSkills,
   };
 
   handleChange = (e) => {

@@ -5,83 +5,83 @@ import ShowEndorsedList from "./Modals/ShowEndorsedList";
 import axios from "../../../../API/baseURL/baseURL";
 import "./Skills.css";
 
-const skillsData = [
-  {
-    skill: "Competitive Coding",
-    endorsed: 4,
-    list: [
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-      {
-        profPic: null,
-        firstName: "Aryan",
-        lastName: "Kishore",
-        position: "Web Developer",
-        industry: "IIT Kharagpur",
-      },
-    ],
-  },
-  {
-    skill: "React JS",
-    endorsed: 13,
-  },
-  {
-    skill: "Node JS",
-    endorsed: 19,
-  },
-  {
-    skill: "DJango",
-    endorsed: 25,
-  },
-  {
-    skill: "C++",
-    endorsed: 30,
-  },
-  {
-    skill: "Cascading Style Sheet",
-    endorsed: 7,
-  },
-];
+// const skillsData = [
+//   {
+//     skill: "Competitive Coding",
+//     endorsed: 4,
+//     list: [
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//       {
+//         profPic: null,
+//         firstName: "Aryan",
+//         lastName: "Kishore",
+//         position: "Web Developer",
+//         industry: "IIT Kharagpur",
+//       },
+//     ],
+//   },
+//   {
+//     skill: "React JS",
+//     endorsed: 13,
+//   },
+//   {
+//     skill: "Node JS",
+//     endorsed: 19,
+//   },
+//   {
+//     skill: "DJango",
+//     endorsed: 25,
+//   },
+//   {
+//     skill: "C++",
+//     endorsed: 30,
+//   },
+//   {
+//     skill: "Cascading Style Sheet",
+//     endorsed: 7,
+//   },
+// ];
 
 class Skills extends Component {
   state = {
@@ -116,6 +116,7 @@ class Skills extends Component {
       })
       .catch((err) => {
         console.log(err.response);
+        console.log(this.state);
         // if (err.response.status === 404) {
         this.setState({ isLoading: false, skills: [] });
         // }
@@ -140,40 +141,64 @@ class Skills extends Component {
       showingAllSkills: false,
     });
   };
-  deleteSkill = (id) => {
-    // console.log(this.state.skills);
-    // console.log(this.state.displaySkills);
-    // let skillArr = this.state.skills;
-    // skillArr.splice(id,1);
-    // this.setState({
-    //   skills : skillArr,
-    //   // displaySkills : skillArr.slice(0,3)
-    // })
-    // console.log(this.state.skills);
-    // console.log(this.state.displaySkills);
+  // deleteSkill = (id) => {
+  //   // console.log(this.state.skills);
+  //   // console.log(this.state.displaySkills);
+  //   // let skillArr = this.state.skills;
+  //   // skillArr.splice(id,1);
+  //   // this.setState({
+  //   //   skills : skillArr,
+  //   //   // displaySkills : skillArr.slice(0,3)
+  //   // })
+  //   // console.log(this.state.skills);
+  //   // console.log(this.state.displaySkills);
 
-    let skillArr = this.state.skills;
-    skillArr.splice(id, 1);
-    // let displayArr = skillArr.slice(0, 3);
-    let displayArr = this.state.skills.slice(0, 3);
-    let showStatus = true;
-    if (skillArr.length < 4) {
-      showStatus = false;
-    }
-    this.setState({
-      skills: skillArr,
-      displaySkills: displayArr,
-      showingAllSkills: showStatus,
-    });
+  //   let skillArr = this.state.skills;
+  //   skillArr.splice(id, 1);
+  //   // let displayArr = skillArr.slice(0, 3);
+  //   let displayArr = this.state.skills.slice(0, 3);
+  //   let showStatus = true;
+  //   if (skillArr.length < 4) {
+  //     showStatus = false;
+  //   }
+  //   this.setState({
+  //     skills: skillArr,
+  //     displaySkills: displayArr,
+  //     showingAllSkills: showStatus,
+  //   });
 
-    console.log(this.state.skills);
-    console.log(this.state.displaySkills);
-  };
+  //   console.log(this.state.skills);
+  //   console.log(this.state.displaySkills);
+  // };
 
   submitSkills = (details) => {
     console.log(details);
+    // this.setState({list : details});
+    // this.setState({list : details});
+    this.setState({skills : details});
+    console.log(this.state);
 
-    if (this.state.skills.length === 0) {
+    if(details.length === 0){
+      let profId = localStorage.getItem("profileID");
+      let token = localStorage.getItem("accessToken");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios
+        .delete(`/user/profile/skills/${this.state.skillID}/`,config)
+        .then((res) => {
+          console.log(res);
+          this.setState({ showModal: false });
+          // this.setState({list : details});
+          this.setState({skills : details});
+        })
+        .catch((err) => {
+          console.log(err);
+          // this.setState({list : details});
+        });
+    }
+
+    else if(this.state.displaySkills.length === 0 || this.state.skills.length === 0 || this.state.skills === undefined){
       let profId = localStorage.getItem("profileID");
       let token = localStorage.getItem("accessToken");
       const config = {
@@ -189,11 +214,14 @@ class Skills extends Component {
         .then((res) => {
           console.log(res);
           this.setState({ showModal: false });
+          // this.setState({ list : details});
+          this.setState({skills : details});
         })
         .catch((err) => {
           console.log(err);
         });
     } 
+     
     else {
       let profId = localStorage.getItem("profileID");
       let token = localStorage.getItem("accessToken");
@@ -210,6 +238,8 @@ class Skills extends Component {
         .then((res) => {
           console.log(res);
           this.setState({ showModal: false });
+          // this.setState({list : details});
+          this.setState({skills : details});
         })
         .catch((err) => {
           console.log(err);
@@ -307,7 +337,7 @@ class Skills extends Component {
             <div onClick={() => this.deleteSkill(id)} className="editDiv">
               {/* <i class="fas fa-pencil-alt"></i> */}
               {/* <i class="fas fa-trash"></i> */}
-              <i class="fas fa-times"></i>
+              {/* <i class="fas fa-times"></i> */}
               {/* <span style={{fontSize:'12px'}}>remove</span> */}
             </div>
           </div>
@@ -321,6 +351,7 @@ class Skills extends Component {
         <AddSkills
           submitSkills={this.submitSkills}
           hideModal={this.hideModal}
+          prevSkills={this.state.skills} 
           // addExperience={this.addExperience}
         />
       );

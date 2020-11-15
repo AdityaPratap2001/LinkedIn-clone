@@ -28,10 +28,10 @@ class ProfileLevel extends Component {
         if(res.data.profile_strength < 4){
           this.setState({strengthStr : 'Begginer'});
         }
-        else if(res.data.profile_strength <= 4 && res.data.profile_strength >= 5){
+        else if(res.data.profile_strength >= 4 && res.data.profile_strength <= 5){
           this.setState({strengthStr : 'Intermediate'});
         }
-        else{
+        else if(res.data.profile_strength >= 6 ){
           this.setState({strengthStr : 'Expert'});
         }
       })

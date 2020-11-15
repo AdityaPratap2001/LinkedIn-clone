@@ -28,16 +28,14 @@ class ChangeUserDetailsModal extends Component {
     firstName: null,
     lastName: null,
     location: null,
-    position: null,
-    industry: null,
+    tagline: null, 
     selectedFile: null,
     profilePic: null,
     formErrors: {
       firstName: "",
       lastName: "",
       location: "",
-      position: "",
-      industry: "",
+      tagline: ","
       // selectedFile: ""
     },
   };
@@ -100,15 +98,11 @@ class ChangeUserDetailsModal extends Component {
           value.length < 3 ? "minimum 3 characters required" : "";
         break;
 
-      case "position":
-        formErrors.position =
+      case "tagline":
+        formErrors.tagline =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
 
-      case "industry":
-        formErrors.industry =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        break;
 
       default:
         break;
@@ -206,46 +200,23 @@ class ChangeUserDetailsModal extends Component {
 
               <div className="form-group">
                 <div>
-                  <label>Position :</label>
+                  <label>Headline :</label>
                   <br></br>
                   <input
                     type="text"
                     className={
-                      formErrors.position.length > 0
+                      formErrors.tagline.length > 0
                         ? "error form-control"
                         : "form-control"
                     }
-                    name="position"
+                    name="tagline"
                     placeholder="Your position"
                     onChange={this.handleChange}
                     required
                   />
                 </div>
-                {formErrors.position.length > 0 && (
-                  <span className="errorMessage">{formErrors.position}</span>
-                )}
-              </div>
-
-              <div className="form-group">
-                <div>
-                  <label>Institute/Industry :</label>
-                  <br></br>
-                  <input
-                    type="text"
-                    autoComplete="off"
-                    className={
-                      formErrors.industry.length > 0
-                        ? "error form-control"
-                        : "form-control"
-                    }
-                    name="industry"
-                    placeholder="Enter Institute or Industry"
-                    onChange={this.handleChange}
-                    required
-                  />
-                </div>
-                {formErrors.industry.length > 0 && (
-                  <span className="errorMessage">{formErrors.industry}</span>
+                {formErrors.tagline.length > 0 && (
+                  <span className="errorMessage">{formErrors.tagline}</span>
                 )}
               </div>
 

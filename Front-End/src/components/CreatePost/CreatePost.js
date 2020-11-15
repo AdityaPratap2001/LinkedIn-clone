@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CreatePostModal from "./Modal/CreatePostModal";
 import "./CreatePost.css";
 import CustomAlert from "../CustomAlert/CustomAlert";
+import axios from '../../API/baseURL/baseURL';
 
 class CreatePost extends Component {
   state = {
@@ -39,20 +40,39 @@ class CreatePost extends Component {
       mediaData = details.videoSelected;
     }
 
-    let postData = {
-      mediaType: details.selectedType,
-      postText: details.postText,
-      media: mediaData,
-    };
+    // let postData = {
+    //   media_type: details.selectedType,
+    //   text: details.postText,
+    //   media: mediaData,
+    // };
+    let profID = localStorage.getItem('profileID');
+    let postData = new FormData();
+    postData.append('media_type',details.selectedType);
+    postData.append('text',details.postText);
+    postData.append('media',mediaData);
+    postData.append('written_by',profID);
 
     console.log(postData);
-    this.setState({
-      showAlert : true,
-      alertData : 'The post was successfully posted!',
-      alertColor : 'success'
-    });
 
-    // axios.get("/user/profile/brief_info/", config)
+    axios.post("/user/post/create/",postData,config)
+     .then((res)=>{
+       console.log(res);
+       if(res.status === 201){
+        this.setState({
+          showAlert : true,
+          alertData : 'The post was successfully posted!',
+          alertColor : 'success'
+        });    
+       }
+     })
+     .catch((err)=>{
+       console.log(err);
+       this.setState({
+        showAlert : true,
+        alertData : 'Something went wrong!',
+        alertColor : 'danger'
+      }); 
+     })
   };
 
   render() {

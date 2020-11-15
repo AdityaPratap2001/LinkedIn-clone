@@ -2,6 +2,7 @@
   background-color: white;
   border: #ccc 1.4px solid;
   border-radius: 5px;
+  margin-bottom: 200px;
   /* min-height: 40px; */
 }
 .post .postHeader .userDetails {
@@ -16,7 +17,7 @@
   color: black;
   align-items: center;
 }
-.post .postHeader img {
+.post .postHeader .userPic{
   height: 48px;
   width: 48px;
   border-radius: 50%;
@@ -37,7 +38,7 @@
   overflow-y: hidden;
   margin-bottom: 0.4px;
 }
-.post .strike {
+.post .strike{
   height: 1.15px;
   width: 90%;
   margin: 0px auto;
@@ -46,5 +47,209 @@
   background-color: #ccc;
 }
 .post .postHeader .userDetails .bookmark{
-  margin-right: 25px;
+  margin-right: 20px;
+  cursor: pointer;
 }
+.post .postText{
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px 16px;
+  padding-bottom: 0px;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
+  /* font-family: 'Poppins'; */
+  margin-bottom: 12px;
+  position: relative;
+}
+.post .postText .readmore{
+  position: absolute;
+  top: 48px;
+  right: 18px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 13px;
+  padding-left: 80px;
+  color: grey;
+}
+.post .postText .readmore:hover{
+  color: #0a66c2;
+  text-decoration: underline;
+}
+.post .mediaDisplay{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.post .mediaDisplay img{
+  width: 100%;
+}
+.post .mediaDisplay video{
+  width: 100%;
+}
+.post .numDisplay{
+  padding: 8.8px;
+  padding-left: 20px;
+}
+.post .numDisplay h6{
+  font-size: 12.5px;
+  margin-bottom: 0px;
+  font-weight: 480;
+  color: rgb(117, 117, 117);
+  /* line-height: 14px; */
+}
+.post .numDisplay i{
+  color: #336394;
+  /* color: grey; */
+  margin-right: 6px;
+}
+.post .numDisplay .likes{
+  /* margin-right: 6px; */
+  cursor: pointer;
+}
+.post .numDisplay .comments{
+  cursor: pointer;
+}
+
+.post .numDisplay .likes:hover{
+  color: #0a66c2;
+  border-bottom : #0a66c2 1.3px solid;
+  /* text-decoration: underline; */
+}
+.post .numDisplay .comments:hover{
+  color: #0a66c2;
+  border-bottom : #0a66c2 1.3px solid;
+  /* text-decoration: underline; */
+}
+
+
+.post .bar{
+  padding-left: 16px;
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+.post .bar h6{
+  margin-bottom: 0px;
+  font-size: 13px;
+}
+.post .bar div{
+  width: fit-content;
+  display: flex;
+  padding: 10px 8px;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(117, 117, 117);
+  margin-right: 6px;
+}
+.post .bar div:hover{
+  background-color: #edf0f5;
+  border-radius: 6px;
+}
+.post .bar div i{
+  margin-right: 4px;
+}
+
+
+.post .commentInputBar{
+  padding: 0px 20px;
+  display: flex;
+  /* align-items: center; */
+  margin-bottom: 8px;
+}
+.post .commentInputBar img{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.post .commentInputBar input{
+  font-size: 13.5px;
+  padding: 6px;
+  width: 100%;
+  padding-left: 15px;
+  border-radius: 50px;
+  border: rgb(158, 158, 158) 1.2px solid;
+}
+.post .commentInputBar input:focus-visible{
+  border-radius: 50px;
+  outline: none;
+  border: rgb(77, 77, 77) 1.4px solid;
+}
+
+
+.post .comment{
+  padding: 0px 20px;
+  display: flex;
+  margin: 15px 0px;
+}
+.post .comment img{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+.post .comment .commentBlock{
+  width: 100%;
+}
+.post .comment .commentData{
+  background-color: #edf0f5;
+  /* background-color: #f2f2f2; */
+  margin-bottom: 0px;
+  padding: 10px 14px;
+  border-radius: 0px 7px 7px 7px;
+}
+.post .comment .commentData h6{
+  margin-bottom: 0px;
+}
+.post .comment .commentData a{
+  color: black;
+}
+.post .comment .commentData .name{
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.post .comment .commentData .tag{
+  font-size: 12px;
+  font-weight: 450;
+  margin-bottom: 10px;
+}
+.post .comment .commentData .actualComment{
+  font-size: 14px;
+  font-weight: 480;
+  padding-bottom: 7px;
+}
+.post .comment .like{
+  font-size: 11px;
+  margin: 0px;
+  cursor: pointer;
+  padding: 3.6px 6px;
+  margin-right: 7px;
+}
+.post .comment .likeComment{
+  margin-left: 7px;
+  margin-right: 3.5px;
+  font-size: 12px;
+}
+.post .comment .commentLikeNum{
+  font-size: 11px;
+  margin-right: 5px;
+}
+
+
+.post .comment .commentReply img{
+  height: 32px;
+  width: 32px;
+}
+.post .comment .commentInputBar{
+  margin-top: 12px;
+  padding-left: 7px;
+}
+.post .comment .reply img{
+  height: 32px;
+  width: 32px;
+}
+.post .comment .reply .likeReply{
+  margin-left: 3px;
+}
+
+
+

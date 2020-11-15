@@ -45,8 +45,7 @@ class ProfileBanner extends Component {
     isLoading: true,
     firstName: null,
     lastName: null,
-    domain: null,
-    industry: null,
+    tagline: null, 
     address: null,
     connections: null,
     about: null,
@@ -60,8 +59,9 @@ class ProfileBanner extends Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+    let profID = localStorage.getItem('profileID');
 
-    axios.get("/user/profile/banner/", config)
+    axios.get(`/user/profile/banner/${profID}/`, config)
       .then((res) => {
         console.log(res);
         this.setState({
@@ -70,8 +70,7 @@ class ProfileBanner extends Component {
           firstName: res.data.first_name,
           lastName: res.data.last_name,
           profilePic: res.data.avatar,
-          domain: res.data.position,
-          industry: res.data.organization,
+          tagline: res.data.tagline,
           connections: res.data.connection,
           address: res.data.location,
           about: res.data.about,
@@ -102,7 +101,7 @@ class ProfileBanner extends Component {
     let aboutData = {
       bio : updatedAbout
     }
-    axios.patch(`/user/profile/social/${aboutID}/`,aboutData,config)
+    axios.patch(`/user/profile/about/update/${aboutID}/`,aboutData,config)
       .then((res)=>{
         console.log(res);
       })
@@ -120,8 +119,7 @@ class ProfileBanner extends Component {
     this.setState({
       firstName: details.firstName,
       lastName: details.lastName,
-      domain: details.position,
-      industry: details.industry,
+      tagline: details.tagline,
       address: details.location,
       profilePic: details.profilePic,
     });
@@ -137,8 +135,7 @@ class ProfileBanner extends Component {
     updateData.append('last_name',details.lastName);
     updateData.append('location',details.location);
     updateData.append('avatar',details.selectedFile);
-    updateData.append('position',details.position);
-    updateData.append('organization_name',details.industry);
+    updateData.append('tagline',details.tagline);
     // let updateData = {
     //   first_name : details.firstName,
     //   last_name : details.lastName,
@@ -147,7 +144,7 @@ class ProfileBanner extends Component {
     //   position : details.position,
     //   organization_name : details.industry,
     // }
-    axios.patch(`/user/profile/update/${profID}/`,updateData,config)
+    axios.put(`/user/profile/banner/update/${profID}/`,updateData,config)
       .then((res)=>{
         console.log(res);
       })
@@ -254,7 +251,7 @@ class ProfileBanner extends Component {
         <h6 style={{whiteSpace:'pre-wrap'}}>{this.state.about}</h6>
       </div>
     );
-    if (this.state.about === undefined || this.state.about === '') {
+    if ( this.state.about === null || this.state.about === undefined || this.state.about === '') {
       aboutUserData = (
         <div className="userAboutNull">
           <h6 onClick={() => this.displayModal(2)}>
@@ -327,7 +324,7 @@ class ProfileBanner extends Component {
               {this.state.firstName} {this.state.lastName}
             </h6>
             <h6 className="userDomain">
-              {this.state.domain} at {this.state.industry}
+              {this.state.tagline}
             </h6>
             <h6 className="userAddr">{this.state.address}</h6>
             <h6 className="userConn">
