@@ -8,6 +8,7 @@ import Loader from '../../components/Loader/Loader';
 import CustomAlert from '../../components/CustomAlert/CustomAlert';
 import axios from '../../API/baseURL/baseURL';
 import { Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 class Signup extends Component {
 
@@ -76,8 +77,8 @@ class Signup extends Component {
     userDetails.append('is_employed',details.isStudent);
     userDetails.append('organization_name',details.industry);
     userDetails.append('position',details.position);
-    userDetails.append('start_date','2020-12-04');
-    userDetails.append('end_date','2020-12-21');
+    userDetails.append('start_date',moment(details.startDate).format('YYYY-MM-DD'));
+    userDetails.append('end_date',moment(details.endDate).format('YYYY-MM-DD'));
 
     console.log(userDetails);
     this.setState({loading : true});

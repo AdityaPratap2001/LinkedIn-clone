@@ -23,7 +23,8 @@ class Dashboard extends Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    axios.get(`/user/profile/dashboard`,config)
+    let profId = localStorage.getItem('profileID');
+    axios.get(`/user/profile/dashboard/${profId}/`,config)
       .then((res)=>{
         console.log(res);
         this.setState({

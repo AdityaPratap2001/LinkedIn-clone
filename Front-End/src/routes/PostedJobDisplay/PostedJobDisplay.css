@@ -1,0 +1,184 @@
+.postedJobDisplay .rightDisplay{
+  border: #ccc 1.4px solid;
+  background-color: white;
+  padding-bottom: 16px;
+}
+.postedJobDisplay .rightDisplay .header{
+  padding: 25px 35px;
+  padding-bottom: 4px;
+  display: flex;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
+  /* align-items: center; */
+}
+.postedJobDisplay .rightDisplay .header img{
+  height: 128px;
+  width: 128px;
+  margin-right: 15px;
+}
+.postedJobDisplay .rightDisplay .header h6{
+  margin-bottom: 0px;
+}
+.postedJobDisplay .rightDisplay .header .jobName{
+  font-size: 21px;
+  font-weight: 400;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+.postedJobDisplay .rightDisplay .header .company{
+  font-size: 16px;
+  font-weight: 400;
+  color: grey;
+  margin-bottom: 2px;
+}
+.postedJobDisplay .rightDisplay .header .location{
+  font-size: 15px;
+  font-weight: 400;
+  color: grey;
+  margin-bottom: 10px;
+}
+.postedJobDisplay .rightDisplay .header .industry{
+  font-size: 13.5px;
+  color: grey;
+  font-weight: 400;
+}
+.postedJobDisplay .rightDisplay .strike{
+  height: 1.4px;
+  background-color: #ccc;
+  width: 92%;
+  margin: 10px auto;
+}
+
+.postedJobDisplay .rightDisplay .topBottom{
+  padding-left: 35px;
+}
+.postedJobDisplay .rightDisplay .topBottom li{
+  font-size: 13px;
+  margin-bottom: 0px;
+  list-style: none;
+  font-weight: 450;
+}
+.postedJobDisplay .rightDisplay .jobDesc{
+  padding: 0px 35px;
+  padding-bottom: 7px;
+  font-weight: 450;
+  font-size: 14.4px;
+  line-height: 19px;
+  margin-bottom: 0px;
+  white-space: pre-wrap;
+}
+.postedJobDisplay .rightDisplay .jobDiv{
+  padding-left: 35px;
+  margin-bottom: 10px;
+}
+.postedJobDisplay .rightDisplay .jobDiv h6{
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+.postedJobDisplay .rightDisplay .jobDiv .head{
+  margin-bottom: 3px;
+  font-size: 15px;
+}
+.postedJobDisplay .rightDisplay .jobDiv .sub{
+  font-size: 14.4px;
+  font-weight: 450;
+}
+
+
+.postedJobDisplay .rightDisplay .user{
+  margin: 0px 35px;
+  margin-bottom: 20px;
+  display: flex;
+  background-color: #f4f5f8;
+  background-color: #f0f1f5;
+  padding: 10px;
+  border-radius: 4px;
+  border: #ccc 1.3px solid;
+}
+.postedJobDisplay .rightDisplay .user h6{
+  margin-bottom: 0px;
+}
+.postedJobDisplay .rightDisplay .user a{
+  color: black;
+}
+.postedJobDisplay .rightDisplay .user img{
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.postedJobDisplay .rightDisplay .user .userName{
+  font-size: 14px;
+  font-weight: 550;
+  margin-bottom: 2px;
+}
+.postedJobDisplay .rightDisplay .user .userTagline{
+  font-size: 13.2px;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+.postedJobDisplay .rightDisplay .user .userDesc .buttons{
+  display: flex;
+}
+.postedJobDisplay .rightDisplay .user .userDesc .acceptButton{
+  border: green 1.32px solid;
+  color: rgb(38, 143, 38);
+  font-size: 13px;
+  width: fit-content;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 6px 10px;
+  font-weight: 500;
+}
+.postedJobDisplay .rightDisplay .user .userDesc .rejectButton{
+  border: rgb(248, 50, 50) 1.32px solid;
+  color: rgb(248, 50, 50);
+  font-size: 13px;
+  width: fit-content;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 6px 10px;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -72,12 +72,14 @@ class Post extends Component {
 
   render() {
     let postData = this.state.post;
-    let userPic = postData.userPic;
+    // let userPic = postData.userPic;
+    let userPic = postData.avatar;
     if (userPic === null || userPic === undefined) {
       userPic = defaultPic;
     }
 
-    let postTextData = postData.postText;
+    // let postTextData = postData.postText;
+    let postTextData = postData.text;
 
     let textHeight = null;
     let seeMore = {
@@ -94,16 +96,16 @@ class Post extends Component {
     }
 
     let mediaData = null;
-    if (postData.mediaType === "img") {
+    if (postData.media_type === "img") {
       mediaData = (
-        // <img src={postData.mediaSrc}/>
-        <img src={mediaSrcI} />
+        <img src={postData.image_linked}/>
+        // <img src={mediaSrcI} />
       );
     }
-    if (postData.mediaType === "video") {
+    if (postData.media_type === "video") {
       mediaData = (
-        // <video src={postData.mediaSrc} controls/>
-        <video src={mediaSrcV} controls />
+        <video src={postData.video_linked} controls/>
+        // <video src={mediaSrcV} controls />
       );
     }
 

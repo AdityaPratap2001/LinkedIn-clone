@@ -102,8 +102,9 @@ class Skills extends Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+    let profId = localStorage.getItem('profileID');
     axios
-      .get("/user/profile/skills/", config)
+      .get(`/user/profile/skills/${profId}/`, config)
       .then((res) => {
         console.log(res);
         this.setState({
@@ -117,9 +118,9 @@ class Skills extends Component {
       .catch((err) => {
         console.log(err.response);
         console.log(this.state);
-        // if (err.response.status === 404) {
+        if (err.response.status === 404) {
         this.setState({ isLoading: false, skills: [] });
-        // }
+        }
       });
   }
 
@@ -175,7 +176,7 @@ class Skills extends Component {
     console.log(details);
     // this.setState({list : details});
     // this.setState({list : details});
-    this.setState({skills : details});
+    // this.setState({skills : details});
     console.log(this.state);
 
     if(details.length === 0){
@@ -185,7 +186,7 @@ class Skills extends Component {
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .delete(`/user/profile/skills/${this.state.skillID}/`,config)
+        .delete(`/user/profile/skills/update/${this.state.skillID}/`,config)
         .then((res) => {
           console.log(res);
           this.setState({ showModal: false });
@@ -205,17 +206,17 @@ class Skills extends Component {
         headers: { Authorization: `Bearer ${token}` },
       };
       let skillsData = {
-        user: profId,
+        // user: profId,
         skills_list: details,
       };
       console.log(skillsData);
       axios
-        .post("/user/profile/skills/", skillsData, config)
+        .post(`/user/profile/skills/${profId}/`, skillsData, config)
         .then((res) => {
           console.log(res);
-          this.setState({ showModal: false });
+          this.setState({ showModal: false});
           // this.setState({ list : details});
-          this.setState({skills : details});
+          this.setState({skills : details , displaySkills:details.slice(0,3)});
         })
         .catch((err) => {
           console.log(err);
@@ -234,17 +235,18 @@ class Skills extends Component {
       };
       console.log(skillsData);
       axios
-        .put(`/user/profile/skills/${this.state.skillID}/`, skillsData, config)
+        .put(`user/profile/skills/update/${this.state.skillID}/`, skillsData, config)
         .then((res) => {
           console.log(res);
           this.setState({ showModal: false });
           // this.setState({list : details});
-          this.setState({skills : details});
+          this.setState({skills : details , displaySkills : details.slice(0,3)});
         })
         .catch((err) => {
           console.log(err);
         });
     }
+    console.log(this.state.skillID);
   };
 
   showEndorseList = (data) => {
@@ -373,7 +375,8 @@ class Skills extends Component {
           Skills & Endorsements
         </h5>
         <div onClick={() => this.displayModal(1)} className="addExper">
-          <i class="fas fa-plus"></i>
+          {/* <i class="fas fa-plus"></i> */}
+          <i class="fas fa-pencil-alt"></i>
         </div>
         {skillsData}
         {conditionalButton}

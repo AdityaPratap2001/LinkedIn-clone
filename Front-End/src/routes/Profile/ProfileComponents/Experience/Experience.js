@@ -6,6 +6,7 @@ import defaultCompImg from "../../../../assets/defaultInstitute.png";
 // import EditExperience from "./Modals/EditExperience";
 import AddEducation from "./Modals/AddEducation";
 import axios from '../../../../API/baseURL/baseURL';
+import moment from "moment";
 
 // const experience = [
 //   {
@@ -55,7 +56,8 @@ class Experience extends Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    axios.get('/user/profile/get_work/',config)
+    let profId = localStorage.getItem('profileID');
+    axios.get(`/user/profile/get_work/${profId}/`,config)
       .then((res)=>{
         console.log(res);
         this.setState({isLoading : false,experData : res.data});
@@ -64,7 +66,7 @@ class Experience extends Component {
         console.log(err);
       })
 
-    axios.get('/user/profile/get_academic/',config)
+    axios.get(`/user/profile/get_academic/${profId}`,config)
     .then((res)=>{
       console.log(res);
       this.setState({isLoading : false,eduData : res.data});
@@ -92,8 +94,8 @@ class Experience extends Component {
       organization_name: details.industry,
       // start_date: details.startDate,
       // end_date: details.endDate,
-      start_date: '2007-03-14',
-      end_date: '2009-09-11',
+      start_date: moment(details.startDate).format('YYYY-MM-DD'),
+      end_date: moment(details.endDate).format('YYYY-MM-DD'),
     };
     // let newArr = [{...newExperData},{...oldArr}];
 
@@ -128,8 +130,8 @@ class Experience extends Component {
       organization_name: details.institute,
       // start_date: details.startDate,
       // end_date: details.endDate,
-      start_date : '2019-11-12',
-      end_date : '2020-02-29'
+      start_date : moment(details.startDate).format('YYYY-MM-DD'),
+      end_date : moment(details.startDate).format('YYYY-MM-DD')
     };
 
     let token = localStorage.getItem("accessToken");

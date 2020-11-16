@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-date-picker";
+import moment from "moment";
 
 const nameRegex = RegExp(/^[a-zA-Z_-]{0,30}$/);
 const lastnameRegex = RegExp(/^[a-zA-Z\s]+$/);
@@ -30,8 +34,8 @@ class FormTwo extends Component {
     location: null,
     position: null,
     industry: null,
-    startDate: null,
-    endDate: null,
+    startDate: new Date(),
+    endDate: new Date(),
     selectedFile: null,
     isStudent: false,
     formErrors: {
@@ -250,7 +254,7 @@ class FormTwo extends Component {
             )}
           </div>
 
-          <div className="form-group formTwoDateSection">
+          {/* <div className="form-group formTwoDateSection">
             <div
               className="formTwoDates formTwoDateOne"
               style={{ marginRight: "40px" }}
@@ -277,9 +281,74 @@ class FormTwo extends Component {
               {formErrors.startDate.length > 0 && (
                 <span className="errorMessage">{formErrors.startDate}</span>
               )}
+            </div> */}
+
+          <div className="form-group formTwoDateSection">
+            <div
+              className="formTwoDates formTwoDateOne"
+              style={{ marginRight: "40px" }}
+            >
+              <div>
+                <label>Start-Year :</label>
+                <br></br>
+                <DatePicker
+                  selected={this.state.startDate}
+                  // onChange={(date) => this.changeStartDate(date)}
+                  onChange={(date) => this.setState({ startDate: date })}
+                  required={true}
+                  dateFormat="dd/MM/yyyy"
+                />
+              </div>
+              {formErrors.startDate.length > 0 && (
+                <span className="errorMessage">{formErrors.startDate}</span>
+              )}
+            </div>
+            <div
+              className="formTwoDates formTwoDateOne"
+              style={{ marginRight: "40px" }}
+            >
+              <div>
+                <label>End-Year :</label>
+                <br></br>
+                <DatePicker
+                  selected={this.state.endDate}
+                  onChange={(date) => this.setState({ endDate: date })}
+                  required={true}
+                  dateFormat="dd/MM/yyyy"
+                />
+              </div>
+              {formErrors.startDate.length > 0 && (
+                <span className="errorMessage">{formErrors.endDate}</span>
+              )}
             </div>
 
-            <div className="formTwoDates formTwoDateTwo">
+            {/* <div className="form-group formTwoDateSection">
+            <div
+              className="formTwoDates formTwoDateOne"
+              style={{ marginRight: "40px" }}
+            >
+              <div>
+                <label>Start-Year :</label>
+                <br></br>
+                <DatePicker
+                  format={"yyyy-MM-dd"}
+                  onChange={(value) =>{
+                    this.setState({ startDate: value });
+                    setTimeout(()=>{
+                      console.log(this.state.startDate);
+                    },4000)
+                  }
+                    
+                  } 
+                  value={this.state.startDate}
+                />
+              </div>
+              {formErrors.startDate.length > 0 && (
+                <span className="errorMessage">{formErrors.startDate}</span>
+              )}
+            </div> */}
+
+            {/* <div className="formTwoDates formTwoDateTwo">
               <div>
                 <label>End-Year :</label>
                 <br></br>
@@ -302,7 +371,7 @@ class FormTwo extends Component {
               {formErrors.endDate.length > 0 && (
                 <span className="errorMessage">{formErrors.endDate}</span>
               )}
-            </div>
+            </div> */}
           </div>
 
           <div className="form-group">

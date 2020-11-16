@@ -1,0 +1,52 @@
+.postJobsBody .postJobHeadLine {
+  color: white;
+  font-weight: 400;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+.postJobsBody .postJobSubHeadLine {
+  color: white;
+  font-weight: 300;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  margin-bottom: 40px;
+}
+.postJobsBody .postJobForm .form-group {
+  margin-bottom: 8px;
+}
+.postJobsBody .postJobForm .form-group .errorMessage {
+  font-size: 11px;
+  color: rgb(240, 6, 6);
+}
+.postJobsBody .postJobForm {
+  background-color: white;
+  height: auto !important;
+  max-height: 832893vh;
+  overflow-y: hidden;
+  width: 58vw;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 40px;
+}
+.postJobsBody .postJobForm .form-group label {
+  font-weight: 500;
+}
+.postJobsBody .postJobForm .form-group input {
+  font-size: 13px;
+}
+.postJobsBody .postJobForm .form-group textarea {
+  height: 160px;
+  font-size: 13px;
+}
+.postJobsBody .postJobForm .form-group select {
+  font-size: 13px;
+}

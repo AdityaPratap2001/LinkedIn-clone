@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
-import '../Experience.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "../Experience.css";
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -25,10 +27,10 @@ class AddEducation extends Component {
   state = {
     institute: null,
     // location: null,
-    startDate: null,
-    endDate: null,
+    startDate: new Date(),
+    endDate: new Date(),
     selectedFile: null,
-    compLogo : null,
+    compLogo: null,
     formErrors: {
       institute: "",
       // location: "",
@@ -38,7 +40,7 @@ class AddEducation extends Component {
   };
 
   fileChangedHandler = (event) => {
-    this.setState({ 
+    this.setState({
       selectedFile: event.target.files[0],
       compLogo: URL.createObjectURL(event.target.files[0]),
     });
@@ -48,10 +50,10 @@ class AddEducation extends Component {
     e.preventDefault();
 
     if (formValid(this.state)) {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.props.hideModal();
         this.props.addEducation(this.state);
-      },1000)
+      }, 1000);
       console.log(this.state);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -154,20 +156,12 @@ class AddEducation extends Component {
                   <div>
                     <label>Start-Year :</label>
                     <br></br>
-                    <input
-                      type="number"
-                      min="1970"
-                      max="2022"
-                      autoComplete="off"
-                      className={
-                        formErrors.startDate.length > 0
-                          ? "error form-control"
-                          : "form-control"
-                      }
-                      name="startDate"
-                      placeholder="Year"
-                      onChange={this.handleChange}
-                      required
+                    <DatePicker
+                      selected={this.state.startDate}
+                      // onChange={(date) => this.changeStartDate(date)}
+                      onChange={(date) => this.setState({ startDate: date })}
+                      required={true}
+                      dateFormat="dd/MM/yyyy"
                     />
                   </div>
                   {formErrors.startDate.length > 0 && (
@@ -175,33 +169,27 @@ class AddEducation extends Component {
                   )}
                 </div>
 
-                <div className="formTwoDates formTwoDateTwo">
+                <div
+                  className="formTwoDates formTwoDateOne"
+                  style={{ marginRight: "40px" }}
+                >
                   <div>
                     <label>End-Year :</label>
                     <br></br>
-                    <input
-                      type="number"
-                      min="1970"
-                      max="2030"
-                      autoComplete="off"
-                      className={
-                        formErrors.endDate.length > 0
-                          ? "error form-control"
-                          : "form-control"
-                      }
-                      name="endDate"
-                      placeholder="Year"
-                      onChange={this.handleChange}
-                      required
+                    <DatePicker
+                      selected={this.state.endDate}
+                      onChange={(date) => this.setState({ endDate: date })}
+                      required={true}
+                      dateFormat="dd/MM/yyyy"
                     />
                   </div>
-                  {formErrors.endDate.length > 0 && (
+                  {formErrors.startDate.length > 0 && (
                     <span className="errorMessage">{formErrors.endDate}</span>
                   )}
                 </div>
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Institute Logo : </label>
                 <br></br>
                 <div>
@@ -212,14 +200,14 @@ class AddEducation extends Component {
                     style={{ width: "100%" }}
                   ></input>
                 </div>
-              </div>
+              </div> */}
 
               <div className="modalBottom">
                 <h6 className="userCloseButton" onClick={this.props.hideModal}>
                   Close
                 </h6>
                 <button type="submit" className="userSaveButton">
-                  Add 
+                  Add
                 </button>
                 {/* <h6 type='submit' className="userSaveButton">Save</h6> */}
               </div>

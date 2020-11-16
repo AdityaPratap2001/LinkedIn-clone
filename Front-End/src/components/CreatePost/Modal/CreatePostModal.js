@@ -171,6 +171,7 @@ class CreatePostModal extends Component {
                     type="file"
                     id="file1"
                     style={{ display: "none" }}
+                    accept="image/*"
                     onChange={this.onChangeImg}
                   />
                   <label htmlFor="file1">
@@ -187,6 +188,7 @@ class CreatePostModal extends Component {
                     type="file"
                     id="file2"
                     style={{ display: "none" }}
+                    accept="video/*"
                     onChange={this.onChangeVideo}
                   />
                   <label htmlFor="file2">

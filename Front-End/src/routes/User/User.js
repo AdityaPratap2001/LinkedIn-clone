@@ -11,7 +11,7 @@ import './User.css';
 class User extends Component {
 
   state = {
-    userId : this.props.match.params.id,
+    profileId : this.props.match.params.id,
   }
 
   render() {

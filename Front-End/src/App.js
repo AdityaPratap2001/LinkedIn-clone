@@ -9,6 +9,8 @@ import Jobs from "./routes/Jobs/Jobs";
 import ForgotPassword from "./routes/Login/ForgotPassword/ForgotPassword";
 import Profile from "./routes/Profile/Profile";
 import User from "./routes/User/User";
+import PostJob from "./routes/PostJob/PostJob";
+import PostedJobDisplay from "./routes/PostedJobDisplay/PostedJobDisplay";
 
 function App() {
   return (
@@ -34,10 +36,19 @@ function App() {
           <Route path="/profile" exact component={Profile} />
           <Route
             path="/user/:id"
+            exact
             render={(props) => (
               <User key={props.location.pathname} {...props} />
             )}
           />
+          <Route path="/postJob" exact component={PostJob}/>
+          <Route
+            path="/postedJob/:id"
+            render={(props) => (
+              <PostedJobDisplay key={props.location.pathname} {...props} />
+            )}
+          />
+        
         </Switch>
       </BrowserRouter>
     </div>

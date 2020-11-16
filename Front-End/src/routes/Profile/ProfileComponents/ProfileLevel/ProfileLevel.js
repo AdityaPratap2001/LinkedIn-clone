@@ -21,7 +21,8 @@ class ProfileLevel extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    axios.get('/user/profile/strength/',config)
+    let profID = localStorage.getItem('profileID');
+    axios.get(`/user/profile/strength/`,config)
       .then((res)=>{
         console.log(res);
         this.setState({strengthInt : res.data.profile_strength,isLoading : false});
