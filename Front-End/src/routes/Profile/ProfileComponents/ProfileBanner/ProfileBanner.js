@@ -61,7 +61,7 @@ class ProfileBanner extends Component {
     };
     let profID = localStorage.getItem('profileID');
 
-    axios.get(`/user/profile/banner/${profID}/`, config)
+    axios.get(`/user/profile/banner/${profID}/`,config)
       .then((res) => {
         console.log(res);
         this.setState({
@@ -134,7 +134,9 @@ class ProfileBanner extends Component {
     updateData.append('first_name',details.firstName);
     updateData.append('last_name',details.lastName);
     updateData.append('location',details.location);
-    updateData.append('avatar',details.selectedFile);
+    if(details.selectedFile !== null){
+      updateData.append('avatar',details.selectedFile);
+    }
     updateData.append('tagline',details.tagline);
     // let updateData = {
     //   first_name : details.firstName,

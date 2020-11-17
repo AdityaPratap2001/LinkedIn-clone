@@ -3,41 +3,43 @@ import jobImgSrc from "../../../../assets/profileSample.jpg";
 import emptySrc from "../../../../assets/empty.png";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
+import axios from "../../../../API/baseURL/baseURL";
+import defaultCompPic from "../../../../assets/defaultInstitute.png"
 
-const data = [
-  {
-    imgSrc: jobImgSrc,
-    domain: "Front-End developer",
-    companyName: "Amazon Inc",
-    location: "Noida",
-    status: "accepted",
-  },
-  {
-    imgSrc: jobImgSrc,
-    domain: "Mobile App Developer",
-    companyName: "Zomato",
-    location: "Gurgaon",
-    status: "pending",
-  },
-  {
-    imgSrc: jobImgSrc,
-    domain: "Front-End developer",
-    companyName: "Amazon Inc",
-    location: "Mumbai",
-    status: "rejected",
-  },
-  {
-    imgSrc: jobImgSrc,
-    domain: "UI/UX Developer",
-    companyName: "Flingo Inc",
-    location: "Gurgaon",
-    status: "rejected",
-  },
-];
+// const data = [
+//   {
+//     imgSrc: jobImgSrc,
+//     domain: "Front-End developer",
+//     companyName: "Amazon Inc",
+//     location: "Noida",
+//     status: "accepted",
+//   },
+//   {
+//     imgSrc: jobImgSrc,
+//     domain: "Mobile App Developer",
+//     companyName: "Zomato",
+//     location: "Gurgaon",
+//     status: "pending",
+//   },
+//   {
+//     imgSrc: jobImgSrc,
+//     domain: "Front-End developer",
+//     companyName: "Amazon Inc",
+//     location: "Mumbai",
+//     status: "rejected",
+//   },
+//   {
+//     imgSrc: jobImgSrc,
+//     domain: "UI/UX Developer",
+//     companyName: "Flingo Inc",
+//     location: "Gurgaon",
+//     status: "rejected",
+//   },
+// ];
 
 class PostedJobs extends Component {
   state = {
-    jobs: data,
+    jobs: null,
     isEmpty: null,
     isLoading: true,
   };
@@ -46,12 +48,27 @@ class PostedJobs extends Component {
     setTimeout(() => {
       this.setState({ isLoading: false });
     }, 2000);
+
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get('/user/profile/vacancy/',config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({jobs : res.data,isLoading : true});
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
   }
 
   render() {
     let savedJobsData = null;
 
-    if (this.state.isLoading) {
+    // if (this.state.isLoading) {
+      if(true){
       savedJobsData = (
         <>
           <div className="savedJob">
@@ -157,15 +174,19 @@ class PostedJobs extends Component {
     if (!this.state.isLoading) {
       savedJobsData = this.state.jobs.map((item, index) => {
         let id = index;
+        let imgSrc = item.file_linked;
+        if(imgSrc === null){
+          imgSrc = defaultCompPic;
+        }
         return (
           <div className="savedJob">
-            <NavLink to="/postedJob/43">
+            <NavLink to={`/postedJob/${item.id}`}>
               <div className="savedJobFirst">
-                <img src={item.imgSrc} />
+                <img src={imgSrc} />
               </div>
               <div className="savedJobSecond">
-                <h6 className="savedJobDomain">{item.domain}</h6>
-                <h6 className="savedJobCompany">{item.companyName}</h6>
+                <h6 className="savedJobDomain">{item.title}</h6>
+                <h6 className="savedJobCompany">{item.organization}</h6>
                 <h6 className="savedJobLocation">{item.location}</h6>
               </div>
             </NavLink>
@@ -180,7 +201,7 @@ class PostedJobs extends Component {
       });
     }
 
-    if (this.state.jobs.length === 0) {
+    if (this.state.jobs !== null && this.state.jobs.length === 0) {
       savedJobsData = (
         <div className="emptyImgDiv">
           <img src={emptySrc} className="emptyImg" />

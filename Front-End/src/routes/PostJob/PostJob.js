@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PostJobForm from "./PostJobForm";
 import Loader from "../../components/Loader/Loader";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import axios from "../../API/baseURL/baseURL";
 import "./PostJob.css";
 
 class PostJob extends Component {
@@ -20,32 +21,60 @@ class PostJob extends Component {
   submitForm = (details) => {
     console.log(details);
     let fd = new FormData();
-    fd.append("jobTitle", details.jobTitle);
-    fd.append("company", details.company);
+    fd.append("organization", details.company);
+    fd.append("title", details.jobTitle);
+    fd.append("is_remote", false);
     fd.append("location", details.location);
-    fd.append("empType", details.emplloymentType);
+    fd.append("employment_type", details.employmentType);
     fd.append("description", details.description);
-    fd.append("skills", details.skillsRequired);
+    if (details.companyLogo !== null) {
+      fd.append("file_linked", details.companyLogo);
+    }
+    fd.append("skills_required", details.skillsRequired);
     fd.append("industry", details.industry);
-    fd.append("payRange", details.payRange);
-    fd.append("compLogo", details.companyLogo);
+    fd.append("pay_range", details.payRange);
 
     console.log(fd);
 
-    this.setState({
-      showAlert: true,
-      alertColor: "success",
-      alertData: "You've successfully posted new job",
-    });
-    setTimeout(() => {
-      this.setState({
-        showAlert: false,
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let profID = localStorage.getItem("profileID");
+
+    axios
+      .post(`/user/profile/vacancy/`, fd, config)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          this.setState({
+            showAlert: true,
+            alertColor: "success",
+            alertData: "You've successfully posted new job!",
+          });
+          setTimeout(() => {
+            this.setState({
+              showAlert: false,
+            });
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          showAlert: true,
+          alertColor: "danger",
+          alertData: "Something went wrong!",
+        });
+        setTimeout(() => {
+          this.setState({
+            showAlert: false,
+          });
+        }, 2000);
       });
-    }, 2000);
   };
 
   render() {
-
     let alertData = null;
     if (this.state.showAlert) {
       alertData = (

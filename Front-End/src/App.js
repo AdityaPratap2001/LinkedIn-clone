@@ -11,6 +11,8 @@ import Profile from "./routes/Profile/Profile";
 import User from "./routes/User/User";
 import PostJob from "./routes/PostJob/PostJob";
 import PostedJobDisplay from "./routes/PostedJobDisplay/PostedJobDisplay";
+import JobDisplay from "./routes/JobDisplay/JobDisplay";
+import SavedPosts from "./routes/SavedPosts/SavedPosts";
 
 function App() {
   return (
@@ -48,6 +50,13 @@ function App() {
               <PostedJobDisplay key={props.location.pathname} {...props} />
             )}
           />
+          <Route
+            path="/job/:id"
+            render={(props) => (
+              <JobDisplay key={props.location.pathname} {...props} />
+            )}
+          />
+          <Route path="/savedPosts" exact component={SavedPosts}/>
         
         </Switch>
       </BrowserRouter>

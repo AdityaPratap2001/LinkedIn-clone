@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import defaultPic from "../../../../assets/defaultProfilePic.png";
-import mediaSrcI from "../../../../assets/4.png";
-import mediaSrcV from "../../../../assets/sampleVideo.mp4";
+import defaultPic from "../../../assets/defaultProfilePic.png";
+import mediaSrcI from "../../../assets/4.png";
+import mediaSrcV from "../../../assets/sampleVideo.mp4";
 import Comment from "./Comment";
 
 class Post extends Component {

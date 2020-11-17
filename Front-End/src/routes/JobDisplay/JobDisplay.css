@@ -1,0 +1,17 @@
+.postedJobDisplay .rightDisplay .header .headButtons{
+  display: flex;
+  margin-top: 14px;
+}
+.postedJobDisplay .rightDisplay .header .headButtons h6{
+  margin-right: 10px;
+  font-size: 14px;
+  border: rgb(82, 82, 255) 1.7px solid;
+  color: rgb(82, 82, 255);
+  font-weight: 500;
+  padding: 6.9px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.postedJobDisplay .rightDisplay .header .headButtons h6:hover{
+  background-color: #f1f6ff;
+}

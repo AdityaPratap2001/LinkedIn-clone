@@ -14,6 +14,7 @@
   height: 128px;
   width: 128px;
   margin-right: 15px;
+  background-color: white;
 }
 .postedJobDisplay .rightDisplay .header h6{
   margin-bottom: 0px;
@@ -58,7 +59,7 @@
   font-weight: 450;
 }
 .postedJobDisplay .rightDisplay .jobDesc{
-  padding: 0px 35px;
+  padding: 6px 35px;
   padding-bottom: 7px;
   font-weight: 450;
   font-size: 14.4px;
@@ -68,7 +69,7 @@
 }
 .postedJobDisplay .rightDisplay .jobDiv{
   padding-left: 35px;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
 }
 .postedJobDisplay .rightDisplay .jobDiv h6{
   margin-bottom: 0px;
@@ -141,10 +142,22 @@
 }
 
 
-
-
-
-
+.postedJobDisplay .rightDisplay .payUnavailable{
+  margin: 18px 35px;
+  padding: 2.7% 3.5%;
+  font-weight: 200 !important;
+  color: rgb(94, 94, 94);
+  border: #ccc 1px solid;
+  border-radius: 6px;
+}
+.postedJobDisplay .rightDisplay .payUnavailable h6{
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.postedJobDisplay .rightDisplay .payUnavailable h5{
+  font-size: 13.4px;
+  font-weight: 400;
+}
 
 
 

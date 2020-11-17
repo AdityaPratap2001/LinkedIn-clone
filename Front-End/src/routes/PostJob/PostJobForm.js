@@ -28,7 +28,7 @@ class FormTwo extends Component {
     jobTitle: null,
     company: null,
     location: null,
-    employmentType: "Full-Time",
+    employmentType: "Fulltime",
     description: null,
     skillsRequired: null,
     industry: null,
@@ -49,7 +49,7 @@ class FormTwo extends Component {
   };
 
   fileChangedHandler = (event) => {
-    this.setState({ selectedFile: event.target.files[0] });
+    this.setState({ companyLogo: event.target.files[0] });
   };
 
   handleSubmit = (e) => {
@@ -57,6 +57,30 @@ class FormTwo extends Component {
 
     if (formValid(this.state)) {
       this.props.submitForm(this.state);
+      console.log(this.state);
+      this.setState({
+        jobTitle: null,
+        company: null,
+        location: null,
+        employmentType: "Fulltime",
+        description: null,
+        skillsRequired: null,
+        industry: null,
+        payRange: null,
+        companyLogo: null,
+        formErrors: {
+          jobTitle: "",
+          company: "",
+          location: "",
+          employmentType: "",
+          description: "",
+          skillsRequired: "",
+          industry: "",
+          payRange: "",
+          companyLogo: "",
+          // selectedFile: ""
+        },
+      });
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
@@ -256,8 +280,8 @@ class FormTwo extends Component {
                 }
                 required
               >
-                <option value="Full-Time">Full-Time</option>
-                <option value="Part-Time">Part-Time</option>
+                <option value="Fulltime">Full-Time</option>
+                <option value="Parttime">Part-Time</option>
                 <option value="Contract">Contract</option>
                 <option value="Temporary">Temporary</option>
                 <option value="Volunteer">Volunteer</option>

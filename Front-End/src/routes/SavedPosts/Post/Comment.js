@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import defaultPic from "../../../../assets/defaultProfilePic.png";
+import defaultPic from "../../../assets/defaultProfilePic.png";
 import Reply from "./Reply.js";
 
 class Comment extends Component {

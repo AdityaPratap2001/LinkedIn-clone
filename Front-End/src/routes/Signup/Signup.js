@@ -72,7 +72,9 @@ class Signup extends Component {
     let userDetails = new FormData();
     userDetails.append('first_name',details.firstName);
     userDetails.append('last_name',details.lastName);
-    userDetails.append('avatar',details.selectedFile);
+    if(details.selectedFile !== null){
+      userDetails.append('avatar',details.selectedFile);
+    }
     userDetails.append('location',details.location);
     userDetails.append('is_employed',details.isStudent);
     userDetails.append('organization_name',details.industry);

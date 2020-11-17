@@ -118,9 +118,9 @@ class Skills extends Component {
       .catch((err) => {
         console.log(err.response);
         console.log(this.state);
-        if (err.response.status === 404) {
+        // if (err.response.status === 404) {
         this.setState({ isLoading: false, skills: [] });
-        }
+        // }
       });
   }
 
