@@ -17,10 +17,12 @@
   /* border-radius: 13px 13px 0 0; */
   /* background-color: rgb(94, 189, 189); */
   background-image: url('../../assets/coverBackground.jpeg');
+  background-image: url('../../assets/linkedBack4.jpeg');
   background-size: cover;
 }
 .profileSideBox .profilePic{
   height: 50px;
+  width: 50px;
   border-radius: 50%;
   transform: scale(1.4) translate(40%,-35%);
   border: white 2px solid;

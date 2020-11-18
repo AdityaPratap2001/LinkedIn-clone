@@ -16,6 +16,7 @@
 }
 .jobsBody .rightDisplay .jobsDisplay .connection img{
   height: 65px;
+  width: 55px;
   margin-right: 12px;
   border-radius: 50%;
 }

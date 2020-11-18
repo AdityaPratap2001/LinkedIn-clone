@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
-import axios from '../../../../API/baseURL/baseURL';
+import { NavLink } from "react-router-dom";
+import axios from "../../../../API/baseURL/baseURL";
 import "./Dashboard.css";
 
 // const dashBoardData = {
@@ -14,29 +15,30 @@ class Dashboard extends Component {
     isLoading: true,
     profViews: null,
     numPosts: null,
-    numBookmark: null
+    numBookmark: null,
+    redirect: null,
   };
 
   componentDidMount() {
-
     let token = localStorage.getItem("accessToken");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    let profId = localStorage.getItem('profileID');
-    axios.get(`/user/profile/dashboard/${profId}/`,config)
-      .then((res)=>{
+    let profId = localStorage.getItem("profileID");
+    axios
+      .get(`/user/profile/dashboard/${profId}/`, config)
+      .then((res) => {
         console.log(res);
         this.setState({
-          isLoading : false,
-          profViews : res.data.profile_views,
-          numPosts : res.data.no_of_articles,
-          numBookmark : res.data.bookmarked_posts
+          isLoading: false,
+          profViews: res.data.profile_views,
+          numPosts: res.data.no_of_articles,
+          numBookmark: res.data.bookmarked_posts,
         });
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   render() {
@@ -46,19 +48,19 @@ class Dashboard extends Component {
           <Skeleton width={170} height={18} />
           <br />
           <Skeleton style={{ marginTop: "14px" }} width={100} height={13} />
-          
+
           <div className="dashboardBox">
             <div style={{ borderRight: "#ccc 1px solid" }}>
-              <Skeleton height={35} width={40}/>
-              <Skeleton style={{marginTop:'18px'}} height={13} width={80}/>
+              <Skeleton height={35} width={40} />
+              <Skeleton style={{ marginTop: "18px" }} height={13} width={80} />
             </div>
             <div style={{ borderRight: "#ccc 1px solid" }}>
-              <Skeleton height={35} width={40}/>
-              <Skeleton style={{marginTop:'18px'}} height={13} width={80}/>
+              <Skeleton height={35} width={40} />
+              <Skeleton style={{ marginTop: "18px" }} height={13} width={80} />
             </div>
             <div>
-              <Skeleton height={35} width={40}/>
-              <Skeleton style={{marginTop:'18px'}} height={13} width={80}/>
+              <Skeleton height={35} width={40} />
+              <Skeleton style={{ marginTop: "18px" }} height={13} width={80} />
             </div>
           </div>
         </>
@@ -77,7 +79,9 @@ class Dashboard extends Component {
             <h6>People viewed your profile</h6>
           </div>
           <div style={{ borderRight: "#ccc 1px solid" }}>
-            <h5>{this.state.numPosts}</h5>
+            <NavLink to="MyPosts">
+              <h5>{this.state.numPosts}</h5>
+            </NavLink>
             <h6>Posts created</h6>
           </div>
           <div>

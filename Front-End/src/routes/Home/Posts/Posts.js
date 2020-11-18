@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import "./Posts.css";
 import myPic from "../../../assets/profileSample.jpg";
 import axios from "../../../API/baseURL/baseURL";
-import Skeleton from 'react-loading-skeleton';
+import Skeleton from "react-loading-skeleton";
 
 // let postsData = [
 //   {
@@ -183,7 +183,7 @@ import Skeleton from 'react-loading-skeleton';
 class Posts extends Component {
   state = {
     // posts: postsData,
-    posts: null 
+    posts: null,
   };
 
   componentDidMount() {
@@ -193,7 +193,8 @@ class Posts extends Component {
     };
     let profId = localStorage.getItem("profileID");
     axios
-      .get(`/user/post/view/${profId}/`, config)
+      // .get(`/user/post/view/${profId}/`, config)
+      .get(`/user/post/feed/`, config)
       .then((res) => {
         console.log(res);
         this.setState({ posts: res.data });
@@ -206,28 +207,42 @@ class Posts extends Component {
 
   render() {
     let postsData = null;
-    if(this.state.posts === null){
-      return(
-        <div className='post'>
-          <div className='postHeader' style={{display:'flex',padding:'11.8px 14px'}}>
+    if (this.state.posts === null) {
+      return (
+        <div className="post">
+          <div
+            className="postHeader"
+            style={{ display: "flex", padding: "11.8px 14px" }}
+          >
             <div>
-            <Skeleton style={{marginRight:'8px'}} circle={true} width={48} height={48}/>
+              <Skeleton
+                style={{ marginRight: "8px" }}
+                circle={true}
+                width={48}
+                height={48}
+              />
             </div>
-            <div style={{paddingTop:'5px'}}>
-            <Skeleton height={12.5} width={200}/><br/>
-            <Skeleton style={{paddingBottom:'0px'}} height={8.5} width={200}/><br/>
+            <div style={{ paddingTop: "5px" }}>
+              <Skeleton height={12.5} width={200} />
+              <br />
+              <Skeleton
+                style={{ paddingBottom: "0px" }}
+                height={8.5}
+                width={200}
+              />
+              <br />
             </div>
           </div>
-          <Skeleton height={310}/>
-          <div style={{padding:'11px',paddingTop:'7px'}}>
-            <Skeleton height={22} width='100%'/>
+          <Skeleton height={310} />
+          <div style={{ padding: "11px", paddingTop: "7px" }}>
+            <Skeleton height={22} width="100%" />
           </div>
         </div>
-      )
+      );
     }
     if (this.state.posts) {
       postsData = this.state.posts.map((post, index) => {
-        return <Post data={post} />;
+        return <Post postId={post.id} data={post} />;
       });
     }
 

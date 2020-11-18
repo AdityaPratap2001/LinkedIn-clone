@@ -202,18 +202,18 @@ class PostedJobDisplay extends Component {
           </div>
 
           <div>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
-            <Skeleton height={12}/>
+            <Skeleton height={12} width='90%'/>
+            <Skeleton height={12} width='85%'/>
+            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
+            <Skeleton height={12} width='90%'/>
+            <Skeleton height={12} width='85%'/>
+            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
+            <Skeleton height={12} width='90%'/>
+            <Skeleton height={12} width='85%'/>
+            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
+            <Skeleton height={12} width='90%'/>
+            <Skeleton height={12} width='85%'/>
+            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
           </div>
           
         </div>

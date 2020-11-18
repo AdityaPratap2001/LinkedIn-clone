@@ -2,52 +2,42 @@ import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
 import "./Experience.css";
 import defaultCompImg from "../../../../assets/defaultInstitute.png";
-
-const experience = [
-  {
-    img: null,
-    position: "App Developer",
-    industry: "Software Incubator (SDC-SI)",
-    startTime: "Oct 2019",
-    endTime: "Nov 2020",
-  },
-  {
-    img: defaultCompImg,
-    position: "Web Developer",
-    industry: "Software Incubator (SDC-SI)",
-    startTime: "Oct 2019",
-    endTime: "Nov 2020",
-  },
-];
-
-const education = [
-  {
-    img: null,
-    institute: "AJAY KUMAR GARG ENGINEERING COLLEGE",
-    location: "Ghaziabad, Uttar Pradesh",
-    startTime: "Oct 2019",
-    endTime: "Nov 2020",
-  },
-  {
-    img: null,
-    institute: "ASSISI CONVENT SCHOOL",
-    location: "Noida, Uttar Pradesh",
-    startTime: "July 2019",
-    endTime: "Nov 2017",
-  },
-];
+import axios from "../../../../API/baseURL/baseURL";
+import moment from "moment";
 
 class Experience extends Component {
   state = {
-    experData: experience,
-    eduData: education,
+    experData: [],
+    eduData: [],
     isLoading: true,
+    userID: this.props.userID,
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2600);
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let profId = localStorage.getItem("profileID");
+    axios
+      .get(`/user/profile/get_work/${this.state.userID}/`, config)
+      .then((res) => {
+        console.log(res);
+        this.setState({ isLoading: false, experData: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get(`/user/profile/get_academic/${this.state.userID}`, config)
+      .then((res) => {
+        console.log(res);
+        this.setState({ isLoading: false, eduData: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -137,16 +127,16 @@ class Experience extends Component {
       experData = (
         <div style={{ textAlign: "center", transform: "translateY(-10px)" }}>
           <h6 style={{ fontWeight: "350", color: "darkgrey" }}>
-            You have not added any experiences
+            User has not added any past experinces
           </h6>
         </div>
       );
     }
 
     if (this.state.experData.length !== 0) {
-      experData = this.state.experData.map((exper, id) => {
+      experData = this.state.experData.map((exper, index) => {
         let compLogoSrc = exper.img;
-        if (compLogoSrc === null) {
+        if (compLogoSrc === null || compLogoSrc === undefined) {
           compLogoSrc = defaultCompImg;
         }
 
@@ -157,12 +147,13 @@ class Experience extends Component {
             </div>
             <div className="experMid">
               <h6 className="position">{exper.position}</h6>
-              <h6 className="industry">{exper.industry}</h6>
+              <h6 className="industry">{exper.organization_name}</h6>
               <h6>
-                <span className="time">{exper.startTime} - </span>
-                <span className="time">{exper.endTime}</span>
+                <span className="time">{exper.start_date} - </span>
+                <span className="time">{exper.end_date}</span>
               </h6>
             </div>
+            {/* <div onClick={() => this.displayEditModal(exper,id)} className="experRight"> */}
           </div>
         );
       });
@@ -172,16 +163,16 @@ class Experience extends Component {
       eduData = (
         <div style={{ textAlign: "center", transform: "translateY(-10px)" }}>
           <h6 style={{ fontWeight: "350", color: "darkgrey" }}>
-            You have not added any education history
+            User has not added any past education history
           </h6>
         </div>
       );
     }
 
     if (this.state.eduData.length !== 0) {
-      eduData = this.state.eduData.map((edu, id) => {
+      eduData = this.state.eduData.map((edu, index) => {
         let compLogoSrc = edu.img;
-        if (compLogoSrc === null) {
+        if (compLogoSrc === null || compLogoSrc === undefined) {
           compLogoSrc = defaultCompImg;
         }
 
@@ -191,13 +182,15 @@ class Experience extends Component {
               <img src={compLogoSrc} />
             </div>
             <div className="experMid">
-              <h6 className="position">{edu.institute}</h6>
-              <h6 className="industry">{edu.location}</h6>
+              {/* <h6 className="position">{edu.position}</h6> */}
+              <h6 className="position">Student</h6>
+              <h6 className="industry">{edu.organization_name}</h6>
               <h6>
-                <span className="time">{edu.startTime} - </span>
-                <span className="time">{edu.endTime}</span>
+                <span className="time">{edu.start_date} - </span>
+                <span className="time">{edu.end_date}</span>
               </h6>
             </div>
+            {/* <div onClick={() => this.displayEditModal(exper,id)} className="experRight"> */}
           </div>
         );
       });
@@ -208,12 +201,14 @@ class Experience extends Component {
         <h5 style={{ color: "red !important" }} className="profStrength">
           Experiences
         </h5>
+
         {experData}
 
         <div style={{ position: "relative", marginTop: "58px" }}>
           <h5 style={{ color: "red !important" }} className="profStrength">
             Education
           </h5>
+
           {eduData}
         </div>
       </>

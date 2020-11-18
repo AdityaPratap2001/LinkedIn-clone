@@ -13,6 +13,9 @@ import PostJob from "./routes/PostJob/PostJob";
 import PostedJobDisplay from "./routes/PostedJobDisplay/PostedJobDisplay";
 import JobDisplay from "./routes/JobDisplay/JobDisplay";
 import SavedPosts from "./routes/SavedPosts/SavedPosts";
+import SearchDisplay from "./routes/SearchDisplay/SearchDisplay";
+import Notifications from "./routes/Notifications/Notifications";
+import MyPosts from "./routes/MyPosts/MyPosts";
 
 function App() {
   return (
@@ -43,7 +46,7 @@ function App() {
               <User key={props.location.pathname} {...props} />
             )}
           />
-          <Route path="/postJob" exact component={PostJob}/>
+          <Route path="/postJob" exact component={PostJob} />
           <Route
             path="/postedJob/:id"
             render={(props) => (
@@ -56,8 +59,18 @@ function App() {
               <JobDisplay key={props.location.pathname} {...props} />
             )}
           />
-          <Route path="/savedPosts" exact component={SavedPosts}/>
-        
+          <Route path="/savedPosts" exact component={SavedPosts} />
+
+          <Route
+            path="/search/:id"
+            render={(props) => (
+              <SearchDisplay key={props.location.pathname} {...props} />
+            )}
+          />
+
+          <Route path="/notifications" exact component={Notifications} />
+          <Route path="/MyPosts" exact component={MyPosts} />
+
         </Switch>
       </BrowserRouter>
     </div>

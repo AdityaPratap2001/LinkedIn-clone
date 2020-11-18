@@ -171,7 +171,7 @@ class PostedJobs extends Component {
       );
     }
 
-    if (!this.state.isLoading) {
+    if (!this.state.isLoading && this.state.jobs) {
       savedJobsData = this.state.jobs.map((item, index) => {
         let id = index;
         let imgSrc = item.file_linked;

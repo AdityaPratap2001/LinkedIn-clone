@@ -46,7 +46,7 @@ class Jobs extends Component {
 
         <div className="jobsBody">
           <div className='sideBox'>
-          <ProfileSidebox />
+          <ProfileSidebox isFixed={false}/>
           </div>
           
           <div className='rightDisplay'>
@@ -70,7 +70,7 @@ class Jobs extends Component {
 
             {jobsData}
 
-            {/* <RecommendedJobs /> */}
+            <RecommendedJobs />
           </div>
 
         </div>

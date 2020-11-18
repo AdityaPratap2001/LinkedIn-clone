@@ -1,0 +1,15 @@
+.savedPostsPrivate{
+  background-color: white;
+  border: #ccc 1.4px solid;
+  padding: 20px 28px;
+  color: rgb(150, 150, 150);
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
+}
+.savedPostsPrivate .head{
+  color: black;
+  font-weight: 450;
+}
+.savedPostsPrivate .sub{
+  font-size: 14px;
+  font-weight: 500;
+}

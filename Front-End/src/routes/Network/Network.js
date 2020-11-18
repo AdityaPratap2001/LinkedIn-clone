@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import ProfileSidebox from '../../components/ProfileSidebox/ProfileSidebox';
 import Invitations from './NetworkType/Invitations/Invitations';
 import Connections from './NetworkType/Connections/Connections';
+import Pending from  './NetworkType/Pending/Pending';
 import './Network.css';
 
 class Network extends Component {
@@ -22,12 +23,20 @@ class Network extends Component {
     }
     let style1 = borderStyle;
     let style2 = null;
+    let style3 = null;
 
     let jobsData = <Invitations/>;
     if (this.state.typeOfJob === 2) {
       jobsData = <Connections/>;
       style1 = null;
       style2 = borderStyle;
+      style3 = null;
+    }
+    if (this.state.typeOfJob === 3) {
+      jobsData = <Pending/>;
+      style1 = null;
+      style2 = null;
+      style3 = borderStyle;
     }
   
     return (
@@ -47,6 +56,9 @@ class Network extends Component {
                 </div>
                 <div style={style2} onClick={() => this.typeOfJobSelected(2)}>
                   Connections
+                </div>
+                <div style={style3} onClick={() => this.typeOfJobSelected(3)}>
+                  Pending
                 </div>
               </div>
               {/* <div className="jobsTypeSelectRight">

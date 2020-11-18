@@ -4,15 +4,50 @@ import defaultPic from "../../../../assets/defaultProfilePic.png";
 import mediaSrcI from "../../../../assets/4.png";
 import mediaSrcV from "../../../../assets/sampleVideo.mp4";
 import Comment from "./Comment";
+import PeopleLiked from "./PeopleLiked";
+import axios from "../../../../API/baseURL/baseURL";
 
 class Post extends Component {
   state = {
     post: this.props.data,
     comments: this.props.data.comments,
     showFullText: false,
-    isLiked: false,
-    displayCommentSection: true,
+    isLiked: this.props.data.is_liked_by_user,
+    displayCommentSection: false,
     newComment: "",
+    showModal: false,
+    modalData: null,
+    likedByList: this.props.data.liked_by,
+    isBookmarked: this.props.data.is_saved_by_user,
+  };
+
+  showPeopleList = (data) => {
+    console.log(data);
+    let peopleList = data;
+    let profID = localStorage.getItem("profileID");
+    if (this.state.isLiked) {
+      let newList = [
+        {
+          id: profID,
+          voter_avatar: this.props.data.viewer_avatar,
+          voter_name: this.props.data.viewer_name,
+          voter_tagline: this.props.data.viewer_tagline,
+        },
+      ];
+      for (let index in peopleList) {
+        newList.push(peopleList[index]);
+      }
+      peopleList = newList;
+    }
+    console.log(this.state.isLiked);
+    console.log(peopleList);
+    this.setState({
+      showModal: true,
+      modalData: peopleList,
+    });
+  };
+  hideModal = () => {
+    this.setState({ showModal: false });
   };
 
   showFullText = () => {
@@ -20,19 +55,118 @@ class Post extends Component {
   };
 
   like = () => {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let likePost = {
+      vote: 1,
+    };
+    axios
+      .post(`/user/post/vote/${this.props.postId}/like/`, likePost, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     this.setState({ isLiked: true });
     this.state.post.likes_count = this.state.post.likes_count + 1;
   };
+
   unLike = () => {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
+        // "Accept": "application/json",
+      },
+    };
+    let likePost = {
+      vote: -1,
+    };
+    axios
+      .post(`/user/post/vote/${this.props.postId}/like/`, likePost, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     this.setState({ isLiked: false });
     this.state.post.likes_count = this.state.post.likes_count - 1;
   };
+
   displayCommentSection = () => {
     this.setState({ displayCommentSection: true });
   };
+
+  bookmark = () => {
+    this.setState({ isBookmarked: true });
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      // withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
+        // "Accept": "application/json",
+      },
+    };
+    axios
+      .post(`/user/post/bookmark/create/${this.props.postId}/`, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  unBookmark = () => {
+    this.setState({ isBookmarked: false });
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .post(`/user/post/bookmark/create/${this.props.postId}/`, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   addComment = (e) => {
     e.preventDefault();
-    let profID = localStorage.getItem('profileID');
+    let profID = localStorage.getItem("profileID");
+
+    let postId = this.props.postId;
+    let text = this.state.newComment;
+    let commentData = {
+      commented_by: profID,
+      post: postId,
+      text: text,
+    };
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let commentId = null;
+    console.log(commentData);
+    axios
+      .post(`/user/post/comment/create/`, commentData, config)
+      .then((res) => {
+        console.log(res);
+        commentId = res.data.id;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     this.state.post.comment_count = this.state.post.comment_count + 1;
     let newComments = [
       // {
@@ -43,10 +177,11 @@ class Post extends Component {
       {
         comment: {
           author_id: profID,
-          commentId: null,
+          // commentId: null,
           author_avatar: this.props.data.viewer_avatar,
           is_liked: false,
           likes_count: 0,
+          id: commentId,
           comment_count: 0,
           author_name: this.props.data.viewer_name,
           author_tagline: this.props.data.viewer_tagline,
@@ -59,7 +194,7 @@ class Post extends Component {
     for (let index in this.state.comments) {
       newComments.push(this.state.comments[index]);
     }
-    alert(this.state.newComment);
+    // alert(this.state.newComment);
     this.setState({
       newComment: "",
       comments: newComments,
@@ -102,13 +237,13 @@ class Post extends Component {
     let mediaData = null;
     if (postData.media_type === "img") {
       mediaData = (
-        <img src={postData.media}/>
+        <img src={postData.media} />
         // <img src={mediaSrcI} />
       );
     }
     if (postData.media_type === "video") {
       mediaData = (
-        <video src={postData.media} controls/>
+        <video src={postData.media} controls />
         // <video src={mediaSrcV} controls />
       );
     }
@@ -148,10 +283,17 @@ class Post extends Component {
       );
     }
 
+    let modalData = null;
+    if (this.state.showModal) {
+      modalData = (
+        <PeopleLiked data={this.state.modalData} hideModal={this.hideModal} />
+      );
+    }
+
     let commentsData = null;
     if (this.state.displayCommentSection) {
       commentsData = this.state.comments.map((comment) => {
-        let profID = localStorage.getItem('profileID');
+        let profID = localStorage.getItem("profileID");
         return (
           <Comment
             viewerId={profID}
@@ -159,6 +301,7 @@ class Post extends Component {
             tagline={this.props.data.viewer_tagline}
             img={commentImgSrc}
             comment={comment}
+            commentId={comment.comment.id}
           />
         );
 
@@ -214,8 +357,14 @@ class Post extends Component {
       });
     }
 
+    let bookMarkIcon = <i onClick={this.bookmark} class="far fa-bookmark" />;
+    if (this.state.isBookmarked) {
+      bookMarkIcon = <i onClick={this.unBookmark} class="fas fa-bookmark" />;
+    }
+
     return (
       <div className="post">
+        {modalData}
         <div className="postHeader">
           <div className="userDetails">
             <NavLink to={`/user/${postData.author_id}`}>
@@ -224,13 +373,11 @@ class Post extends Component {
                 <h6 className="name">{postData.author_name}</h6>
                 <h6 className="tag">{postData.author_tagline}</h6>
                 {/* <h6 className="tag">{postData.location}</h6> */}
-                <h6 className='tag'>Noida, Uttar Pradesh, India</h6>
+                <h6 className="tag">Noida, Uttar Pradesh, India</h6>
               </div>
             </NavLink>
 
-            <div className="bookmark">
-              <i class="far fa-bookmark"></i>
-            </div>
+            <div className="bookmark">{bookMarkIcon}</div>
           </div>
 
           <div className="strike"></div>
@@ -255,7 +402,10 @@ class Post extends Component {
 
         <div className="numDisplay">
           <h6>
-            <span className="likes">
+            <span
+              onClick={() => this.showPeopleList(this.state.likedByList)}
+              className="likes"
+            >
               <i class="fas fa-thumbs-up"></i>
               {postData.likes_count}
             </span>
@@ -270,7 +420,9 @@ class Post extends Component {
             >
               ,
             </span>
-            <span className="comments">{postData.comment_count} Comments</span>
+            <span onClick={this.displayCommentSection} className="comments">
+              {postData.comment_count} Comments
+            </span>
           </h6>
         </div>
 

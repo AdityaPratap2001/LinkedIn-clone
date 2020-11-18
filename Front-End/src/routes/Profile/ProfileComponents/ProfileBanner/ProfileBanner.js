@@ -116,12 +116,15 @@ class ProfileBanner extends Component {
     // if (details.profilePic === null) {
     //   details.profilePic = profilePic;
     // }
+    if(details.profilePic !== null){
+      this.setState({profilePic : details.profilePic});
+    }
     this.setState({
       firstName: details.firstName,
       lastName: details.lastName,
       tagline: details.tagline,
       address: details.location,
-      profilePic: details.profilePic,
+      // profilePic: details.profilePic,
     });
 
     let token = localStorage.getItem("accessToken");

@@ -3,6 +3,8 @@ import userImgSrc from "../../../../assets/profileSample.jpg";
 import emptySrc from '../../../../assets/empty.png';
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import axios from '../../../../API/baseURL/baseURL';
+import defaultUserPic from "../../../../assets/defaultProfilePic.png";
 
 const data = [
   {
@@ -34,21 +36,47 @@ const data = [
 class Connections extends Component {
   state = {
     loading: true,
-    connections : data,
+    connections : null,
   };
 
   componentDidMount(){
     setTimeout(()=>{
       this.setState({loading:false});
     },2000)
+
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get(`/user/network/view/connections/`,config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({connections : res.data});
+      })
+      .catch((err)=>{
+        console.log(err);
+        this.setState({connections : []});
+      })
   }
 
-  removeConnection = (id) => {
+  removeConnection = (id, connectionId) => {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .delete(`/user/network/delete/connection/${connectionId}/`, config)
+      .then((res) => {
+        console.log(res);
+        let newInvitationsArray = this.state.connections;
+        console.log(newInvitationsArray);
+        newInvitationsArray.splice(id, 1);
+        this.setState({ connections: newInvitationsArray });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log(this.state.connections);
-    let newConnectionsArray = this.state.connections;
-    console.log(newConnectionsArray);
-    newConnectionsArray.splice(id, 1);
-    this.setState({ connections: newConnectionsArray });
   };
 
   render() {
@@ -109,24 +137,28 @@ class Connections extends Component {
       )
     }
 
-    if (!this.state.loading) {
+    if (!this.state.loading && this.state.connections) {
       connectionsData = this.state.connections.map((item, index) => {
         let id = index;
+        let imgSrc = item.connection_avatar;
+        if (imgSrc === null) {
+          imgSrc = defaultUserPic;
+        }
         let initialData = (
           <>
-            <NavLink to="/job/43">
+            <NavLink to={`/user/${item.profile_id}`}>
               <div className="connectionFirst">
-                <img src={item.imgSrc} />
+                <img src={imgSrc} />
               </div>
               <div className="connectionSecond">
-                <h6 className="connectionName">{item.name}</h6>
+                <h6 className="connectionName">{item.connection_name}</h6>
                 <h6 className="connectionDomain">
-                  {item.domain} at {item.industry}
+                  {item.connection_tagline}
                 </h6>
               </div>
             </NavLink>
             <div className="connectionThird">
-              <h6 onClick={() => this.removeConnection(id)}>Remove</h6>
+              <h6 onClick={() => this.removeConnection(id,item.connection_id)}>Remove</h6>
               <button>Message</button>
             </div>
           </>
@@ -143,7 +175,7 @@ class Connections extends Component {
       });
     }
 
-    if(this.state.connections.length === 0){
+    if(this.state.connections && this.state.connections.length === 0){
       connectionsData = (
         <div className='emptyImgDiv'>
           <img src={emptySrc} className='emptyImg'/>

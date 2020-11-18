@@ -1,21 +1,54 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import defaultPic from "../../../../assets/defaultProfilePic.png";
+import axios from '../../../../API/baseURL/baseURL';
 
 class Reply extends Component {
   state = {
-    isLiked: this.props.reply.is_liked,
+    isLiked: this.props.reply.is_liked_by_user,
   };
 
   likeReply = () => {
     this.setState({ isLiked: true });
     this.props.reply.is_liked = true;
     this.props.reply.likes_count = this.props.reply.likes_count + 1;
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let replyData = {
+      vote: 1,
+    };
+    axios
+      .post(`/user/post/comment/reply/like/${this.props.replyId}/`, replyData, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   };
+
   unlikeReply = () => {
     this.setState({ isLiked: false });
     this.props.reply.is_liked = false;
     this.props.reply.likes_count = this.props.reply.likes_count - 1;
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let replyData = {
+      vote: -1,
+    };
+    axios
+      .post(`/user/post/comment/reply/like/${this.props.replyId}/`, replyData, config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -38,7 +71,7 @@ class Reply extends Component {
         Like
       </span>
     );
-    if (!this.props.reply.is_liked) {
+    if (!this.state.isLiked) {
       likeButton = (
         <span onClick={this.likeReply} className="like">
           Like

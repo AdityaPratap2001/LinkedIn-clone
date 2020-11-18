@@ -1,9 +1,24 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import profSample from "../../../../assets/profileSample.jpg";
 
 class LoggedIn extends Component {
+
+  state = {
+    redirect : null,
+  }
+
+  signOut = () => {
+    localStorage.clear();
+    this.setState({redirect : '/userLogin'})
+  }
+
   render() {
+
+    if(this.state.redirect){
+      return <Redirect to='/userLogin'/>
+    }
+
     return (
       <ul className="conditional_render NavLink navbar-nav mr-auto">
         <NavLink
@@ -106,16 +121,16 @@ class LoggedIn extends Component {
             <div className="dropAccount">
               <h6>ACCOUNT</h6>
             </div>
-            <NavLink to="/user">
+            <NavLink disable to="/profile">
               <h6 className="dropAccountOptions">Settings & Privacy</h6>
             </NavLink>
-            <NavLink to="/postedJobs">
+            <NavLink to="/jobs">
               <h6 className="dropAccountOptions">My Posted Jobs</h6>
             </NavLink>
             <div className="dropAccount">
               <h6>MANAGE</h6>
             </div>
-            <h6 className="dropAccountOptions">SIGN OUT</h6>
+            <h6 onClick={this.signOut} className="dropAccountOptions">SIGN OUT</h6>
           </div>
         </li>
 

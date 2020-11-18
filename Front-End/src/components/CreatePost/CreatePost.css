@@ -108,6 +108,9 @@
   margin-top: 18px;
   font-size: 14.8px;
 }
+.modal-content .postmodal .createPostModalHead::-webkit-scrollbar {
+  display: none;
+}
 .modal-content .postModal .displaySelected{
   display: flex;
   justify-content: center;

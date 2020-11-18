@@ -11,7 +11,7 @@ import './User.css';
 class User extends Component {
 
   state = {
-    profileId : this.props.match.params.id,
+    userID : this.props.match.params.id,
   }
 
   render() {
@@ -22,25 +22,25 @@ class User extends Component {
     
           <div className="profileLeft">
             <div className="profileBanner">
-              <ProfileBanner />
+              <ProfileBanner userID={this.state.userID}/>
             </div>
-            <div className="profileLevel">
-              <ProfileLevel />
-            </div>
+            {/* <div className="profileLevel">
+              <ProfileLevel userID={this.state.userID}/>
+            </div> */}
             <div className="experience">
-              <Experience/>
+              <Experience userID={this.state.userID}/>
             </div>
             <div className="experience skills">
-              <Skills/>
+              <Skills userID={this.state.userID}/>
             </div>
           </div>
 
           <div className="profileRight">
             <div className="popularDomains">
-              <PopularDomains />
+              <PopularDomains userID={this.state.userID}/>
             </div>
             <div className="suggestions">
-              <SuggestedUsers/>
+              <SuggestedUsers userID={this.state.userID}/>
             </div>
           </div>
           

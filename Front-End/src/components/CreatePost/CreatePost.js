@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import CreatePostModal from "./Modal/CreatePostModal";
 import "./CreatePost.css";
 import CustomAlert from "../CustomAlert/CustomAlert";
-import axios from '../../API/baseURL/baseURL';
+import axios from "../../API/baseURL/baseURL";
 
 class CreatePost extends Component {
   state = {
     showModal: false,
     showAlert: false,
-    alertColor : 'danger',
-    alertData : 'Error'
+    alertColor: "danger",
+    alertData: "Error",
   };
 
   showModal = () => {
     this.setState({ showModal: true });
   };
-  
+
   hideModal = () => {
     this.setState({ showModal: false });
   };
@@ -25,7 +25,7 @@ class CreatePost extends Component {
   };
 
   createPost = (details) => {
-    // console.log(details);
+    console.log(details);
 
     let token = localStorage.getItem("accessToken");
     const config = {
@@ -45,34 +45,40 @@ class CreatePost extends Component {
     //   text: details.postText,
     //   media: mediaData,
     // };
-    let profID = localStorage.getItem('profileID');
+    let profID = localStorage.getItem("profileID");
     let postData = new FormData();
-    postData.append('media_type',details.selectedType);
-    postData.append('text',details.postText);
-    postData.append('media',mediaData);
-    postData.append('written_by',profID);
+    postData.append("media_type", details.selectedType);
+    postData.append("text", details.postText);
+    if (mediaData !== null) {
+      postData.append("media", mediaData);
+    }
+    postData.append("written_by", profID);
 
     console.log(postData);
 
-    axios.post("/user/post/create/",postData,config)
-     .then((res)=>{
-       console.log(res);
-       if(res.status === 201){
+    axios
+      .post("/user/post/create/", postData, config)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          this.setState({
+            showAlert: true,
+            alertData: "The post was successfully posted!",
+            alertColor: "success",
+          });
+          setTimeout(()=>{
+            this.setState({showAlert: false}); 
+          },2800)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
         this.setState({
-          showAlert : true,
-          alertData : 'The post was successfully posted!',
-          alertColor : 'success'
-        });    
-       }
-     })
-     .catch((err)=>{
-       console.log(err);
-       this.setState({
-        showAlert : true,
-        alertData : 'Something went wrong!',
-        alertColor : 'danger'
-      }); 
-     })
+          showAlert: true,
+          alertData: "Something went wrong!",
+          alertColor: "danger",
+        });
+      });
   };
 
   render() {
@@ -93,7 +99,7 @@ class CreatePost extends Component {
           hidePop={this.hidePop}
           color={this.state.alertColor}
           content={this.state.alertData}
-          where='createPost'
+          where="createPost"
         />
       );
     }

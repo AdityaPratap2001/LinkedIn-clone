@@ -1,6 +1,8 @@
+import Axios from "axios";
 import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
 import ShowEndorsedList from "./Modals/ShowEndorsedList";
+import axios from '../../../../API/baseURL/baseURL';
 import "./Skills.css";
 
 const skillsData = [
@@ -10,20 +12,20 @@ const skillsData = [
     isEndorsed: true,
     list: [
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
       },
       {
-        profPic : null,
-        firstName : 'Aryan',
-        lastName : 'Kishore',
-        position : 'Web Developer',
-        industry : 'IIT Kharagpur'
-      }
-    ]
+        profPic: null,
+        firstName: "Aryan",
+        lastName: "Kishore",
+        position: "Web Developer",
+        industry: "IIT Kharagpur",
+      },
+    ],
   },
   {
     skill: "React JS",
@@ -55,19 +57,45 @@ const skillsData = [
 class Skills extends Component {
   state = {
     showModal: false,
-    skills: skillsData,
-    displaySkills: skillsData.slice(0, 3),
+    // skills: skillsData,
+    // displaySkills: skillsData.slice(0, 3),
+    skills: null,
+    displaySkills: null,
     showingAllSkills: false,
     modalNum: null,
     modalData: null,
     isLoading: true,
-    connectStatus: 'connected'
+    connectStatus: "connected",
   };
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isLoading: false });
     }, 2500);
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let profId = localStorage.getItem("profileID");
+    axios
+      .get(`/user/profile/skills/${this.props.userID}/`, config)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoading: false,
+          skills: res.data.skills_list,
+          displaySkills: res.data.skills_list.slice(0, 3),
+          skillID: res.data.id,
+        });
+        // console.log(this.state.displaySkills);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        // console.log(this.state);
+        // // if (err.response.status === 404) {
+        this.setState({ isLoading: false, skills: [] });
+        // }
+      });
   }
 
   displayModal = (id) => {
@@ -100,20 +128,20 @@ class Skills extends Component {
     let arr = this.state.skills;
     arr[id].isEndorsed = true;
     arr[id].endorsed = arr[id].endorsed + 1;
-    this.setState({skills : arr});
-  }
+    this.setState({ skills: arr });
+  };
   unendorseSkill = (id) => {
     let arr = this.state.skills;
     arr[id].isEndorsed = false;
-    if(arr[id].endorsed !== 0){
+    if (arr[id].endorsed !== 0) {
       arr[id].endorsed = arr[id].endorsed - 1;
     }
-    this.setState({skills : arr});
-  }
+    this.setState({ skills: arr });
+  };
 
   hideAlert = () => {
-    this.setState({showAlert : false});
-  }
+    this.setState({ showAlert: false });
+  };
 
   render() {
     if (this.state.isLoading) {
@@ -135,7 +163,7 @@ class Skills extends Component {
     }
 
     let conditionalButton = null;
-    if (this.state.skills.length > 3) {
+    if (this.state.skills !== null && this.state.skills.length > 3) {
       if (!this.state.showingAllSkills) {
         conditionalButton = (
           <h6 onClick={this.showMore} className="showMore">
@@ -153,27 +181,40 @@ class Skills extends Component {
     }
 
     let skillsData = null;
-    if (this.state.skills.length === 0) {
+    if (this.state.skills !== null && this.state.skills.length === 0) {
       skillsData = (
         <div style={{ textAlign: "center", transform: "translateY(-10px)" }}>
           <h6 style={{ fontWeight: "350", color: "darkgrey" }}>
-            You have not added any skills to showcase
+            User has not added any skills to showcase
           </h6>
         </div>
       );
     }
-    if (this.state.skills.length !== 0) {
+    if (this.state.skills !== null && this.state.skills.length !== 0) {
       skillsData = this.state.displaySkills.map((elem, id) => {
         let endorseIcon = null;
-        if(this.state.connectStatus === 'connected'){
+        if (this.state.connectStatus === "connected") {
           if (elem.isEndorsed) {
-            endorseIcon = <i onClick={()=>this.unendorseSkill(id)} class="far endorseIcon fa-check-circle"></i>;
+            endorseIcon = (
+              <i
+                onClick={() => this.unendorseSkill(id)}
+                class="far endorseIcon fa-check-circle"
+              ></i>
+            );
           }
           if (!elem.isEndorsed) {
-            endorseIcon = <i onClick={()=>this.endorseSkill(id)} class="fas endorseIcon fa-plus-circle"></i>;
+            endorseIcon = (
+              <i
+                onClick={() => this.endorseSkill(id)}
+                class="fas endorseIcon fa-plus-circle"
+              ></i>
+            );
           }
         }
-        if(this.state.connectStatus === 'notConnected' || this.state.connectStatus === 'pending'){
+        if (
+          this.state.connectStatus === "notConnected" ||
+          this.state.connectStatus === "pending"
+        ) {
           endorseIcon = null;
         }
 
