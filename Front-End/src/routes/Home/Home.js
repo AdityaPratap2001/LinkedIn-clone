@@ -9,6 +9,13 @@ class Home extends Component {
     isLoggedIn : true,
   }
 
+  componentDidMount(){
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      this.setState({isLoggedIn : false});
+    }
+  }
+
   render() {
     return (
       <div>

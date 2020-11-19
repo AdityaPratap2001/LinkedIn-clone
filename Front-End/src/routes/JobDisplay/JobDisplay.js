@@ -5,6 +5,7 @@ import defaultCompImg from "../../assets/defaultInstitute.png";
 import axios from "../../API/baseURL/baseURL";
 import Skeleton from "react-loading-skeleton";
 import "./JobDisplay.css";
+import { Redirect } from "react-router-dom";
 
 // let postedJobData = {
 //   jobTitle: "Web Developer",
@@ -31,9 +32,9 @@ class JobDisplay extends Component {
   state = {
     jobData: null,
     jobId: this.props.match.params.id,
-    // isSaved: postedJobData.isSaved,
-    // isApplied: postedJobData.isApplied,
-    // myPostedJob: postedJobData.myPostedJob,
+    isSaved: null,
+    isApplied: null,
+    myPostedJob: null,
   };
 
   componentDidMount() {
@@ -45,7 +46,12 @@ class JobDisplay extends Component {
       .get(`/user/profile/vacancy/${this.state.jobId}`, config)
       .then((res) => {
         console.log(res);
-        this.setState({ jobData: res.data });
+        this.setState({ 
+          jobData: res.data,
+          // isSaved: res.data.
+          // isApplied: res.data
+          // myPostedJob: res.data
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -125,11 +131,21 @@ class JobDisplay extends Component {
   };
 
   render() {
+
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
+
+    if(this.state.myPostedJob){
+      return <Redirect to={`/myPostedJobs/${this.state.jobId}`}/>
+    }
+
     let companyImgSrc = null;
     if (this.state.jobData) {
       companyImgSrc = this.state.jobData.file_linked;
     }
-    if (companyImgSrc === null) {
+    if (companyImgSrc === null || companyImgSrc === '') {
       companyImgSrc = defaultCompImg;
     }
 
@@ -226,7 +242,7 @@ class JobDisplay extends Component {
             <h6>Job</h6>
             <ul>
               <li>
-                Number of applicants - {this.state.jobData.applicants.length}
+                Number of applicants - {this.state.jobData.num_of_applicants}
               </li>
               <li>Employment type - {this.state.jobData.employment_type}</li>
             </ul>

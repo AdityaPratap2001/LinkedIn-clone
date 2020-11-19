@@ -96,12 +96,15 @@ class ProfileBanner extends Component {
   }
 
   connectRequest = () => {
-    alert("Connection Request Sent!");
+    // alert("Connection Request Sent!");
     let token = localStorage.getItem("accessToken");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    axios.post(`/user/network/send/connection/${this.state.userID}/`,config)
+    const reqData = {
+      field : 'data',
+    }
+    axios.post(`/user/network/send/connection/${this.state.userID}/`,reqData,config)
       .then((res)=>{
         console.log(res);
         this.setState({ connectStatus: "pending" });

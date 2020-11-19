@@ -9,9 +9,14 @@ import Dashboard from "./ProfileComponents/Dashboard/Dashboard";
 import Experience from "./ProfileComponents/Experience/Experience";
 import Skills from "./ProfileComponents/Skills/Skills";
 import SuggestedUsers from './ProfileComponents/SuggestedUsers/SuggestedUsers';
+import {Redirect} from 'react-router-dom';
 
 class Profile extends Component {
   render() {
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
     return (
       <div>
         <Navbar shadow={true} />

@@ -4,7 +4,7 @@ import "./Jobs.css";
 import SavedJobs from "./JobsType/SavedJobs/SavedJobs";
 import AppliedJobs from "./JobsType/AppliedJobs/AppliedJobs";
 import PostedJobs from "./JobsType/PostedJobs/PostedJobs";
-import { NavLink } from "react-router-dom";
+import { NavLink,Redirect } from "react-router-dom";
 import RecommendedJobs from "./JobsType/RecommendedJobs/RecommendedJobs";
 import ProfileSidebox from "../../components/ProfileSidebox/ProfileSidebox";
 
@@ -18,6 +18,11 @@ class Jobs extends Component {
   };
 
   render() {
+
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
 
     let borderStyle = {
       borderBottom: 'black 3px solid',
@@ -46,7 +51,7 @@ class Jobs extends Component {
 
         <div className="jobsBody">
           <div className='sideBox'>
-          <ProfileSidebox isFixed={false}/>
+          <ProfileSidebox isMoving={true}/>
           </div>
           
           <div className='rightDisplay'>
@@ -69,9 +74,9 @@ class Jobs extends Component {
             </div>
 
             {jobsData}
-
-            <RecommendedJobs />
           </div>
+
+          <RecommendedJobs />
 
         </div>
       </div>

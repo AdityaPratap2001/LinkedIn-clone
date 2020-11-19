@@ -35,7 +35,7 @@ class ChangeUserDetailsModal extends Component {
       firstName: "",
       lastName: "",
       location: "",
-      tagline: ","
+      tagline: ""
       // selectedFile: ""
     },
   };

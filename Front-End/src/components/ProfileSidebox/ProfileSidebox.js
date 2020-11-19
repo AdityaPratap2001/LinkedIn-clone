@@ -41,7 +41,7 @@ class ProfileSidebox extends Component {
 
   render() {
     let style = null;
-    if (this.props.isFixed) {
+    if (this.props.isMoving) {
       style = {
         position: "absolute",
       };

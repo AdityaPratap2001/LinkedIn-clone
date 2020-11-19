@@ -1,29 +1,19 @@
-import React, { Component } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import ProfileSidebox from '../../components/ProfileSidebox/ProfileSidebox';
-import PopularDomains from '../../components/PopularDomains/PopularDomains';
+import React, { Component } from "react";
+import Navbar from "../../components/Navbar/Navbar";
+import './SearchDisplay.css';
 
 class SearchDisplay extends Component {
-
   state = {
-    query : this.props.match.params.id
-  }
+    query: this.props.match.params.id,
+  };
 
   render() {
     return (
       <div>
-        <Navbar shadow={true}/>
-        <div className="body feedBody">
-        <ProfileSidebox />
-        
-        <div className="postColumn">
-          {/* <CreatePost/> */}
-          <hr style={{margin :'0px',marginBottom:'12px'}}/>
-          {/* <Posts /> */}
+        <Navbar shadow={true} />
+        <div className="body feedBody searchBody">
+          <h5 className='searchHead'>Results based on your search</h5>
         </div>
-        
-        <PopularDomains />
-      </div>
       </div>
     );
   }

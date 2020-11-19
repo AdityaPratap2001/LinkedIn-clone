@@ -7,6 +7,7 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import PopularDomains from "../../components/PopularDomains/PopularDomains";
 import ProfileSidebox from "../../components/ProfileSidebox/ProfileSidebox";
 import Navbar from "../../components/Navbar/Navbar";
+import {Redirect} from 'react-router-dom';
 
 class SavedPosts extends Component {
   state = {
@@ -34,6 +35,11 @@ class SavedPosts extends Component {
   }
 
   render() {
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
+
     let postsData = null;
     if (this.state.posts) {
       postsData = this.state.posts.map((post, index) => {

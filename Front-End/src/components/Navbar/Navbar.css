@@ -13,7 +13,7 @@
 }
 .Navbar .logo{
   height: 7.7vh;
-  transform: translateY(5px);
+  /* transform: translateY(5px); */
 }
 .Navbar .navbar-brand{
   margin-left: 20px;

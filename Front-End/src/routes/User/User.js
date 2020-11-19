@@ -6,6 +6,7 @@ import PopularDomains from './UserComponents/PopularDomains/PopularDomains';
 import SuggestedUsers from "./UserComponents/SuggestedUsers/SuggestedUsers";
 import ProfileBanner from './UserComponents/ProfileBanner/ProfileBanner';
 import Skills from './UserComponents/Skills/Skills';
+import {Redirect} from 'react-router-dom';
 import './User.css';
 
 class User extends Component {
@@ -15,6 +16,11 @@ class User extends Component {
   }
 
   render() {
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
+
     return (
       <div>
         <Navbar shadow={true} />

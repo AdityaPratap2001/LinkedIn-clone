@@ -4,6 +4,7 @@ import ProfileSidebox from '../../components/ProfileSidebox/ProfileSidebox';
 import Invitations from './NetworkType/Invitations/Invitations';
 import Connections from './NetworkType/Connections/Connections';
 import Pending from  './NetworkType/Pending/Pending';
+import {Redirect} from 'react-router-dom';
 import './Network.css';
 
 class Network extends Component {
@@ -17,6 +18,11 @@ class Network extends Component {
   };
 
   render() {
+
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
 
     let borderStyle = {
       borderBottom: 'black 3px solid',

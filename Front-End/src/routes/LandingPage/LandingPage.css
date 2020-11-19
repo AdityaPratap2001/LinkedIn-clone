@@ -5,6 +5,8 @@
   flex-wrap: wrap;
   padding-top: 80px;
   padding-bottom: 70px;
+  /* background-color: wheat; */
+  /* font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif; */
 }
 .landingPage .banner .bannerLeft{
   width: 55%;
@@ -40,14 +42,14 @@
   margin-top: 25px;
 }
 .landingPage .banner .bannerLeft a button{
-  background-color: blueviolet;
+  background-color: rgb(70, 144, 230);
   color: white;
-  border: blueviolet 1.7px solid;
+  border:  rgb(70, 144, 230) 1.7px solid;
   padding: 8px 15px;
 }
 .landingPage .banner .bannerLeft a button:hover{
-  border: blueviolet 1.7px solid;
-  color: blueviolet;
+  border:  rgb(70, 144, 230) 1.7px solid;
+  color:  rgb(70, 144, 230);
   background-color: white;
   font-weight: 600;
 }
@@ -208,7 +210,8 @@
   padding: 35px 30px;
   justify-content: space-between;
   align-items: center;
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
+  background-color:  rgb(70, 144, 230);
   margin-bottom: 80px;
 }
 .landingPage .addBoxPost .text .needEmp{
@@ -221,13 +224,13 @@
   color: #edf0f5;
 }
 .landingPage .addBoxPost button{
-  color: blueviolet;
+  color:  rgb(70, 144, 230);
   background-color: white;
   border-radius: 0;
 }
 .landingPage .addBoxPost button:hover{
   border: white 1.4px solid;
-  background-color: blueviolet;
+  background-color:  rgb(70, 144, 230);
   color: white;
 }
 

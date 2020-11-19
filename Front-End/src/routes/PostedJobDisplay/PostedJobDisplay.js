@@ -63,6 +63,10 @@ class PostedJobDisplay extends Component {
   }
 
   render() {
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
 
     let companyImgSrc = null;
     if (this.state.jobData) {

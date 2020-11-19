@@ -115,8 +115,11 @@ class Post extends Component {
         // "Accept": "application/json",
       },
     };
+    const bookData = {
+      field : 'data'
+    }
     axios
-      .post(`/user/post/bookmark/create/${this.props.postId}/`, config)
+      .post(`/user/post/bookmark/${this.props.postId}/`,bookData,config)
       .then((res) => {
         console.log(res);
       })
@@ -130,8 +133,11 @@ class Post extends Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+    const bookData = {
+      field : 'data'
+    }
     axios
-      .post(`/user/post/bookmark/create/${this.props.postId}/`, config)
+      .delete(`/user/post/bookmark/${this.props.postId}/`,bookData,config)
       .then((res) => {
         console.log(res);
       })

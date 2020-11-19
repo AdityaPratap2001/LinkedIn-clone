@@ -4,6 +4,7 @@ import PostJobForm from "./PostJobForm";
 import Loader from "../../components/Loader/Loader";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import axios from "../../API/baseURL/baseURL";
+import {Redirect} from "react-router-dom";
 import "./PostJob.css";
 
 class PostJob extends Component {
@@ -75,6 +76,11 @@ class PostJob extends Component {
   };
 
   render() {
+    let logStatus = localStorage.getItem('logStatus');
+    if(logStatus === null){
+      return <Redirect to='/userLogin'/>
+    }
+
     let alertData = null;
     if (this.state.showAlert) {
       alertData = (
