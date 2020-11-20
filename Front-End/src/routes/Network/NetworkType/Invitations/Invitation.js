@@ -10,15 +10,16 @@ class Invitation extends Component {
   };
 
   acceptInvitation = (index, connection_id) => {
-    this.setState({ accepted: true });
+    setTimeout(()=>{
+      this.setState({ accepted: true });
+    },1000)
     this.props.accept(index, connection_id);
   };
   removeInvitation = (index, connection_id) => {
-    this.setState({ rejected: true });
-    setTimeout(() => {
-      this.setState({ rejected: null });
-      this.props.reject(index, connection_id);
-    }, 2000);
+    setTimeout(()=>{  
+      this.setState({ rejected: true });
+    },1000)
+    this.props.reject(index, connection_id);
   };
 
   render() {

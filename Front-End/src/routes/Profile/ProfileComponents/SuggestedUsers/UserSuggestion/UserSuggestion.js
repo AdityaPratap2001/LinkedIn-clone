@@ -25,7 +25,7 @@ class UserSuggestion extends Component {
         <div className="userPic">
           <img src={profileImg} />
         </div>
-        <NavLink to="/user/32">
+        <NavLink to={`/user/${userData.profile_id}`}>
           <div className="userDesc">
             <h6 className="userDescTop">
               {userData.name}

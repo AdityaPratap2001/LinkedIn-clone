@@ -7,32 +7,32 @@ import axios from "../../../../API/baseURL/baseURL";
 import defaultUserPic from "../../../../assets/defaultProfilePic.png";
 import Invitation from "./Invitation";
 
-const data = [
-  {
-    imgSrc: userImgSrc,
-    name: "Monica Geller",
-    domain: "Chef",
-    industry: "Allasandro's",
-  },
-  {
-    imgSrc: userImgSrc,
-    name: "Chandler Bing",
-    domain: "Sarcastic",
-    industry: "Everything",
-  },
-  {
-    imgSrc: userImgSrc,
-    name: "Gunther Green",
-    domain: "Waiter",
-    industry: "Central Perk",
-  },
-  {
-    imgSrc: userImgSrc,
-    name: "Phoebe Buffay",
-    domain: "Masseuse",
-    industry: "Ross' place",
-  },
-];
+// const data = [
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Monica Geller",
+//     domain: "Chef",
+//     industry: "Allasandro's",
+//   },
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Chandler Bing",
+//     domain: "Sarcastic",
+//     industry: "Everything",
+//   },
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Gunther Green",
+//     domain: "Waiter",
+//     industry: "Central Perk",
+//   },
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Phoebe Buffay",
+//     domain: "Masseuse",
+//     industry: "Ross' place",
+//   },
+// ];
 
 class Invitations extends Component {
   state = {
@@ -57,10 +57,10 @@ class Invitations extends Component {
   }
 
   removeInvitation = (id, connectionId) => {
-    let newInvitationsArray = this.state.invitations;
-    console.log(newInvitationsArray);
-    newInvitationsArray.splice(id, 1);
-    this.setState({ invitations: newInvitationsArray });
+    // let newInvitationsArray = this.state.invitations;
+    // console.log(newInvitationsArray);
+    // newInvitationsArray.splice(id, 1);
+    // this.setState({ invitations: newInvitationsArray });
     let token = localStorage.getItem("accessToken");
     const config = {
       headers: { Authorization: `Bearer ${token}` },

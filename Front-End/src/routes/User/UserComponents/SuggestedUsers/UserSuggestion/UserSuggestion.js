@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import defaultProfilePic from "../../../../../assets/defaultProfilePic.png";
 import "../SuggestedUsers.css";
-import axios from '../../../../../API/baseURL/baseURL';
+import axios from "../../../../../API/baseURL/baseURL";
 
 class UserSuggestion extends Component {
-
   render() {
     let userData = this.props.data;
     let profileImg = userData.avatar;
@@ -14,9 +13,9 @@ class UserSuggestion extends Component {
       profileImg = defaultProfilePic;
     }
     let aboutData = `${userData.tagline}`;
-    if(aboutData.length>40){
-      let newData = aboutData.slice(0,37);
-      aboutData = `${newData}...`
+    if (aboutData.length > 40) {
+      let newData = aboutData.slice(0, 37);
+      aboutData = `${newData}...`;
     }
 
     return (
@@ -25,11 +24,10 @@ class UserSuggestion extends Component {
         <div className="userPic">
           <img src={profileImg} />
         </div>
-        <NavLink to="/user/32">
+        
+        <NavLink to={`/user/${userData.profile_id}`}>
           <div className="userDesc">
-            <h6 className="userDescTop">
-              {userData.name}
-            </h6>
+            <h6 className="userDescTop">{userData.name}</h6>
             <h6 className="userDescBottom">{aboutData}</h6>
           </div>
         </NavLink>

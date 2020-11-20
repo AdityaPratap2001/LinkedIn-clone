@@ -79,7 +79,7 @@ class Notifications extends Component {
             <div style={backgroundStyle} className="notification">
               <img src={userPic} />
               <h6>
-                <NavLink to={`/job/${item.source_id}`}>
+                <NavLink style={{fontWeight:'380'}} to={`/job/${item.source_id}`}>
                   {item.detail}
                 </NavLink>
               </h6>
