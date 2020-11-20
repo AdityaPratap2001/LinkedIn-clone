@@ -3,56 +3,50 @@ import jobImgSrc from "../../../../assets/profileSample.jpg";
 import emptySrc from '../../../../assets/empty.png';
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
-
-const data = [
-  {
-    imgSrc: jobImgSrc,
-    domain: "Front-End developer",
-    companyName: "Amazon Inc",
-    location: "Noida",
-  },
-  {
-    imgSrc: jobImgSrc,
-    domain: "Mobile App Developer",
-    companyName: "Zomato",
-    location: "Gurgaon",
-  },
-  {
-    imgSrc: jobImgSrc,
-    domain: "Front-End developer",
-    companyName: "Amazon Inc",
-    location: "Mumbai",
-  },
-  {
-    imgSrc: jobImgSrc,
-    domain: "UI/UX Developer",
-    companyName: "Flingo Inc",
-    location: "Gurgaon",
-  },
-];
-// const data = [];
+import axios from '../../../../API/baseURL/baseURL';
+import SavedJob from './SavedJob';
 
 class SavedJobs extends Component {
   state = {
-    jobs: data,
+    jobs: null,
     isEmpty: null,
     isLoading: true,
   };
 
-  unSaveJob = (id) => {
-    console.log(this.state.jobs);
+  componentDidMount() {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get('/user/profile/vacancy/bookmark/view/',config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({jobs : res.data,isLoading : false});
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  }
+
+  unSaveJob = (jobId,id) => {
+    // console.log(this.state.jobs);
     let newSavedJobsArray = this.state.jobs;
-    console.log(newSavedJobsArray);
+    // console.log(newSavedJobsArray);
     newSavedJobsArray.splice(id, 1);
     this.setState({ jobs: newSavedJobsArray });
     // console.log(this.state.jobs);
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.delete(`/user/profile/vacancy/bookmark/${jobId}/`,config)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   };
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2000);
-  }
 
   render() {
     let savedJobsData = null;
@@ -160,33 +154,16 @@ class SavedJobs extends Component {
       );
     }
 
-    if (!this.state.isLoading) {
+    if (!this.state.isLoading && this.state.jobs.length !== 0) {
       savedJobsData = this.state.jobs.map((item, index) => {
         let id = index;
         return (
-          <div className="savedJob">
-            <NavLink to="/job/43">
-              <div className="savedJobFirst">
-                <img src={item.imgSrc} />
-              </div>
-              <div className="savedJobSecond">
-                <h6 className="savedJobDomain">{item.domain}</h6>
-                <h6 className="savedJobCompany">{item.companyName}</h6>
-                <h6 className="savedJobLocation">{item.location}</h6>
-              </div>
-            </NavLink>
-            <div className="savedJobThird">
-              <i
-                onClick={() => this.unSaveJob(id)}
-                class="fas fa-trash-alt"
-              ></i>
-            </div>
-          </div>
+          <SavedJob unSaveJob={this.unSaveJob} index={index} data={item}/>
         );
       });
     }
 
-    if(this.state.jobs.length === 0){
+    if(this.state.jobs !== null && this.state.jobs.length === 0){
       savedJobsData = (
         <div className='emptyImgDiv'>
           <img src={emptySrc} className='emptyImg'/>

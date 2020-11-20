@@ -116,10 +116,10 @@ class Post extends Component {
       },
     };
     const bookData = {
-      field : 'data'
-    }
+      field: "data",
+    };
     axios
-      .post(`/user/post/bookmark/${this.props.postId}/`,bookData,config)
+      .post(`/user/post/bookmark/${this.props.postId}/`, bookData, config)
       .then((res) => {
         console.log(res);
       })
@@ -134,10 +134,10 @@ class Post extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     const bookData = {
-      field : 'data'
-    }
+      field: "data",
+    };
     axios
-      .delete(`/user/post/bookmark/${this.props.postId}/`,bookData,config)
+      .delete(`/user/post/bookmark/${this.props.postId}/`, bookData, config)
       .then((res) => {
         console.log(res);
       })
@@ -188,6 +188,7 @@ class Post extends Component {
           is_liked: false,
           likes_count: 0,
           id: commentId,
+          posted_at: 'just now',
           comment_count: 0,
           author_name: this.props.data.viewer_name,
           author_tagline: this.props.data.viewer_tagline,
@@ -368,9 +369,18 @@ class Post extends Component {
       bookMarkIcon = <i onClick={this.unBookmark} class="fas fa-bookmark" />;
     }
 
+    let topMessage = (
+      // <h6 className='message'>Utkarsh Patel liked this</h6>
+      <h6 className="message">{postData.message}</h6>
+    );
+    if (postData.message === null) {
+      topMessage = null;
+    }
+
     return (
       <div className="post">
         {modalData}
+        {topMessage}
         <div className="postHeader">
           <div className="userDetails">
             <NavLink to={`/user/${postData.author_id}`}>
@@ -379,7 +389,10 @@ class Post extends Component {
                 <h6 className="name">{postData.author_name}</h6>
                 <h6 className="tag">{postData.author_tagline}</h6>
                 {/* <h6 className="tag">{postData.location}</h6> */}
-                <h6 className="tag">Noida, Uttar Pradesh, India</h6>
+                <h6 className="tag">
+                  {postData.posted_at}
+                  <i style={{fontSize:'11.2px',marginLeft:'3.5px',transform:'translateY(0.6px)',color:'grey'}} class="fas fa-globe-americas"></i>
+                </h6>
               </div>
             </NavLink>
 

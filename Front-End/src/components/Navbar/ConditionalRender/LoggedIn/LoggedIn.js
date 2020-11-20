@@ -1,28 +1,63 @@
 import React, { Component } from "react";
 import { NavLink, Redirect } from "react-router-dom";
-import profSample from "../../../../assets/profileSample.jpg";
+import profPic from "../../../../assets/defaultProfilePic.png";
+import axios from '../../../../API/baseURL/baseURL';
 
 class LoggedIn extends Component {
-
   state = {
-    redirect : null,
+    redirect: null,
+    name: null,
+    tagline: null,
+    img: null,
+  };
+
+  componentDidMount() {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get("/user/info/", config)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          name: res.data.user_name,
+          tagline: res.data.user_tagline,
+          img: res.data.user_avatar
+         });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   signOut = () => {
     localStorage.clear();
-    this.setState({redirect : '/userLogin'})
-  }
+    this.setState({ redirect: "/userLogin" });
+  };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/userLogin" />;
+    }
 
-    if(this.state.redirect){
-      return <Redirect to='/userLogin'/>
+    let name = "User";
+    if (this.state.name) {
+      name = this.state.name;
+    }
+    let tagline = "";
+    if (this.state.tagline) {
+      tagline = this.state.tagline;
+    }
+    let imgSrc = profPic;
+    if (this.state.img) {
+      imgSrc = this.state.img;
     }
 
     return (
       <ul className="conditional_render NavLink navbar-nav mr-auto">
         <NavLink
-          className='NavLinkk'
+          className="NavLinkk"
           to="/"
           activeStyle={{
             // borderBottom: "black 3px solid",
@@ -38,7 +73,7 @@ class LoggedIn extends Component {
         </NavLink>
 
         <NavLink
-          className='NavLinkk'
+          className="NavLinkk"
           to="/network"
           activeStyle={{ borderBottom: "black 3px solid", color: "black" }}
         >
@@ -51,7 +86,7 @@ class LoggedIn extends Component {
         </NavLink>
 
         <NavLink
-          className='NavLinkk'
+          className="NavLinkk"
           to="/jobs"
           activeStyle={{ borderBottom: "black 3px solid", color: "black" }}
         >
@@ -64,7 +99,7 @@ class LoggedIn extends Component {
         </NavLink>
 
         <NavLink
-          className='NavLinkk'
+          className="NavLinkk"
           to="/message"
           activeStyle={{ borderBottom: "black 3px solid", color: "black" }}
         >
@@ -76,7 +111,7 @@ class LoggedIn extends Component {
         </NavLink>
 
         <NavLink
-          className='NavLinkk'
+          className="NavLinkk"
           to="/notifications"
           activeStyle={{ borderBottom: "black 3px solid", color: "black" }}
         >
@@ -99,7 +134,7 @@ class LoggedIn extends Component {
           >
             <i class="fas fa-user-circle"></i>
             <br></br>
-            <h6>Aditya</h6>
+            <h6>Me</h6>
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -107,13 +142,11 @@ class LoggedIn extends Component {
               <div className="navUserProfHead">
                 <div className="navUserProfile">
                   {/* <i class="fas fa-2x fa-user-circle"></i> */}
-                  <img className="navDropdownProfImg" src={profSample} />
+                  <img className="navDropdownProfImg" src={imgSrc} />
                 </div>
                 <div style={{ display: "inline-block" }}>
-                  <h6 className="name">Aditya Pratap Singh</h6>
-                  <h6 className="status">
-                    Web Developer at Software Incubator (SDC-SI)
-                  </h6>
+                  <h6 className="name">{name}</h6>
+                  <h6 className="status">{tagline}</h6>
                 </div>
               </div>
               <button className="viewProfile">View Profile</button>
@@ -130,7 +163,9 @@ class LoggedIn extends Component {
             <div className="dropAccount">
               <h6>MANAGE</h6>
             </div>
-            <h6 onClick={this.signOut} className="dropAccountOptions">SIGN OUT</h6>
+            <h6 onClick={this.signOut} className="dropAccountOptions">
+              SIGN OUT
+            </h6>
           </div>
         </li>
 

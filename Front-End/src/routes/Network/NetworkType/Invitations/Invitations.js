@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import axios from "../../../../API/baseURL/baseURL";
 import defaultUserPic from "../../../../assets/defaultProfilePic.png";
+import Invitation from "./Invitation";
 
 const data = [
   {
@@ -56,6 +57,10 @@ class Invitations extends Component {
   }
 
   removeInvitation = (id, connectionId) => {
+    let newInvitationsArray = this.state.invitations;
+    console.log(newInvitationsArray);
+    newInvitationsArray.splice(id, 1);
+    this.setState({ invitations: newInvitationsArray });
     let token = localStorage.getItem("accessToken");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -64,10 +69,6 @@ class Invitations extends Component {
       .delete(`/user/network/delete/connection/${connectionId}/`, config)
       .then((res) => {
         console.log(res);
-        let newInvitationsArray = this.state.invitations;
-        console.log(newInvitationsArray);
-        newInvitationsArray.splice(id, 1);
-        this.setState({ invitations: newInvitationsArray });
       })
       .catch((err) => {
         console.log(err);
@@ -84,13 +85,13 @@ class Invitations extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .patch(`/user/network/view/pending_connection/`, data, config)
+      .patch(`/user/network/view/pending_connection/${connectionId}/`, data, config)
       .then((res) => {
         console.log(res);
-        let newInvitationsArray = this.state.invitations;
-        console.log(newInvitationsArray);
-        newInvitationsArray.splice(id, 1);
-        this.setState({ invitations: newInvitationsArray });
+        // let newInvitationsArray = this.state.invitations;
+        // console.log(newInvitationsArray);
+        // newInvitationsArray.splice(id, 1);
+        // this.setState({ invitations: newInvitationsArray });
       })
       .catch((err) => {
         console.log(err);
@@ -102,41 +103,18 @@ class Invitations extends Component {
 
     if (!this.state.loading && this.state.invitations) {
       invitationsData = this.state.invitations.map((item, index) => {
-        let id = index;
         let imgSrc = item.connection_avatar;
         if (imgSrc === null) {
           imgSrc = defaultUserPic;
         }
-        let initialData = (
-          <>
-            <NavLink to={`/user/${item.profile_id}`}>
-              <div className="connectionFirst">
-                <img src={imgSrc} />
-              </div>
-              <div className="connectionSecond">
-                <h6 className="connectionName">{item.connection_name}</h6>
-                <h6 className="connectionDomain">{item.connection_tagline}</h6>
-              </div>
-            </NavLink>
-            <div className="connectionThird">
-              <h6 onClick={() => this.removeInvitation(id, item.connection_id)}>
-                Delete
-              </h6>
-              <button
-                onClick={() => this.acceptInvitation(id, item.connection_id)}
-              >
-                Accept
-              </button>
-            </div>
-          </>
-        );
         return (
           <div className="connection savedJob">
-            {initialData}
-            {/* <div className="connectionThird">
-              <h6 onClick={() => this.removeConnection(index)}>Remove</h6>
-              <button>Message</button>
-            </div> */}
+            <Invitation
+              accept={this.acceptInvitation}
+              reject={this.removeInvitation}
+              index={index}
+              invitation={item}
+            />
           </div>
         );
       });

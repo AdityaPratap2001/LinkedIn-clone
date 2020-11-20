@@ -6,37 +6,6 @@ import { NavLink } from "react-router-dom";
 import axios from "../../../../API/baseURL/baseURL";
 import defaultCompPic from "../../../../assets/defaultInstitute.png"
 
-// const data = [
-//   {
-//     imgSrc: jobImgSrc,
-//     domain: "Front-End developer",
-//     companyName: "Amazon Inc",
-//     location: "Noida",
-//     status: "accepted",
-//   },
-//   {
-//     imgSrc: jobImgSrc,
-//     domain: "Mobile App Developer",
-//     companyName: "Zomato",
-//     location: "Gurgaon",
-//     status: "pending",
-//   },
-//   {
-//     imgSrc: jobImgSrc,
-//     domain: "Front-End developer",
-//     companyName: "Amazon Inc",
-//     location: "Mumbai",
-//     status: "rejected",
-//   },
-//   {
-//     imgSrc: jobImgSrc,
-//     domain: "UI/UX Developer",
-//     companyName: "Flingo Inc",
-//     location: "Gurgaon",
-//     status: "rejected",
-//   },
-// ];
-
 class PostedJobs extends Component {
   state = {
     jobs: null,
@@ -45,9 +14,6 @@ class PostedJobs extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2000);
 
     let token = localStorage.getItem("accessToken");
     const config = {
@@ -56,7 +22,7 @@ class PostedJobs extends Component {
     axios.get('/user/profile/vacancy/',config)
       .then((res)=>{
         console.log(res);
-        this.setState({jobs : res.data,isLoading : true});
+        this.setState({jobs : res.data,isLoading : false});
       })
       .catch((err)=>{
         console.log(err);
@@ -175,12 +141,12 @@ class PostedJobs extends Component {
       savedJobsData = this.state.jobs.map((item, index) => {
         let id = index;
         let imgSrc = item.file_linked;
-        if(imgSrc === null){
+        if(imgSrc === null || imgSrc === ''){
           imgSrc = defaultCompPic;
         }
         return (
           <div className="savedJob">
-            <NavLink to={`/postedJob/${item.id}`}>
+            <NavLink to={`/postedJob/${item.vacancy_id}`}>
               <div className="savedJobFirst">
                 <img src={imgSrc} />
               </div>

@@ -5,6 +5,14 @@
   margin-bottom: 20px;
   /* min-height: 40px; */
 }
+.post .message{
+  font-size: 12px;
+  color: rgb(61, 61, 61);
+  font-weight: 500;
+  padding: 10px 20px;
+  border-bottom: #ccc 1.4px solid;
+  margin-bottom: 0px;
+}
 .post .postHeader .userDetails {
   display: flex;
   align-items: center;
@@ -196,10 +204,17 @@
 }
 .post .comment .commentData{
   background-color: #edf0f5;
+  position: relative;
   /* background-color: #f2f2f2; */
   margin-bottom: 0px;
   padding: 10px 14px;
   border-radius: 0px 7px 7px 7px;
+}
+.post .comment .commentData .timeStamp{
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 11px;
 }
 .post .comment .commentData h6{
   margin-bottom: 0px;

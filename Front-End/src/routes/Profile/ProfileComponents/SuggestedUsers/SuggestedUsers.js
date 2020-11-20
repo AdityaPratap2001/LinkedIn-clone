@@ -3,6 +3,7 @@ import UserSuggestion from "./UserSuggestion/UserSuggestion";
 import "./SuggestedUsers.css";
 import profilePic from "../../../../assets/profileSample.jpg";
 import Skeleton from "react-loading-skeleton";
+import axios from '../../../../API/baseURL/baseURL';
 
 const suggestedData = [
   {
@@ -79,16 +80,30 @@ const suggestedData = [
 
 class SuggestedUsers extends Component {
   state = {
-    suggestions: suggestedData,
-    displaySuggestions: suggestedData.slice(0, 5),
+    suggestions: null,
+    displaySuggestions: null,
     showingAllUsers: false,
     isLoading: true,
   };
 
-  componentDidMount(){
-    setTimeout(()=>{
-      this.setState({isLoading : false});
-    },2700)
+  componentDidMount() {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get("/user/view/", config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({
+          suggestions : res.data, 
+          displaySuggestions : res.data.slice(0,5),
+          isLoading : false
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   showMore = () => {
@@ -111,7 +126,7 @@ class SuggestedUsers extends Component {
           <h6 className="heading">
             <Skeleton width="100%" height={23} />
           </h6>
-          <div className="user" style={{border:'none'}}>
+          <div className="user" style={{ border: "none" }}>
             <div className="userPic">
               <Skeleton
                 style={{ transform: "translateY(-4px)", marginRight: "10px" }}
@@ -131,27 +146,7 @@ class SuggestedUsers extends Component {
               </h6>
             </div>
           </div>
-          <div className="user" style={{border:'none'}}>
-            <div className="userPic">
-              <Skeleton
-                style={{ transform: "translateY(-4px)", marginRight: "10px" }}
-                height={50}
-                width={50}
-              />
-            </div>
-            <div className="userDesc" style={{ paddingBottom: "8.6px"}}>
-              <h6 className="userDescTop">
-                <Skeleton width={120} height={14} />
-              </h6>
-              <h6>
-                <Skeleton height={9} />
-              </h6>
-              <h6>
-                <Skeleton height={9} />
-              </h6>
-            </div>
-          </div>
-          <div className="user" style={{border:'none'}}>
+          <div className="user" style={{ border: "none" }}>
             <div className="userPic">
               <Skeleton
                 style={{ transform: "translateY(-4px)", marginRight: "10px" }}
@@ -171,7 +166,7 @@ class SuggestedUsers extends Component {
               </h6>
             </div>
           </div>
-          <div className="user" style={{border:'none'}}>
+          <div className="user" style={{ border: "none" }}>
             <div className="userPic">
               <Skeleton
                 style={{ transform: "translateY(-4px)", marginRight: "10px" }}
@@ -191,7 +186,27 @@ class SuggestedUsers extends Component {
               </h6>
             </div>
           </div>
-          <div className="user" style={{border:'none'}}>
+          <div className="user" style={{ border: "none" }}>
+            <div className="userPic">
+              <Skeleton
+                style={{ transform: "translateY(-4px)", marginRight: "10px" }}
+                height={50}
+                width={50}
+              />
+            </div>
+            <div className="userDesc" style={{ paddingBottom: "8.6px" }}>
+              <h6 className="userDescTop">
+                <Skeleton width={120} height={14} />
+              </h6>
+              <h6>
+                <Skeleton height={9} />
+              </h6>
+              <h6>
+                <Skeleton height={9} />
+              </h6>
+            </div>
+          </div>
+          <div className="user" style={{ border: "none" }}>
             <div className="userPic">
               <Skeleton
                 style={{ transform: "translateY(-4px)", marginRight: "10px" }}

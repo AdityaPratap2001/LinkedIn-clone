@@ -7,7 +7,8 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import PopularDomains from "../../components/PopularDomains/PopularDomains";
 import ProfileSidebox from "../../components/ProfileSidebox/ProfileSidebox";
 import Navbar from "../../components/Navbar/Navbar";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton';
 
 class MyPosts extends Component {
   state = {
@@ -34,13 +35,42 @@ class MyPosts extends Component {
   }
 
   render() {
-
-    let logStatus = localStorage.getItem('logStatus');
-    if(logStatus === null){
-      return <Redirect to='/userLogin'/>
+    let logStatus = localStorage.getItem("logStatus");
+    if (logStatus === null) {
+      return <Redirect to="/userLogin" />;
     }
 
-    let postsData = null;
+    let postsData = (
+      <div className="post">
+        <div
+          className="postHeader"
+          style={{ display: "flex", padding: "11.8px 14px" }}
+        >
+          <div>
+            <Skeleton
+              style={{ marginRight: "8px" }}
+              circle={true}
+              width={48}
+              height={48}
+            />
+          </div>
+          <div style={{ paddingTop: "5px" }}>
+            <Skeleton height={12.5} width={200} />
+            <br />
+            <Skeleton
+              style={{ paddingBottom: "0px" }}
+              height={8.5}
+              width={200}
+            />
+            <br />
+          </div>
+        </div>
+        <Skeleton height={310} />
+        <div style={{ padding: "11px", paddingTop: "7px" }}>
+          <Skeleton height={22} width="100%" />
+        </div>
+      </div>
+    );
     if (this.state.posts) {
       postsData = this.state.posts.map((post, index) => {
         return <Post postId={post.id} data={post} />;
@@ -57,9 +87,9 @@ class MyPosts extends Component {
           <div className="postColumn">
             {/* <CreatePost /> */}
             <div className="savedPostsPrivate">
-              <h6 className="head">Saved Posts</h6>
+              <h6 className="head">Your Posts</h6>
               <h6 className="sub">
-                <i>Anything you save is private</i>
+                <i>Post more to increase your reach</i>
               </h6>
             </div>
             <hr style={{ margin: "0px", marginBottom: "12px" }} />

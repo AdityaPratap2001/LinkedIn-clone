@@ -1,5 +1,6 @@
 .jobsBody .rightDisplay {
   margin-left: 270px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
 }
 .jobsBody .jobsTypeSelect {
   background-color: white;
@@ -104,6 +105,12 @@
   display: flex;
   align-items: center;
 }
+.jobsBody .jobsDisplay .savedJob .savedJobSecond{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  margin: auto 0px;
+}
 .jobsBody .jobsDisplay .savedJob .savedJobSecond h6 {
   margin-bottom: 0px;
   font-size: 14px;
@@ -141,6 +148,7 @@
 }
 .jobsBody .jobsDisplay .savedJobsDisplay .savedJob img {
   height: 55px;
+  width: 55px;
   margin-right: 12px;
 }
 .jobsBody .jobsDisplay .savedJobsDisplay .savedJob .status {

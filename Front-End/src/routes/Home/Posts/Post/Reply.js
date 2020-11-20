@@ -84,6 +84,7 @@ class Reply extends Component {
         <img src={replyUserImgSrc} />
         <div className="commentBlock" style={{width:'100%'}}>
           <div className="commentData">
+          <span className='timeStamp'>{reply.posted_at}</span>
             <NavLink to={`/user/${reply.author_id}`}>
               <h6 className="name">{reply.author_name}</h6>
               <h6 className="tag">{reply.author_tagline}</h6>

@@ -117,6 +117,7 @@ class Comment extends Component {
         author_tagline: this.props.tagline,
         text: this.state.newReply,
         is_liked: false,
+        posted_at: 'just now',
         id: replyId,
         likes_count: 0,
         liked_by: [],
@@ -235,6 +236,7 @@ class Comment extends Component {
 
         <div className="commentBlock">
           <div className="commentData">
+            <span className='timeStamp'>{comment.comment.posted_at}</span>
             <NavLink to={`/user/${comment.comment.author_id}`}>
               <h6 className="name">{comment.comment.author_name}</h6>
               <h6 className="tag">{comment.comment.author_tagline}</h6>

@@ -16,6 +16,7 @@ import SavedPosts from "./routes/SavedPosts/SavedPosts";
 import SearchDisplay from "./routes/SearchDisplay/SearchDisplay";
 import Notifications from "./routes/Notifications/Notifications";
 import MyPosts from "./routes/MyPosts/MyPosts";
+import Message from "./routes/Message/Message";
 
 function App() {
   return (
@@ -69,7 +70,8 @@ function App() {
           />
 
           <Route path="/notifications" exact component={Notifications} />
-          <Route path="/MyPosts" exact component={MyPosts} />
+          <Route path="/MyPosts" exact component={MyPosts}/>
+          <Route path="/message" exact component={Message}/>
 
         </Switch>
       </BrowserRouter>

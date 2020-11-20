@@ -6,7 +6,8 @@ import defaultUserPic from "../../assets/defaultProfilePic.png";
 import "./PostedJobDisplay.css";
 import { NavLink, Redirect } from "react-router-dom";
 import axios from "../../API/baseURL/baseURL";
-import Skeleton from 'react-loading-skeleton';
+import Skeleton from "react-loading-skeleton";
+import Applicant from "./Applicant";
 
 // let postedJobData = {
 //   jobTitle: "Web Developer",
@@ -19,7 +20,7 @@ import Skeleton from 'react-loading-skeleton';
 //   jobDescription: `I just published "How we brought down storage costs for the Ads platform: Part 1"
 
 // If you feel you are up for exciting work like this every day, do drop me a DM. We are always looking out for engineers like you at ShareChat. 🚀
-  
+
 // #startups #techblog #hiringdevelopers`,
 //   industry: "Design , Computer Software , Internet",
 //   // payRange: "50,000 - 80,000rs/month",
@@ -44,6 +45,7 @@ class PostedJobDisplay extends Component {
   state = {
     jobData: null,
     postedJobId: this.props.match.params.id,
+    applications: null,
   };
 
   componentDidMount() {
@@ -55,17 +57,61 @@ class PostedJobDisplay extends Component {
       .get(`/user/profile/vacancy/${this.state.postedJobId}`, config)
       .then((res) => {
         console.log(res);
-        this.setState({ jobData: res.data });
+        this.setState({ jobData: res.data, applications: res.data.applicants });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  acceptApplicant = (appId) => {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let applicationData = {
+      has_been_accepted: true,
+    };
+    axios
+      .patch(
+        `/user/profile/vacancy/review/${this.state.postedJobId}/${appId}/`,
+        applicationData,
+        config
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  rejectApplicant = (appId) => {
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    let applicationData = {
+      has_been_accepted: false,
+    };
+    axios
+      .patch(
+        `/user/profile/vacancy/review/${this.state.postedJobId}/${appId}/`,
+        applicationData,
+        config
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
-    let logStatus = localStorage.getItem('logStatus');
-    if(logStatus === null){
-      return <Redirect to='/userLogin'/>
+    let logStatus = localStorage.getItem("logStatus");
+    if (logStatus === null) {
+      return <Redirect to="/userLogin" />;
     }
 
     let companyImgSrc = null;
@@ -84,32 +130,14 @@ class PostedJobDisplay extends Component {
         </h5>
       </div>
     );
-    if (
-      this.state.jobData !== null &&
-      this.state.jobData.applicants.length !== 0
-    ) {
-      applicantsData = this.state.jobData.applicants.map((user, index) => {
-        let userImgSrc = user.userImg;
+    if (this.state.jobData !== null && this.state.applications.length !== 0) {
+      applicantsData = this.state.applications.map((user, index) => {
+        let userImgSrc = user.applicant_avatar;
         if (userImgSrc === null) {
           userImgSrc = defaultUserPic;
         }
         return (
-          <div className="user">
-            <NavLink to={`/user/${user.userID}`}>
-              <img src={userImgSrc} />
-            </NavLink>
-
-            <div className="userDesc">
-              <NavLink to={`/user/${user.userID}`}>
-                <h6 className="userName">{user.userName}</h6>
-                <h6 className="userTagline">{user.tagline}</h6>
-              </NavLink>
-              <div className="buttons">
-                <h6 className="acceptButton">Accept</h6>
-                <h6 className="rejectButton">Reject</h6>
-              </div>
-            </div>
-          </div>
+          <Applicant accept={this.acceptApplicant} reject={this.rejectApplicant} data={user}/>
         );
       });
     }
@@ -128,7 +156,9 @@ class PostedJobDisplay extends Component {
     ) {
       payData = (
         <div className="jobDiv" style={{ marginTop: "14px" }}>
-          <h6 className="head" style={{marginBottom:'4px'}}>Pay Range</h6>
+          <h6 className="head" style={{ marginBottom: "4px" }}>
+            Pay Range
+          </h6>
           <h6 className="sub">{this.state.jobData.pay_range}</h6>
         </div>
       );
@@ -191,37 +221,58 @@ class PostedJobDisplay extends Component {
       );
     }
 
-    if(this.state.jobData === null){
+    if (this.state.jobData === null) {
       displayData = (
-        <div style={{padding : '20px 20px'}}>
-          <div style={{display:'flex'}}>
+        <div style={{ padding: "20px 20px" }}>
+          <div style={{ display: "flex" }}>
             <div>
-            <Skeleton style={{marginRight:'12px',marginBottom:'20px'}} width={100} height={100}/>
+              <Skeleton
+                style={{ marginRight: "12px", marginBottom: "20px" }}
+                width={100}
+                height={100}
+              />
             </div>
             <div>
-            <Skeleton width={300} height={15}/><br/>
-            <Skeleton width={270} height={13}/><br/>
-            <Skeleton width={230} height={11}/>
+              <Skeleton width={300} height={15} />
+              <br />
+              <Skeleton width={270} height={13} />
+              <br />
+              <Skeleton width={230} height={11} />
             </div>
           </div>
 
           <div>
-            <Skeleton height={12} width='90%'/>
-            <Skeleton height={12} width='85%'/>
-            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
-            <Skeleton height={12} width='90%'/>
-            <Skeleton height={12} width='85%'/>
-            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
-            <Skeleton height={12} width='90%'/>
-            <Skeleton height={12} width='85%'/>
-            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
-            <Skeleton height={12} width='90%'/>
-            <Skeleton height={12} width='85%'/>
-            <Skeleton height={12} width='70%' style={{marginBottom:'15px'}}/>
+            <Skeleton height={12} width="90%" />
+            <Skeleton height={12} width="85%" />
+            <Skeleton
+              height={12}
+              width="70%"
+              style={{ marginBottom: "15px" }}
+            />
+            <Skeleton height={12} width="90%" />
+            <Skeleton height={12} width="85%" />
+            <Skeleton
+              height={12}
+              width="70%"
+              style={{ marginBottom: "15px" }}
+            />
+            <Skeleton height={12} width="90%" />
+            <Skeleton height={12} width="85%" />
+            <Skeleton
+              height={12}
+              width="70%"
+              style={{ marginBottom: "15px" }}
+            />
+            <Skeleton height={12} width="90%" />
+            <Skeleton height={12} width="85%" />
+            <Skeleton
+              height={12}
+              width="70%"
+              style={{ marginBottom: "15px" }}
+            />
           </div>
-          
         </div>
-      )
+      );
     }
 
     return (

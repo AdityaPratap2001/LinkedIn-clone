@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import defaultPic from "../../../assets/defaultProfilePic.png";
+import mediaSrcI from "../../../assets/4.png";
+import mediaSrcV from "../../../assets/sampleVideo.mp4";
 import Comment from "./Comment";
 import PeopleLiked from "./PeopleLiked";
 import axios from "../../../API/baseURL/baseURL";
@@ -76,7 +78,11 @@ class Post extends Component {
   unLike = () => {
     let token = localStorage.getItem("accessToken");
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
+        // "Accept": "application/json",
+      },
     };
     let likePost = {
       vote: -1,
@@ -102,15 +108,24 @@ class Post extends Component {
     this.setState({ isBookmarked: true });
     let token = localStorage.getItem("accessToken");
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      // withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
+        // "Accept": "application/json",
+      },
     };
-    axios.post(`/user/post/bookmark/create/${this.props.postId}/`,config)
-      .then((res)=>{
+    const bookData = {
+      field: "data",
+    };
+    axios
+      .post(`/user/post/bookmark/${this.props.postId}/`, bookData, config)
+      .then((res) => {
         console.log(res);
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
+      });
   };
   unBookmark = () => {
     this.setState({ isBookmarked: false });
@@ -118,13 +133,17 @@ class Post extends Component {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    axios.post(`/user/post/bookmark/create/${this.props.postId}/`,config)
-      .then((res)=>{
+    const bookData = {
+      field: "data",
+    };
+    axios
+      .delete(`/user/post/bookmark/${this.props.postId}/`, bookData, config)
+      .then((res) => {
         console.log(res);
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   addComment = (e) => {
@@ -169,6 +188,7 @@ class Post extends Component {
           is_liked: false,
           likes_count: 0,
           id: commentId,
+          posted_at: 'just now',
           comment_count: 0,
           author_name: this.props.data.viewer_name,
           author_tagline: this.props.data.viewer_tagline,
@@ -349,9 +369,18 @@ class Post extends Component {
       bookMarkIcon = <i onClick={this.unBookmark} class="fas fa-bookmark" />;
     }
 
+    let topMessage = (
+      // <h6 className='message'>Utkarsh Patel liked this</h6>
+      <h6 className="message">{postData.message}</h6>
+    );
+    if (postData.message === null || postData.message === undefined ) {
+      topMessage = null;
+    }
+
     return (
       <div className="post">
         {modalData}
+        {topMessage}
         <div className="postHeader">
           <div className="userDetails">
             <NavLink to={`/user/${postData.author_id}`}>
@@ -360,7 +389,10 @@ class Post extends Component {
                 <h6 className="name">{postData.author_name}</h6>
                 <h6 className="tag">{postData.author_tagline}</h6>
                 {/* <h6 className="tag">{postData.location}</h6> */}
-                <h6 className="tag">Noida, Uttar Pradesh, India</h6>
+                <h6 className="tag">
+                  {postData.posted_at}
+                  <i style={{fontSize:'11.2px',marginLeft:'3.5px',transform:'translateY(0.6px)',color:'grey'}} class="fas fa-globe-americas"></i>
+                </h6>
               </div>
             </NavLink>
 

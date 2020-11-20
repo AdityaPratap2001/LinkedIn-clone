@@ -48,9 +48,9 @@ class JobDisplay extends Component {
         console.log(res);
         this.setState({ 
           jobData: res.data,
-          // isSaved: res.data.
-          // isApplied: res.data
-          // myPostedJob: res.data
+          isSaved: res.data.is_bookmarked,
+          isApplied: res.data.has_applied,
+          myPostedJob: res.data.is_my_posted_vacancy,
         });
       })
       .catch((err) => {
@@ -87,7 +87,7 @@ class JobDisplay extends Component {
       .delete(`/user/profile/vacancy/bookmark/${this.state.jobId}/`,config)
       .then((res) => {
         console.log(res);
-        this.setState({ isSaved: true });
+        this.setState({ isSaved: false });
       })
       .catch((err) => {
         console.log(err);
@@ -138,7 +138,7 @@ class JobDisplay extends Component {
     }
 
     if(this.state.myPostedJob){
-      return <Redirect to={`/myPostedJobs/${this.state.jobId}`}/>
+      return <Redirect to={`/postedJob/${this.state.jobId}`}/>
     }
 
     let companyImgSrc = null;

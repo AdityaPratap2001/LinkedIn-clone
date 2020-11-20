@@ -79,13 +79,15 @@ class Dashboard extends Component {
             <h6>People viewed your profile</h6>
           </div>
           <div style={{ borderRight: "#ccc 1px solid" }}>
-            <NavLink to="MyPosts">
+            <NavLink to="/MyPosts">
               <h5>{this.state.numPosts}</h5>
             </NavLink>
             <h6>Posts created</h6>
           </div>
           <div>
-            <h5>{this.state.numBookmark}</h5>
+            <NavLink to="/savedPosts">
+              <h5>{this.state.numBookmark}</h5>
+            </NavLink>
             <h6>Bookmarked Posts</h6>
           </div>
         </div>

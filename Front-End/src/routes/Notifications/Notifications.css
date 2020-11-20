@@ -17,6 +17,8 @@
   align-items: center;
   padding: 10px;
   border-bottom: #ccc 1.4px solid;
+  padding-right: 100px;
+  position: relative;
 }
 .feedBody .notificationColumn .notification h6{
   font-weight: 400;
@@ -46,3 +48,31 @@
   /* font-weight: 350; */
   color: grey;
 }
+.feedBody .notificationColumn .notification .timeStamp{
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
+  right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

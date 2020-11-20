@@ -6,4 +6,155 @@
 }
 .searchBody{
   background-color: white;
+  padding-top: 40px;
 }
+.searchBody h6{
+  margin-bottom: 0px;
+}
+
+
+.searchBody .searchResults{
+  /* border: red 1px solid; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  /* justify-content: flex-start; */
+}
+.searchBody .searchResults .searchUserResult{
+  /* border: rgb(36, 36, 36) 1.3px solid; */
+  border: #ccc 1.3px solid;
+  margin: 20px 10px;
+  height: 292px;
+  width: 228px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border-radius: 6px;
+}
+.searchUserResult .coverImg{
+  height: 60px;
+  width: 100%;
+  /* border-radius: 13px 13px 0 0; */
+  /* background-color: rgb(94, 189, 189); */
+  background-image: url('../../assets/coverBackground.jpeg');
+  background-image: url('../../assets/linkedBack5.png');
+  background-size: cover;
+  border-radius: 6px 6px 0px 0px;
+}
+.searchUserResult .profilePic{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transform: scale(1.4) translateY(-35%);
+  border: white 2px solid;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 5px;
+}
+.searchUserResult a{
+  color: black;
+  text-decoration: none;
+  text-align: center;
+}
+.searchUserResult .name{
+  margin-bottom: 8px;
+  padding: 0 8px;
+}
+.searchUserResult .tag{
+  font-size: 13.5px;
+  padding: 0 8px;
+  font-weight: 400;
+}
+.searchUserResult .connectButton{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 13.4px;
+  bottom: 0;
+  padding: 10px;
+  border: #1A73E8 1.4px solid;
+  color: #1A73E8;
+  cursor: pointer;
+  border-radius: 0px 0px 6px 6px;
+}
+/* .searchUserResult .connectButton:hover{
+  border: #1A73E8 1.7px solid;
+  font-weight: 650;
+} */
+
+.searchBody .searchResults .recommendedJob {
+  height: 292px;
+  width: 252px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  border: #ccc 1.3px solid;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  margin: 20px 10px;
+}
+.searchBody .searchResults .recommendedJob a {
+  color: black;
+  text-decoration: none;
+}
+.searchBody .searchResults .recommendedJob h6 {
+  margin-bottom: 0px;
+}
+.searchBody .searchResults .recommendedJob .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchBody .searchResults .recommendedJob .header i{
+  position: absolute;
+  right: 8.4%;
+  top: 10%;
+  cursor: pointer;
+}
+.searchBody .searchResults .recommendedJob img {
+  height: 72px;
+  width: 72px;
+}
+.searchBody .searchResults .recommendedJob .description {
+  padding-top: 18px;
+}
+.searchBody .searchResults .recommendedJob .description .title {
+  margin-bottom: 6px;
+}
+.searchBody .searchResults .recommendedJob .description .company {
+  font-weight: 400;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: #808080;
+}
+.searchBody .searchResults .recommendedJob .description .location {
+  font-weight: 400;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: #808080;
+}
+.searchBody .searchResults .recommendedJob .footer{
+  display: flex;
+  position: absolute;
+  border-top: #ccc 1px solid;
+  padding: 4px 0px;
+  font-size: 13px;
+  justify-content: space-between;
+  width: 90%;
+  bottom: 0;
+}
+.searchBody .searchResults .recommendedJob .footer h6{
+  font-size: 12px;
+  color: #808080;
+}
+.searchBody .searchResults .recommendedJob .footer .time{
+  margin-right: 6px;
+}
+.searchBody .searchResults .recommendedJob .footer .applicants{
+  color: #057642;
+}
+

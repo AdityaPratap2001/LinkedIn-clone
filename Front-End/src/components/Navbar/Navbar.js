@@ -4,7 +4,9 @@ import './Navbar.css';
 import ConditinalRender from './ConditionalRender/ConditionalRender';
 import SearchBar from './SearchBar';
 // import logoSrc from '../../assets/logo.png';
-import logoSrc from '../../assets/logo9.png'
+// import logoSrc from '../../assets/logo9.png'
+import logoSrc from '../../assets/logo8.png'
+
 
 class Navbar extends Component {
   render() {
