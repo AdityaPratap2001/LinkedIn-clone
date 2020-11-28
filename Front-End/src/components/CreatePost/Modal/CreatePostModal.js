@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
 import defaultPropfPic from "../../../assets/defaultProfilePic.png";
+import axios from '../../../API/baseURL/baseURL';
+import { connect } from 'react-redux';
 
 class CreatePostModal extends Component {
   state = {
     userName: null,
+    name: null,
+    tagline: null,
+    img: null,
     profilePic: null,
     postText: null,
     selectedType: null,
@@ -14,6 +19,25 @@ class CreatePostModal extends Component {
     imgSelectedSrc: null,
   };
 
+  componentDidMount() {
+    // let token = localStorage.getItem("accessToken");
+    // const config = {
+    //   headers: { Authorization: `Bearer ${token}` },
+    // };
+    // axios
+    //   .get("/user/info/", config)
+    //   .then((res) => {
+    //     console.log(res);
+    //     this.setState({
+    //       name: res.data.user_name,
+    //       tagline: res.data.user_tagline,
+    //       img: res.data.user_avatar
+    //      });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }
   // handleImgClick = (e) => {
   //   this.refs.imgUploader.click();
   //   console.log(e);
@@ -74,7 +98,7 @@ class CreatePostModal extends Component {
   };
 
   render() {
-    let userPic = this.state.profilePic;
+    let userPic = this.props.data.img;
     if (userPic === null) {
       userPic = defaultPropfPic;
     }
@@ -124,9 +148,11 @@ class CreatePostModal extends Component {
                 </div>
 
                 <div className="userDesc">
-                  <h6 className="name">Aditya Pratap Singh</h6>
+                  {/* <h6 className="name">{this.state.name}</h6> */}
+                  <h6 className="name">{this.props.data.name}</h6>
                   <h6 className="tagline">
-                    Web Developer at Software Incubator (SDC-SI)
+                    {/* {this.state.tagline} */}
+                    {this.props.data.tagline}
                   </h6>
                 </div>
 
@@ -208,4 +234,10 @@ class CreatePostModal extends Component {
   }
 }
 
-export default CreatePostModal;
+const mapStateToProps = state => {
+  return {
+      data: state.prof.userData,
+  }
+};
+
+export default connect(mapStateToProps)(CreatePostModal);

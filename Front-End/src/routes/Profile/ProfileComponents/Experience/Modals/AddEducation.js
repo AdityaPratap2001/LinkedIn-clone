@@ -29,6 +29,7 @@ class AddEducation extends Component {
     // location: null,
     startDate: new Date(),
     endDate: new Date(),
+    headline: false,
     selectedFile: null,
     compLogo: null,
     formErrors: {
@@ -201,6 +202,27 @@ class AddEducation extends Component {
                   ></input>
                 </div>
               </div> */}
+
+              <div className="form-group">
+                <input
+                  type="checkbox"
+                  style={{
+                    marginRight: "7px",
+                    height: "fit-content",
+                    transform: "translatey(1.5px)",
+                  }}
+                  // checked={!this.state.isStudent}
+                  // onChange={this.handleStudentChange}
+                  onChange={() => {
+                    console.log(this.state);
+                    this.setState({ headline: !this.state.headline });
+                  }}
+                  defaultChecked={this.state.headline}
+                />
+                <label style={{ fontSize: "13px" }}>
+                  Make this my headline
+                </label>
+              </div>
 
               <div className="modalBottom">
                 <h6 className="userCloseButton" onClick={this.props.hideModal}>

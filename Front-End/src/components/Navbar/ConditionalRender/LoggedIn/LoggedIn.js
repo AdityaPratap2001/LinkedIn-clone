@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import profPic from "../../../../assets/defaultProfilePic.png";
 import axios from '../../../../API/baseURL/baseURL';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../../../store/actions/profileActions';
 
 class LoggedIn extends Component {
   state = {
@@ -12,23 +14,23 @@ class LoggedIn extends Component {
   };
 
   componentDidMount() {
-    let token = localStorage.getItem("accessToken");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    axios
-      .get("/user/info/", config)
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          name: res.data.user_name,
-          tagline: res.data.user_tagline,
-          img: res.data.user_avatar
-         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // let token = localStorage.getItem("accessToken");
+    // const config = {
+    //   headers: { Authorization: `Bearer ${token}` },
+    // };
+    // axios
+    //   .get("/user/info/", config)
+    //   .then((res) => {
+    //     console.log(res);
+    //     this.setState({
+    //       name: res.data.user_name,
+    //       tagline: res.data.user_tagline,
+    //       img: res.data.user_avatar
+    //      });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   signOut = () => {
@@ -42,16 +44,16 @@ class LoggedIn extends Component {
     }
 
     let name = "User";
-    if (this.state.name) {
-      name = this.state.name;
+    if (this.props.data.name) {
+      name = this.props.data.name;
     }
     let tagline = "";
-    if (this.state.tagline) {
-      tagline = this.state.tagline;
+    if (this.props.data.tagline) {
+      tagline = this.props.data.tagline;
     }
     let imgSrc = profPic;
-    if (this.state.img) {
-      imgSrc = this.state.img;
+    if (this.props.data.img) {
+      imgSrc = this.props.data.img;
     }
 
     return (
@@ -100,7 +102,7 @@ class LoggedIn extends Component {
 
         <NavLink
           className="NavLinkk"
-          to="/message"
+          to="/message/#"
           activeStyle={{ borderBottom: "black 3px solid", color: "black" }}
         >
           <li className="nav-item">
@@ -200,4 +202,16 @@ class LoggedIn extends Component {
   }
 }
 
-export default LoggedIn;
+const mapStateToProps = state => {
+  return {
+      data: state.prof.userData,
+  }
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//       fetchData: () => dispatch(actionCreators.fetchUserData()),
+//   }
+// };
+
+export default connect(mapStateToProps)(LoggedIn);

@@ -240,7 +240,7 @@ class Posts extends Component {
         </div>
       );
     }
-    if (this.state.posts) {
+    if (this.state.posts !== null) {
       postsData = this.state.posts.map((post, index) => {
         return <Post postId={post.id} data={post} />;
       });

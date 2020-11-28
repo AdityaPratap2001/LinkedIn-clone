@@ -301,15 +301,18 @@
     height: 8.5vh;
   }
   .navbar-toggler,.navbar-toggler-icon{
-    height: 25px;
+    height: 20px;
     border: none;
     transform: translateY(-3px)
   }
-  .Navbar img{
+  .Navbar .logo{
     height: 5.4vh;
   }
   .collapse{
-    transform: translateY(-8px);
+    /* transform: translateY(-1px); */
+  }
+  .Navbar .navbar-brand{
+    margin-left: 12px;
   }
 }
 @media (max-width:536px){

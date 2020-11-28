@@ -32,6 +32,7 @@ class AddExperience extends Component {
     endDate: new Date(),
     selectedFile: null,
     compLogo: null,
+    headline: false,
     formErrors: {
       position: "",
       industry: "",
@@ -202,6 +203,21 @@ class AddExperience extends Component {
                   ></input>
                 </div>
               </div> */}
+
+              <div className="form-group">
+                <input
+                  type="checkbox"
+                  style={{ marginRight: "7px" , height:'fit-content', transform:'translatey(1px)'}}
+                  // checked={!this.state.isStudent}
+                  // onChange={this.handleStudentChange}
+                  onChange={() => {
+                    console.log(this.state);
+                    this.setState({ headline: !this.state.headline });
+                  }}
+                  defaultChecked={this.state.headline}
+                />
+                <label style={{fontSize:'13px'}}>Make this my headline</label>
+              </div>
 
               <div className="modalBottom">
                 <h6 className="userCloseButton" onClick={this.props.hideModal}>

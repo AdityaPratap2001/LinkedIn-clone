@@ -4,15 +4,17 @@ import defaultProfilePic from "../../assets/defaultProfilePic.png";
 import { NavLink } from "react-router-dom";
 import "./ProfileSidebox.css";
 import axios from "../../API/baseURL/baseURL";
+import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions/profileActions';
 
-const details = {
-  firstname: "Aditya",
-  lastname: "Pratap Singh",
-  position: "Web developer",
-  industry: "Software Incubator (SDC-SI)",
-  visits: 270,
-  postNum: 17,
-};
+// const details = {
+//   firstname: "Aditya",
+//   lastname: "Pratap Singh",
+//   position: "Web developer",
+//   industry: "Software Incubator (SDC-SI)",
+//   visits: 270,
+//   postNum: 17,
+// };
 
 class ProfileSidebox extends Component {
   state = {
@@ -21,22 +23,23 @@ class ProfileSidebox extends Component {
   };
 
   componentDidMount() {
-    // setTimeout(()=>{
-    //   this.setState({loading : false});
-    // },2000)
-    let token = localStorage.getItem("accessToken");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    axios
-      .get("/user/info/", config)
-      .then((res) => {
-        console.log(res);
-        this.setState({ loading: false, details: res.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.fetchData();
+    if(this.props.data.name !== null){
+      this.setState({loading : false});
+    }
+    // let token = localStorage.getItem("accessToken");
+    // const config = {
+    //   headers: { Authorization: `Bearer ${token}` },
+    // };
+    // axios
+    //   .get("/user/info/", config)
+    //   .then((res) => {
+    //     console.log(res);
+    //     this.setState({ loading: false, details: res.data });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   render() {
@@ -80,8 +83,10 @@ class ProfileSidebox extends Component {
       </>
     );
 
-    if (!this.state.loading) {
-      let imgSrc = this.state.details.user_avatar;
+    // if (!this.state.loading) {
+      if(this.props.data.name !== null){
+      // let imgSrc = this.state.details.user_avatar;
+      let imgSrc = this.props.data.img;
       if (imgSrc === null) {
         imgSrc = defaultProfilePic;
       }
@@ -93,23 +98,27 @@ class ProfileSidebox extends Component {
           <img className="profilePic" src={imgSrc} />
 
           <h5 className="profileName">
-            <NavLink to="/profile">{this.state.details.user_name}</NavLink>
+            {/* <NavLink to="/profile">{this.state.details.user_name}</NavLink> */}
+            <NavLink to="/profile">{this.props.data.name}</NavLink>
           </h5>
 
-          <h6 className="profileStatus">{this.state.details.user_tagline}</h6>
+          {/* <h6 className="profileStatus">{this.state.details.user_tagline}</h6> */}
+          <h6 className="profileStatus">{this.props.data.tagline}</h6>
 
           <div style={{ width: "100%", margin: "16px 0px" }}>
             <div className="profileVisits">
               <div>Connections : </div>
               <div style={{ color: "blue", fontSize: "13.3px" }}>
-                {this.state.details.connection}
+                {/* {this.state.details.connection} */}
+                {this.props.data.connections}
               </div>
             </div>
 
             <div className="profileVisits">
               <div>Bookmarked Items : </div>
               <div style={{ color: "blue", fontSize: "13.3px" }}>
-                {this.state.details.bookmarks}
+                {/* {this.state.details.bookmarks} */}
+                {this.props.data.saved}
               </div>
             </div>
           </div>
@@ -160,4 +169,23 @@ class ProfileSidebox extends Component {
   }
 }
 
-export default ProfileSidebox;
+const mapStateToProps = state => {
+  return {
+      data: state.prof.userData,
+      // ctr: state.ctr.counter,
+      // storedResults: state.res.results
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+      fetchData: () => dispatch(actionCreators.fetchUserData()),
+      // onDecrementCounter: () => dispatch(actionCreators.decrement()),
+      // onAddCounter: () => dispatch(actionCreators.add(10)),
+      // onSubtractCounter: () => dispatch(actionCreators.subtract(15)),
+      // onStoreResult: (result) => dispatch(actionCreators.storeResult(result)),
+      // onDeleteResult: (id) => dispatch(actionCreators.deleteResult(id))
+  }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProfileSidebox);

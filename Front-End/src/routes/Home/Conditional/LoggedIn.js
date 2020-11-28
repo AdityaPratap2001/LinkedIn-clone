@@ -9,15 +9,19 @@ class LoggedIn extends Component {
   render() {
     return (
       <div className="body feedBody">
-        <ProfileSidebox />
-        
+        <div className="sideBox2">
+          <ProfileSidebox />
+        </div>
+
         <div className="postColumn">
-          <CreatePost/>
-          <hr style={{margin :'0px',marginBottom:'12px'}}/>
+          <CreatePost />
+          <hr style={{ margin: "0px", marginBottom: "12px" }} />
           <Posts />
         </div>
-        
-        <PopularDomains />
+
+        <div className='popDomains'>
+          <PopularDomains />
+        </div>
       </div>
     );
   }

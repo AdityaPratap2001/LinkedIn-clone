@@ -24,6 +24,9 @@
   margin: 0;
   transform: translateY(1px);
 }
+.navbar-light .navbar-toggler{
+  border-color: white;
+}
 .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div {
   margin-right: 10px;
   padding: 16px 17px;
@@ -321,7 +324,41 @@
 
 
 
+@media (max-width:550px){
+  .jobsBody .jobsTypeSelect .jobsTypeSelectLeft div{
+    padding: 10px 9px;
+    font-size: 13px;
+  }
+  .jobsBody .jobsDisplay .savedJobsHeader{
+    font-size: 13px;
+  }
+  .jobsBody .jobsDisplay .savedJob .connectionSecond h6{
+    font-size: 12.7px !important;
+  }
+  .jobsBody .jobsDisplay .savedJob .connectionSecond .connectionDomain{
+    font-size: 12px !important;
+  }
+  .jobsBody .jobsDisplay .savedJobsDisplay .savedJob img{
+    height: 46px;
+    width: 46px;
+  }
+  .jobsBody .jobsDisplay .savedJob .connectionThird button{
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  .jobsBody .jobsDisplay .savedJob .connectionThird{
+    margin-top: 7px;
+  }
+  .jobsBody .jobsDisplay .savedJob .connectionThird h6{
+    font-size: 10px;
+  }
+}
+@media (max-width:550px){
+  .jobsBody .jobsDisplay .savedJobsDisplay .savedJob{
+    padding: 8px 12px !important;
+  }
 
+}
 
 
 

@@ -71,7 +71,15 @@ function App() {
 
           <Route path="/notifications" exact component={Notifications} />
           <Route path="/MyPosts" exact component={MyPosts}/>
+          
           <Route path="/message" exact component={Message}/>
+
+          <Route
+            path="/message/:id"
+            render={(props) => (
+              <Message key={props.location.pathname} {...props} />
+            )}
+          />
 
         </Switch>
       </BrowserRouter>

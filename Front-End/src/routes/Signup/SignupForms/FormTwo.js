@@ -394,10 +394,10 @@ class FormTwo extends Component {
               // checked={!this.state.isStudent}
               // onChange={this.handleStudentChange}
               onChange={() => {
-                console.log(this.state);
                 this.setState({ isStudent: !this.state.isStudent });
+                console.log(this.state);
               }}
-              defaultChecked={!this.state.isStudent}
+              // defaultChecked={!this.state.isStudent}
             />
             <label>I'm a student</label>
           </div>

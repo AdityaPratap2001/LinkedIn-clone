@@ -193,6 +193,7 @@ class FormTwo extends Component {
               <input
                 type="text"
                 autoComplete="off"
+                value={this.state.jobTitle}
                 className={
                   formErrors.jobTitle.length > 0
                     ? "error form-control"
@@ -216,6 +217,7 @@ class FormTwo extends Component {
               <input
                 type="text"
                 autoComplete="off"
+                value={this.state.company}
                 className={
                   formErrors.company.length > 0
                     ? "error form-control"
@@ -239,6 +241,7 @@ class FormTwo extends Component {
               <input
                 type="text"
                 autoComplete="off"
+                value={this.state.location}
                 className={
                   formErrors.location.length > 0
                     ? "error form-control"
@@ -300,6 +303,7 @@ class FormTwo extends Component {
               <textarea
                 type="text"
                 autoComplete="off"
+                value={this.state.description}
                 className={
                   formErrors.description.length > 0
                     ? "error form-control"
@@ -323,6 +327,7 @@ class FormTwo extends Component {
               <input
                 type="text"
                 autoComplete="off"
+                value={this.state.skillsRequired}
                 className={
                   formErrors.skillsRequired.length > 0
                     ? "error form-control"
@@ -346,6 +351,7 @@ class FormTwo extends Component {
               <input
                 type="text"
                 autoComplete="off"
+                value={this.state.industry}
                 className={
                   formErrors.industry.length > 0
                     ? "error form-control"
@@ -369,6 +375,7 @@ class FormTwo extends Component {
               <input
                 type="text"
                 autoComplete="off"
+                value={this.state.payRange}
                 className={
                   formErrors.payRange.length > 0
                     ? "error form-control"

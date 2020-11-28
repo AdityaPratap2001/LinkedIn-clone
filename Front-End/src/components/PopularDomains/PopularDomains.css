@@ -3,7 +3,7 @@
   right: 0px;
   margin-right: 70px;
   top: 114px;
-  width: 19vw;
+  min-width: 19vw;
   /* top: 0; */
   /* color: red; */
   /* float: right; */

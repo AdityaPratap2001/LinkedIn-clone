@@ -76,7 +76,7 @@ class Signup extends Component {
       userDetails.append('avatar',details.selectedFile);
     }
     userDetails.append('location',details.location);
-    userDetails.append('is_employed',details.isStudent);
+    userDetails.append('is_employed',!details.isStudent);
     userDetails.append('organization_name',details.industry);
     userDetails.append('position',details.position);
     userDetails.append('start_date',moment(details.startDate).format('YYYY-MM-DD'));

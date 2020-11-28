@@ -1,6 +1,23 @@
 .postColumn{
-  margin-left: 255.5px;
+  margin-left: 256.4px;
   width: 598px;
   /* min-height: 1200px; */
   /* position: absolute; */
+}
+@media (max-width:1276px){
+  .postColumn{
+    margin-left: 1.3vw;
+    margin: auto;
+  }
+  .sideBox2{
+    display: none;
+  }
+  .popDomains{
+    display: none;
+  }
+}
+@media (max-width:736px){
+  .postColumn{
+    width: 80vw;
+  }
 }

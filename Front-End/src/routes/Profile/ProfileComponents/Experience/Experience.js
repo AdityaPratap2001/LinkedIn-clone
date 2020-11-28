@@ -6,6 +6,8 @@ import defaultCompImg from "../../../../assets/defaultInstitute.png";
 // import EditExperience from "./Modals/EditExperience";
 import AddEducation from "./Modals/AddEducation";
 import axios from '../../../../API/baseURL/baseURL';
+import * as actionTypes from "../../../../store/actions/actionTypes";
+import { connect } from "react-redux";
 import moment from "moment";
 
 // const experience = [
@@ -96,8 +98,12 @@ class Experience extends Component {
       // end_date: details.endDate,
       start_date: moment(details.startDate).format('YYYY-MM-DD'),
       end_date: moment(details.endDate).format('YYYY-MM-DD'),
+      headline: details.headline
     };
-    // let newArr = [{...newExperData},{...oldArr}];
+
+    if(details.headline){
+      this.props.editTagline(`${details.position} at ${details.industry}`);
+    }
 
     let token = localStorage.getItem("accessToken");
     const config = {
@@ -131,8 +137,15 @@ class Experience extends Component {
       // start_date: details.startDate,
       // end_date: details.endDate,
       start_date : moment(details.startDate).format('YYYY-MM-DD'),
-      end_date : moment(details.startDate).format('YYYY-MM-DD')
+      end_date : moment(details.startDate).format('YYYY-MM-DD'),
+      headline : details.headline,
     };
+
+    console.log(newEduData);
+
+    if(details.headline){
+      this.props.editTagline2(`Student at ${details.institute}`);
+    }
 
     let token = localStorage.getItem("accessToken");
     const config = {
@@ -413,4 +426,11 @@ class Experience extends Component {
   }
 }
 
-export default Experience;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    editTagline : (data) => dispatch({type : actionTypes.EDIT_TAGLINE, tagline : data}),
+    editTagline2 : (data) => dispatch({type : actionTypes.EDIT_TAGLINE2, tagline : data}),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Experience);

@@ -35,7 +35,7 @@ class Profile extends Component {
               <Experience/>
             </div>
             <div className="experience skills">
-              <Skills/>
+              {/* <Skills/> */}
             </div>
           </div>
 
