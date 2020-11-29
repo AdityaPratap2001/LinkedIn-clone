@@ -1,10 +1,11 @@
-.messageBody{
+.messageBody {
   /* border: red 1px solid; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: transparent !important;
 }
-.messageBody .box2{
+.messageBody .box2 {
   width: 19vw;
   /* float: right; */
   height: fit-content;
@@ -13,111 +14,246 @@
   background-color: white;
   padding: 24px 10px;
 }
-.messageBody .box2 .adHead{
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size:22px;
+.messageBody .box2 .adHead {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 22px;
   line-height: 29px;
   font-weight: 340;
   text-align: center;
   margin-bottom: 0px;
 }
-.messageBody .box2 .adBot{
+.messageBody .box2 .adBot {
   font-weight: 340;
   text-align: center;
   font-size: 13px;
   margin-bottom: 6px;
 }
-.messageBody .box2 .adBot1{
+.messageBody .box2 .adBot1 {
   font-weight: 500;
   font-size: 14px;
 }
-.messageBody .box2 img{
+.messageBody .box2 img {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.bodyy{
-  background-color: white;
+.bodyy {
+  background-color: #ffffff;
+  /* background: linear-gradient(to right,#949eaf,#edf0f5);
+  background: linear-gradient(to right,#2877ff,#ff2596); */
+  /* background-color: #fafcff; */
 }
-.messageBody{
+.messageBody {
   min-height: 72vh;
   background-color: white;
 }
-.messageBody .box1{
+.messageBody .box1 {
   background-color: white;
   width: 73%;
   border: #ccc 1.3px solid;
   display: flex;
 }
-::-webkit-scrollbar {
+.actualList::-webkit-scrollbar {
   display: none;
 }
-.messageBody .box1 .list{
+.messageBody .box1 .list {
   width: 240px;
   border-right: #f5f5f5 6px solid;
   height: 100%;
   /* background-color: #f9fbff; */
   background-color: white;
 }
-.messageBody .box1 .list .actualList{
+.messageBody .box1 .list .actualList {
   max-height: 65vh;
   overflow-y: scroll;
 }
-.messageBody .box1 .list .listHeader{
+.messageBody .box1 .list .listHeader {
   background-color: #f5f5f5;
   height: 46px;
   display: flex;
   align-items: center;
   border-bottom: #ccc 1.3px solid;
 }
-.messageBody .box1 .list .listHeader{
+.messageBody .box1 .list .listHeader {
   padding: 0 6px;
 }
-.messageBody .box1 .list .listHeader .barbox{
+.messageBody .box1 .list .listHeader .barbox {
   /* background-color: white; */
   color: gray;
 }
 /* .messageBody .box1 .list .listHeader input{ */
-  /* background-color: white; */
+/* background-color: white; */
 /* } */
-.messageBody .box1 .msgBox{
+.messageBody .box1 .msgBox {
   flex-grow: 1;
+  /* background: linear-gradient(to left,#edf0f5,#f5f5f5); */
   border-left: #ccc 1.3px solid;
+  display: flex;
+  flex-direction: column;
+  /* max-height: 100%; */
 }
 
-.messageBody .box1 .list .actualList .chatUser{
+.messageBody .box1 .list .actualList .chatUser {
   border-bottom: #ccc 1.3px solid;
   padding: 11px 9px;
   border-left: white 5px solid;
 }
-.messageBody .box1 .list .actualList .selecteduser{
+.messageBody .box1 .list .actualList .selecteduser {
   border-left: rgb(99, 99, 248) 5px solid;
   border-left: #0166aa 5px solid;
   background-color: #f5f5f5;
 }
-.messageBody .box1 .list .actualList .chatUser:hover{
+.messageBody .box1 .list .actualList .chatUser:hover {
   background-color: #ebfbff;
   cursor: pointer;
   border-left: #ebfbff 5px solid;
 }
-.messageBody .box1 .list .actualList .chatUser a{
+.messageBody .box1 .list .actualList .chatUser a {
   color: black;
   display: flex;
   text-decoration: none;
 }
-.messageBody .box1 .list .actualList .chatUser .name{
+.messageBody .box1 .list .actualList .chatUser .name {
   font-size: 13.8px;
   margin-bottom: 4px;
 }
-.messageBody .box1 .list .actualList .chatUser .tagline{
+.messageBody .box1 .list .actualList .chatUser .tagline {
   font-size: 12.4px;
   margin-bottom: 0px;
   font-weight: 400;
   color: rgb(119, 119, 119);
 }
-.messageBody .box1 .list .actualList .chatUser img{
+.messageBody .box1 .list .actualList .chatUser img {
   height: 42px;
   width: 42px;
   border-radius: 50%;
   margin-right: 9.5px;
+}
+
+.messageBody .box1 .msgBox .msgWindowHeader {
+  background: linear-gradient(to right, #edf0f5, #f5f5f5);
+  padding: 7px 14px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.messageBody .box1 .msgBox .msgWindowHeader h6 {
+  font-size: 14px;
+  font-weight: 450;
+  margin-bottom: 2.4px;
+}
+.messageBody .box1 .msgBox .msgWindowHeader {
+  margin-bottom: 0px;
+  border-bottom: #ccc 1.3px solid;
+}
+.messageBody .box1 .msgBox .msgWindowHeader img {
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.messageBody .box1 .msgBox .msgWindowScreen {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px;
+  max-height: 57vh;
+  min-height: 57vh;
+  overflow-y: scroll;
+}
+.messageBody .box1 .msgBox .msgWindowScreen::-webkit-scrollbar {
+  display: none;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .message {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 8px;
+  /* justify-content: flex-end; */
+}
+.messageBody .box1 .msgBox .msgWindowScreen .self-message {
+  justify-content: flex-end;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .other-message img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 5.5px;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .self-message img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-left: 5.5px;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .message .message-text {
+  background-color: #edf0f5;
+  border-radius: 8px 8px 8px 0px;
+  font-size: 13.4px;
+  padding: 12px;
+  padding-top: 4px;
+  margin-bottom: 0px;
+  min-width: 25%;
+  max-width: 65%;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .self-message .message-text {
+  /* background-color: #0166aa; */
+  border-radius: 8px 8px 0px 8px;
+  background-color: #087ecc;
+  background-color: #2576b1;
+  color: white !important;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .message .message-text h6 {
+  margin-bottom: 0px;
+  margin-top: 3px;
+  font-size: 13.4px;
+  font-weight: 480;
+  color: black;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .message .message-text span {
+  font-size: 11.7px;
+  color: rgb(66, 66, 66);
+}
+.messageBody .box1 .msgBox .msgWindowScreen .self-message .message-text h6{
+  color: white;
+}
+.messageBody .box1 .msgBox .msgWindowScreen .self-message .message-text span{
+  color: white;
+}
+
+
+
+
+
+
+.messageBody .box1 .msgBox .input-bar{
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  border-top: #ccc 1.3px solid;
+  background-color: #edf0f5;
+}
+.messageBody .box1 .msgBox .input-bar form{
+  width: 90%;
+  margin-right: 10px;
+}
+.messageBody .box1 .msgBox .input-bar input{
+  width: 100%;
+  padding: 6.2px 18px;
+  font-size: 13px;
+  border-radius: 20px;
+  border: #ccc 1.5px solid;
+  margin-right: 10px;
+  outline: none;
+}
+.messageBody .box1 .msgBox .input-bar .sendMessage{
+  background-color: #2c80b8;
+  color: white;
+  padding: 6px 8.8px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.messageBody .box1 .msgBox .input-bar .sendMessage:hover{
+  background-color: #0166aa;
 }

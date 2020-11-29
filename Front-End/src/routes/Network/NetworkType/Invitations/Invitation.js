@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import defaultUserPic from "../../../../assets/defaultProfilePic.png";
+import { connect } from "react-redux";
+import * as actionTypes from "../../../../store/actions/actionTypes";
 
 class Invitation extends Component {
   state = {
@@ -13,7 +15,8 @@ class Invitation extends Component {
     setTimeout(()=>{
       this.setState({ accepted: true });
     },1000)
-    this.props.accept(index, connection_id);
+    // this.props.accept(index, connection_id);
+    this.props.addedConnection();
   };
   removeInvitation = (index, connection_id) => {
     setTimeout(()=>{  
@@ -104,4 +107,10 @@ class Invitation extends Component {
   }
 }
 
-export default Invitation;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addedConnection : () => dispatch({type : actionTypes.ADDED_CONNECTION}),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Invitation);

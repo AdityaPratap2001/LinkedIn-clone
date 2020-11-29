@@ -46,13 +46,16 @@ class Invitations extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get(`/user/network/view/pending_connection/received/`, config)
+      .get(`/user/network/view/pending_connection/?filter=received`, config)
       .then((res) => {
         console.log(res);
         this.setState({ invitations: res.data, loading: false });
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.status === 404){
+          this.setState({invitations : [], loading: false})
+        }
       });
   }
 

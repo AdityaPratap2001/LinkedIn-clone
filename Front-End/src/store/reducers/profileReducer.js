@@ -82,6 +82,22 @@ const profileReducer = (state = initialState, action) => {
           tagline: action.tagline,
         },
       };
+
+    case actionTypes.ADDED_CONNECTION:
+      return {
+        userData: {
+          ...state.userData,
+          connections: state.userData.connections + 1,
+        },
+      };
+
+    case actionTypes.REMOVE_CONNECTION:
+      return {
+        userData: {
+          ...state.userData,
+          connections: state.userData.connections - 1,
+        },
+      };
   }
   return state;
 };

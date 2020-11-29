@@ -6,32 +6,32 @@ import Skeleton from "react-loading-skeleton";
 import axios from "../../../../API/baseURL/baseURL";
 import defaultUserPic from "../../../../assets/defaultProfilePic.png";
 
-const data = [
-  {
-    imgSrc: userImgSrc,
-    name: "Monica Geller",
-    domain: "Chef",
-    industry: "Allasandro's",
-  },
-  {
-    imgSrc: userImgSrc,
-    name: "Chandler Bing",
-    domain: "Sarcastic",
-    industry: "Everything",
-  },
-  {
-    imgSrc: userImgSrc,
-    name: "Gunther Green",
-    domain: "Waiter",
-    industry: "Central Perk",
-  },
-  {
-    imgSrc: userImgSrc,
-    name: "Phoebe Buffay",
-    domain: "Masseuse",
-    industry: "Ross' place",
-  },
-];
+// const data = [
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Monica Geller",
+//     domain: "Chef",
+//     industry: "Allasandro's",
+//   },
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Chandler Bing",
+//     domain: "Sarcastic",
+//     industry: "Everything",
+//   },
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Gunther Green",
+//     domain: "Waiter",
+//     industry: "Central Perk",
+//   },
+//   {
+//     imgSrc: userImgSrc,
+//     name: "Phoebe Buffay",
+//     domain: "Masseuse",
+//     industry: "Ross' place",
+//   },
+// ];
 
 class Connections extends Component {
   state = {
@@ -49,7 +49,7 @@ class Connections extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get(`/user/network/view/pending_connection/sent/`, config)
+      .get(`/user/network/view/pending_connection/?filter=sent`, config)
       .then((res) => {
         console.log(res);
         this.setState({ pending: res.data });
@@ -188,9 +188,10 @@ class Connections extends Component {
     }
 
     if (
-      this.state.pending !== null &&
-      this.state.pending && 
-      !this.state.loading
+      this.state.pending !== null 
+      // &&
+      // this.state.pending && 
+      // !this.state.loading
     ) {
       connectionsData = this.state.pending.map((item, index) => {
         let id = index;
@@ -230,9 +231,10 @@ class Connections extends Component {
     }
 
     if (
-      this.state.pending ||
-      this.state.pending === "" 
-      // this.state.pending.length === 0
+      // this.state.pending ||
+      // this.state.pending === "" 
+      !this.state.loading &&
+      this.state.pending.length === 0
     ) {
       connectionsData = (
         <div className="emptyImgDiv">

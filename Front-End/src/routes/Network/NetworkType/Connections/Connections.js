@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import axios from '../../../../API/baseURL/baseURL';
 import defaultUserPic from "../../../../assets/defaultProfilePic.png";
+import { connect } from "react-redux";
+import * as actionTypes from "../../../../store/actions/actionTypes";
 
 const data = [
   {
@@ -60,6 +62,7 @@ class Connections extends Component {
   }
 
   removeConnection = (id, connectionId) => {
+    this.props.removeOneConnection();
     let token = localStorage.getItem("accessToken");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -194,4 +197,10 @@ class Connections extends Component {
   }
 }
 
-export default Connections;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeOneConnection : () => dispatch({type : actionTypes.REMOVE_CONNECTION}),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Connections);

@@ -23,7 +23,8 @@
     "react-scripts": "3.4.3",
     "reactstrap": "^8.6.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "websocket": "^1.0.32"
   },
   "scripts": {
     "start": "react-scripts start",
