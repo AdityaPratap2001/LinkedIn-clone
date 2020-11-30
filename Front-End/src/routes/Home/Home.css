@@ -21,3 +21,9 @@
     width: 80vw;
   }
 }
+
+@media(max-width:529px){
+  .postColumn{
+    width: 92vw;
+  }
+}

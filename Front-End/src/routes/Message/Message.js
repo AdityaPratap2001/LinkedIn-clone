@@ -6,9 +6,9 @@ import defaultProfPic from "../../assets/defaultProfilePic.png";
 import msgImg from "../../assets/msg5.jpg";
 import { NavLink } from "react-router-dom";
 import MessageWindow from "./MessageWindow";
-import InputBar from "./InputBar";
 import dummyData from "./dummyData";
 import axios from "../../API/baseURL/baseURL";
+import msgBackPic from "../../assets/msgBack2.png";
 
 let List = dummyData;
 
@@ -59,15 +59,14 @@ class Message extends Component {
 
     let selectedUserData = null;
     let chatId = null;
-    
+
     this.state.userList.map((user) => {
       if (user.profileID == this.state.selectedUser) {
         selectedUserData = user;
-    
+
         if (selectedUserData !== null) {
           chatId = user.profileID;
         }
-        
       }
     });
 
@@ -96,12 +95,27 @@ class Message extends Component {
 
               <div className="msgBox">
                 {this.state.selectedUser === undefined ? (
-                  <h6>Initial Screen</h6>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    <img
+                      // style={{ width: "40%", height: "40%"}}
+                      style={{ width: "70%", height: "70%"}}
+                      src={msgBackPic}
+                    />
+                    {/* <h6>
+                      <i style={{color:'#788FA5'}}>Messages will appear here!</i>
+                    </h6> */}
+                  </div>
                 ) : (
-                  <MessageWindow
-                    user={selectedUserData}
-                    chatId={chatId}
-                  />
+                  <MessageWindow user={selectedUserData} chatId={chatId} />
                 )}
                 {/* {this.state.selectedUser === undefined ? null : <InputBar />} */}
               </div>

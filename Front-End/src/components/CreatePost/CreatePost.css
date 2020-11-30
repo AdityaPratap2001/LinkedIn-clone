@@ -176,7 +176,17 @@
   color: rgb(34, 34, 34);
 }
 
-
+@media(max-width:400px){
+  .createPost .createPostBottom{
+    padding: 0px 10px;
+  }
+  .createPost .createPostBottom .button{
+    text-align: center;
+  }
+  .createPost .createPostBottom .button i{
+    /* margin-right: 0px; */
+  }
+}
 
 
 

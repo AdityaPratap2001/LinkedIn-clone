@@ -60,6 +60,7 @@
 }
 .messageBody .box1 .list {
   width: 240px;
+  min-width: 240px;
   border-right: #f5f5f5 6px solid;
   height: 100%;
   /* background-color: #f9fbff; */

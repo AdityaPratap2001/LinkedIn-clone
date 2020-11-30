@@ -79,7 +79,10 @@ class Notifications extends Component {
             <div style={backgroundStyle} className="notification">
               <img src={userPic} />
               <h6>
-                <NavLink style={{fontWeight:'380'}} to={`/job/${item.source_id}`}>
+                <NavLink
+                  style={{ fontWeight: "380" }}
+                  to={`/job/${item.source_id}`}
+                >
                   {item.detail}
                 </NavLink>
               </h6>
@@ -190,14 +193,22 @@ class Notifications extends Component {
       <div>
         <Navbar shadow={true} />
         <div className="body feedBody">
-          <ProfileSidebox />
+
+          {/* <ProfileSidebox /> */}
+          <div className="sideBox2">
+            <ProfileSidebox />
+          </div>
 
           <div className="notificationColumn postColumn">
             <h6 className="heading">Notifications</h6>
             {notificationsDisplay}
           </div>
 
-          <PopularDomains />
+          {/* <PopularDomains /> */}
+          <div className="popDomains">
+            <PopularDomains />
+          </div>
+          
         </div>
       </div>
     );

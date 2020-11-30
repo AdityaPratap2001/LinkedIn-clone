@@ -15,7 +15,7 @@ class Invitation extends Component {
     setTimeout(()=>{
       this.setState({ accepted: true });
     },1000)
-    // this.props.accept(index, connection_id);
+    this.props.accept(index, connection_id);
     this.props.addedConnection();
   };
   removeInvitation = (index, connection_id) => {

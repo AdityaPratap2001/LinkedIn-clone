@@ -59,6 +59,11 @@
   }
 }
 
+@media(max-width:688px){
+  .feedBody{
+    padding: 4.5vh 0px;
+  }
+}
 
 
 

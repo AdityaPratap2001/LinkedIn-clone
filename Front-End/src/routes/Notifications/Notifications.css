@@ -56,7 +56,18 @@
 }
 
 
-
+@media (max-width:1276px){
+  .postColumn{
+    margin-left: 1.3vw;
+    margin: auto;
+  }
+  .sideBox2{
+    display: none;
+  }
+  .popDomains{
+    display: none;
+  }
+}
 
 
 

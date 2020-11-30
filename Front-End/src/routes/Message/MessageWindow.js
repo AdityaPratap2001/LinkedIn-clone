@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import defaultUserPic from "../../assets/defaultProfilePic.png";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { connect } from "react-redux";
-import InputBar from "./InputBar";
 
 const Message = ({ text, isMyMsg, user, otherUserPicture, myPic }) => {
   let self = false;

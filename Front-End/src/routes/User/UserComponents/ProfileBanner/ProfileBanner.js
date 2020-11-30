@@ -56,7 +56,7 @@ class ProfileBanner extends Component {
     };
 
     axios
-      .get(`/user/profile/banner/${this.state.userID}/`,config)
+      .get(`/user/profile/banner/${this.state.userID}/`, config)
       .then((res) => {
         console.log(res);
         this.setState({
@@ -70,25 +70,24 @@ class ProfileBanner extends Component {
           address: res.data.location,
           about: res.data.about,
           experience: res.data.experience,
-          connectionId: res.data.connection_id
+          connectionId: res.data.connection_id,
         });
         let isConnected = res.data.is_connected;
         let isPending = res.data.is_pending;
-      
-        if(isConnected){
-          this.setState({connectStatus : 'connected'})
+
+        if (isConnected) {
+          this.setState({ connectStatus: "connected" });
         }
-        if(!isConnected){
-          this.setState({connectStatus : 'notConnected'});
+        if (!isConnected) {
+          this.setState({ connectStatus: "notConnected" });
         }
-        if(!isConnected && isPending){
-          this.setState({connectStatus : 'pending'});
+        if (!isConnected && isPending) {
+          this.setState({ connectStatus: "pending" });
         }
-        if(isConnected === null && isPending === null){
-          this.setState({redirect : true});
+        if (isConnected === null && isPending === null) {
+          this.setState({ redirect: true });
         }
         console.log(this.state);
-      
       })
       .catch((err) => {
         console.log(err);
@@ -102,16 +101,21 @@ class ProfileBanner extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     const reqData = {
-      field : 'data',
-    }
-    axios.post(`/user/network/send/connection/${this.state.userID}/`,reqData,config)
-      .then((res)=>{
+      field: "data",
+    };
+    axios
+      .post(
+        `/user/network/send/connection/${this.state.userID}/`,
+        reqData,
+        config
+      )
+      .then((res) => {
         console.log(res);
         this.setState({ connectStatus: "pending" });
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   // unConnectPending = () => {
@@ -130,10 +134,13 @@ class ProfileBanner extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .delete(`/user/network/delete/connection/${this.state.connectionId}/`, config)
+      .delete(
+        `/user/network/delete/connection/${this.state.connectionId}/`,
+        config
+      )
       .then((res) => {
         console.log(res);
-        this.setState({connectStatus : 'notConnected'});
+        this.setState({ connectStatus: "notConnected" });
       })
       .catch((err) => {
         console.log(err);
@@ -141,9 +148,8 @@ class ProfileBanner extends Component {
   };
 
   render() {
-
-    if(this.state.redirect){
-      return <Redirect to='/profile'/>
+    if (this.state.redirect) {
+      return <Redirect to="/profile" />;
     }
 
     if (this.state.isLoading) {
@@ -247,7 +253,8 @@ class ProfileBanner extends Component {
     ) {
       aboutUserData = (
         <div className="userAboutNull">
-          <h6 onClick={() => this.displayModal(2)}>
+          {/* <h6 onClick={() => this.displayModal(2)}> */}
+          <h6>
             <i>Nothing to show in about section</i>
           </h6>
         </div>
@@ -328,9 +335,7 @@ class ProfileBanner extends Component {
             </h6>
           </div>
 
-          <div className="institutes">
-            {instituteData}
-          </div>
+          <div className="institutes">{instituteData}</div>
         </div>
 
         {aboutUserData}
