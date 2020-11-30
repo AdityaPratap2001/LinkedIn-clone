@@ -176,6 +176,8 @@
   color: rgb(34, 34, 34);
 }
 
+
+
 @media(max-width:400px){
   .createPost .createPostBottom{
     padding: 0px 10px;
@@ -187,7 +189,6 @@
     /* margin-right: 0px; */
   }
 }
-
 
 
 
