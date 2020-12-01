@@ -3,9 +3,10 @@ import defaultUserPic from "../../assets/defaultProfilePic.png";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { connect } from "react-redux";
 
-const Message = ({ text, isMyMsg, user, otherUserPicture, myPic }) => {
+const Message = ({ text, senderId, user, otherUserPicture, myPic }) => {
   let self = false;
-  if (isMyMsg) {
+  let MyId = localStorage.getItem('profileID');
+  if (MyId == senderId) {
     self = true;
   }
 
@@ -52,11 +53,12 @@ class MessageWindow extends Component {
     messages: [],
     typedMsg: "",
     counter: 0,
+    chatId: this.props.chatId, 
   };
 
   // client = null;
   // if(this.props.user.profileID !== null){
-  client = new W3CWebSocket(`ws://4f15b5e76882.ngrok.io/ws/chat/1/2/`);
+  client = new W3CWebSocket(`ws://b84202b00c82.ngrok.io/ws/chat/${localStorage.getItem('profileID')}/${this.state.chatId}/`);
   // }
 
   onButtonClick = (e) => {
@@ -73,6 +75,7 @@ class MessageWindow extends Component {
   };
 
   componentDidMount() {
+    console.log(this.state);
     // const messageWindow = this.messageWindow.current;
     // if (messageWindow !== null) {
     //   messageWindow.scrollTop =
@@ -81,21 +84,25 @@ class MessageWindow extends Component {
     this.client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
-
+    this.setState({counter : 0});
     this.client.onmessage = (message) => {
       const dataFromServer = JSON.parse(message.data);
       console.log("got reply! ", dataFromServer);
+
+      console.log(this.state.counter);
 
       if(this.state.counter === 0){
         let msgs = dataFromServer.messages;
         this.setState({messages : msgs.reverse(),counter : 1});
       }
-      if(this.state.counter !== 0){
+      // if(this.state.counter !== 0){
+      else{
         let newMsg = dataFromServer;
         let newMsgArray = this.state.messages;
         newMsgArray.push(newMsg);
         // this.setState({newMsgArray});
         this.setState({messages : newMsgArray})
+        console.log(this.state.messages);
       }
 
       // let newMsg = dataFromServer;
@@ -132,10 +139,10 @@ class MessageWindow extends Component {
 
   render() {
     if (this.props.user === null) {
-      return <h6>Initial screen</h6>;
+      return <h6>Iniial screen</h6>;
     }
 
-    let headerPic = this.props.user.pic;
+    let headerPic = this.props.user.user_avatar;
     if (headerPic === null) {
       headerPic = defaultUserPic;
     }
@@ -152,16 +159,19 @@ class MessageWindow extends Component {
       <>
         <div className="msgWindowHeader">
           <img src={headerPic} />
-          <h6>{this.props.user.name}</h6>
+          <h6>{this.props.user.user_name}</h6>
         </div>
         <div className="msgWindowScreen" ref={this.messageWindow}>
-          {this.state.messages.map((msg) => {
+          {this.state.messages.map((msg,index) => {
+            // if(index === this.state.messages.length - 1){
+            //   return null;
+            // }
             return (
               <Message
                 myPic={myPic}
                 userPic={headerPic}
                 text={msg.text}
-                isMyMsg={msg.is_my_msg}
+                senderId={msg.sender_id}
                 user={msg.sender}
                 otherUserPicture={headerPic}
               />

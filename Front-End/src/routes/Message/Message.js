@@ -15,42 +15,51 @@ let List = dummyData;
 class Message extends Component {
   state = {
     selectedUser: this.props.match.params.id,
-    userList: List,
+    userList: [],
   };
 
   componentDidMount() {
     console.log(this.state.selectedUser);
 
-    // axios.get('/recentChats')
-    //   .then((res)=>{
-    //     console.log(res);
-    //     this.setState({userList : res.data});
-    //   })
-    //   .catch((err)=>{
-    //     console.log(err);
-    //   })
+    let token = localStorage.getItem("accessToken");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get('/chat/user/history/',config)
+      .then((res)=>{
+        console.log(res);
+        this.setState({userList : res.data});
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   }
 
   render() {
     let listData = this.state.userList.map((user) => {
-      let profPic = user.pic;
+      let profPic = user.user_avatar;
       if (profPic === null) {
         profPic = defaultProfPic;
       }
       let customClass = "";
-      if (user.profileID == this.state.selectedUser) {
+      if (user.user_id == this.state.selectedUser) {
         customClass = "selecteduser";
+      }
+
+      let prevMsg = null;
+      if(user.text !== null ){
+        prevMsg = user.text.slice(0, 40);
       }
 
       return (
         <div className={`chatUser ${customClass}`}>
-          <NavLink to={`/message/${user.profileID}`}>
+          <NavLink to={`/message/${user.user_id}`}>
             <div>
               <img src={profPic} />
             </div>
             <div>
-              <h6 className="name">{user.name}</h6>
-              <h6 className="tagline">{user.tagline.slice(0, 40)}...</h6>
+              <h6 className="name">{user.user_name}</h6>
+              <h6 className="tagline">{prevMsg}</h6>
             </div>
           </NavLink>
         </div>
@@ -58,16 +67,19 @@ class Message extends Component {
     });
 
     let selectedUserData = null;
-    let chatId = null;
+    let chatID = null;
 
     this.state.userList.map((user) => {
-      if (user.profileID == this.state.selectedUser) {
+      console.log(user);
+      console.log(this.state);
+      if (user.user_id == this.state.selectedUser) {
         selectedUserData = user;
 
         if (selectedUserData !== null) {
-          chatId = user.profileID;
+          chatID = user.user_id;
         }
       }
+      console.log(chatID)
     });
 
     return (
@@ -115,7 +127,10 @@ class Message extends Component {
                     </h6> */}
                   </div>
                 ) : (
-                  <MessageWindow user={selectedUserData} chatId={chatId} />
+                  <MessageWindow 
+                  user={selectedUserData} 
+                  chatId={this.state.selectedUser} 
+                  />
                 )}
                 {/* {this.state.selectedUser === undefined ? null : <InputBar />} */}
               </div>

@@ -116,8 +116,9 @@ class Skills extends Component {
         console.log(this.state.displaySkills);
       })
       .catch((err) => {
-        console.log(err.response);
-        console.log(this.state);
+        // console.log(err);
+        // console.log(err.response);
+        // console.log(this.state);
         // if (err.response.status === 404) {
         this.setState({ isLoading: false, skills: [] });
         // }
@@ -306,6 +307,8 @@ class Skills extends Component {
     }
     if (this.state.skills.length !== 0) {
       skillsData = this.state.displaySkills.map((elem, id) => {
+        console.log(skill);
+        let skill = elem.split(':');
         return (
           <div className="skillBox">
             <h6 className="skill">
@@ -315,7 +318,8 @@ class Skills extends Component {
                 }}
                 className="skillName"
               >
-                {elem}
+                {/* {elem} */}
+                {skill}
               </span>
               <span
                 style={{
