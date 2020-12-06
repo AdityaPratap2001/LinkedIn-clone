@@ -43,22 +43,22 @@ class PopularDomains extends Component {
         <h6 className="heading">Trending Domains</h6>
 
         <h6 className="domain">
-          <NavLink to="/search/WebDevelopers">#Web-Developers</NavLink>
+          <NavLink to="/search/web">#Web-Developers</NavLink>
         </h6>
         <h6 className="domainPeople">38,296 people</h6>
 
         <h6 className="domain">
-          <NavLink to="/search/AppDevelopers">#App-Developers</NavLink>
+          <NavLink to="/search/app">#App-Developers</NavLink>
         </h6>
         <h6 className="domainPeople">21,847 people</h6>
 
         <h6 className="domain">
-          <NavLink to="/search/MachineLearning">#Machine Learning</NavLink>
+          <NavLink to="/search/ml">#Machine Learning</NavLink>
         </h6>
         <h6 className="domainPeople">13,226 people</h6>
 
         <h6 className="domain">
-          <NavLink to="/search/Designers">#UI/UX Designer</NavLink>
+          <NavLink to="/search/ui">#UI/UX Designer</NavLink>
         </h6>
         <h6 className="domainPeople">26,836 people</h6>
 

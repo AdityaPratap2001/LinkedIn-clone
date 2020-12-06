@@ -4,7 +4,7 @@ import "./Message.css";
 import profPic from "../../assets/profileSample.jpg";
 import defaultProfPic from "../../assets/defaultProfilePic.png";
 import msgImg from "../../assets/msg5.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink,Redirect } from "react-router-dom";
 import MessageWindow from "./MessageWindow";
 import dummyData from "./dummyData";
 import axios from "../../API/baseURL/baseURL";
@@ -36,6 +36,12 @@ class Message extends Component {
   }
 
   render() {
+
+    let logStatus = localStorage.getItem("logStatus");
+    if (logStatus === null) {
+      return <Redirect to="/userLogin" />;
+    }
+
     let listData = this.state.userList.map((user) => {
       let profPic = user.user_avatar;
       if (profPic === null) {

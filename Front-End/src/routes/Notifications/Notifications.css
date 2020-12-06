@@ -3,6 +3,11 @@
   border: #ccc 1.4px solid;
   /* padding: 6px 10px; */
   border-radius: 8px 8px 0px 0px;
+  max-height: 73vh;
+  overflow-y: scroll;
+}
+.feedBody .notificationColumn::-webkit-scrollbar {
+  display: none;
 }
 .feedBody .notificationColumn h6{
   margin-bottom: 0px;

@@ -88,7 +88,7 @@ class Invitations extends Component {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .patch(`/user/network/view/pending_connection/${connectionId}/`, data, config)
+      .patch(`/user/network/view/pending_connection/`, data, config)
       .then((res) => {
         console.log(res);
         // let newInvitationsArray = this.state.invitations;

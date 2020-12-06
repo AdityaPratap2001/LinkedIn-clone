@@ -221,14 +221,15 @@ class Skills extends Component {
         return (
           <div className="skillBox">
             <h6 className="skill">
-              {endorseIcon}
+              {/* {endorseIcon} */}
               <span
                 onClick={() => {
                   this.showEndorseList(elem);
                 }}
                 className="skillName"
               >
-                {elem.skill}
+                {/* {elem.skill} */}
+                {elem}
               </span>
               <span
                 style={{

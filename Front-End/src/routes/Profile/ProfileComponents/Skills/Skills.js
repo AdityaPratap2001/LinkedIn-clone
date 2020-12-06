@@ -307,19 +307,19 @@ class Skills extends Component {
     }
     if (this.state.skills.length !== 0) {
       skillsData = this.state.displaySkills.map((elem, id) => {
-        console.log(skill);
-        let skill = elem.split(':');
+        // console.log(skill);
+        // let skill = elem.split(':');
         return (
           <div className="skillBox">
             <h6 className="skill">
               <span
-                onClick={() => {
-                  this.showEndorseList(elem);
-                }}
+                // onClick={() => {
+                //   this.showEndorseList(elem);
+                // }}
                 className="skillName"
               >
-                {/* {elem} */}
-                {skill}
+                {elem}
+                {/* {skill} */}
               </span>
               <span
                 style={{

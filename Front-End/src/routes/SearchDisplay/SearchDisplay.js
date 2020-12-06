@@ -186,7 +186,7 @@ class SearchDisplay extends Component {
               <h6 className="tag">{user.tagline}</h6>
             </NavLink>
 
-            <NavLink className="connectButton" to={`/user/${user.profileId}`}>
+            <NavLink className="connectButton" to={`/user/${user.profile_id}`}>
               Connect
             </NavLink>
           </div>

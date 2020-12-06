@@ -92,6 +92,9 @@
   max-height: 60vh;
   overflow-y: scroll;
 }
+.modal-content .userAddAbout .endorseDisplay::-webkit-scrollbar {
+  display: none;
+}
 .modal-content .userAddAbout .displaySkillsArea{
   width: 90%;
   margin: auto;
