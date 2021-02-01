@@ -41,7 +41,7 @@ A SPA using React JS &amp; DJango, where user can create account &amp; seek jobs
 
 ***
 
-## Hire emplyees by posting jobs
+## Hire employees by posting jobs
 <img src="Project_Img/postJobForm.png">
 
 ***
