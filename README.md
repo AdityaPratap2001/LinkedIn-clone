@@ -46,5 +46,5 @@ A SPA using React JS &amp; DJango, where user can create account &amp; seek jobs
 
 ***
 
-## Search from variety of users & available jobs
+## Search for various users & available jobs
 <img src="Project_Img/searchResults2.png">
